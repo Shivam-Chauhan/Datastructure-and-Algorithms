@@ -1,0 +1,25 @@
+# Problem Statement :- https://www.geeksforgeeks.org/length-of-longest-palindrome-substring/
+# Python Solution
+
+input1="abccbc"
+dp=[[False for j in range(len(input1))] for i in range(len(input1))]
+length=0
+for g in range(0,len(input1)):
+    i=0
+    j=g
+    while j<len(dp):
+        if g==0:
+            dp[i][j]=True
+        elif g==1:
+            dp[i][j]=input1[i]==input1[j]
+        else:
+            if input1[i]==input1[j] and dp[i+1][j-1]:
+                dp[i][j]=True
+            else:
+                dp[i][j]=False
+        if dp[i][j]:
+            length=g+1
+        j+=1
+        i+=1
+
+print(length)        
