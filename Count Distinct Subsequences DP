@@ -1,0 +1,17 @@
+# Problem Statement :- https://www.geeksforgeeks.org/count-distinct-subsequences/
+# Python Solution
+
+stri="gfg"
+dp=[0]*(len(stri)+1)
+dic=dict()
+dp[0]=1
+for i in range(1,len(stri)+1):
+    dp[i]=dp[i-1]*2
+    if stri[i-1] in dic.keys():
+        pos=dic[stri[i-1]]
+        dp[i]-=dp[pos-1]
+    dic[stri[i-1]]=i
+print(dp[len(stri)])
+
+# print(dp)
+    
