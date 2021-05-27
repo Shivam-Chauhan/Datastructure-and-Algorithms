@@ -1,0 +1,40 @@
+# Problem Statement :- https://www.geeksforgeeks.org/print-all-increasing-subsequence-of-a-list/
+# Python Solution
+
+class pairs:
+    def __init__(self,length,index,value,string):
+        self.length=length
+        self.index=index
+        self.value=value
+        self.string=string
+
+list1=[10,22,42,33,21,50,41,60,80,3]
+dp=[0]*(len(list1))
+omax,omaxi=0,0
+for i in range(len(list1)):
+    maxi=0
+    for j in range(0,i):
+        if list1[j]<list1[i]:
+            maxi=max(maxi,dp[j])
+    dp[i]=maxi+1
+    if omax<dp[i]:
+        omax=dp[i]
+        omaxi=i
+    
+queue=[]
+queue.append(pairs(omax,omaxi,list1[omaxi],str(list1[omaxi])))
+while len(queue)>0:
+    rem=queue.pop()
+
+    if rem.index==0:
+        print(rem.string)
+    for j in range(0,rem.index):
+        if list1[j]<rem.value and dp[j]==rem.length-1:
+            queue.append(pairs(dp[j],j,list1[j],str(list1[j])+"->"+rem.string))
+
+
+        
+
+        
+            
+        
