@@ -1,0 +1,89 @@
+# Problem Statement :- https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/dynamic-programming/goldmine-re-official/ojquestion
+# Solution in Python
+
+
+class pairs:
+    def __init__(self,i,j,psf):
+        self.i=i
+        self.j=j
+        self.psf=psf
+
+# list1=[[3,2,3,1],
+#       [2,4,6,0],
+#       [5,0,1,3],
+#       [9,1,5,1]]
+
+dp=[[list1[i][j] for j in range(len(list1[0]))] for i in range(len(list1))]
+
+for i in range(len(list1)):
+    for j in range(len(list1[0])):
+        print(list1[i][j],end=" ")
+    print()
+
+
+for i in range(len(list1[0])-1,-1,-1):
+    for j in range(0,len(list1)):
+        if i==len(list1[0])-1:
+            dp[j][i]=list1[j][i]
+        elif j==len(list1)-1:
+            dp[j][i]+=max(dp[j][i+1],dp[j-1][i+1])
+        elif j==0:
+            dp[j][i]+=max(dp[j+1][i+1],dp[j][i+1])
+
+        else:
+            dp[j][i]+=max(dp[j][i+1],dp[j-1][i+1],dp[j+1][i+1])
+# for i in range(len(list1)):
+#     for j in range(len(list1[0])):
+#         print(dp[i][j],end=" ")
+#     print()
+
+maxi=0
+for i in range(len(dp)):
+    maxi=max(maxi,dp[i][0])
+
+    
+# 16 11 4 1 
+# 15 13 9 0 
+# 18 9 4 3 
+# 18 9 8 1    
+
+# 2d1d2d3
+# 3d2d2d1
+# 3d1d1d3
+
+# 3 2 3 1 
+# 2 4 6 0 
+# 5 0 1 3 
+# 9 1 5 1 
+queue=[]    
+
+for i in range(len(list1)):
+    if dp[i][0]==maxi:
+        queue.append(pairs(i,0,str(i)+""))
+
+while len(queue)>0:
+    rem=queue.pop(0)
+#     print(rem.i,rem.j,rem.psf)
+    if rem.j==len(dp[0])-1:
+        print(rem.psf)
+    elif rem.i==len(dp)-1:
+        g=max(dp[rem.i][rem.j+1],dp[rem.i-1][rem.j+1])
+        if g==dp[rem.i][rem.j+1]:
+            queue.append(pairs(rem.i,rem.j+1,rem.psf+"d2"+""))
+        if g==dp[rem.i-1][rem.j+1]:
+            queue.append(pairs(rem.i-1,rem.j+1,rem.psf+"d1"+""))
+    elif rem.i==0:
+        g=max(dp[rem.i][rem.j+1],dp[rem.i+1][rem.j+1])
+        if g==dp[rem.i][rem.j+1]:
+            queue.append(pairs(rem.i,rem.j+1,rem.psf+"d2"+""))
+        if g==dp[rem.i+1][rem.j+1]:
+            queue.append(pairs(rem.i+1,rem.j+1,rem.psf+"d3"+""))
+    else:
+        g=max(dp[rem.i][rem.j+1],dp[rem.i+1][rem.j+1],dp[rem.i-1][rem.j+1])
+        if g==dp[rem.i][rem.j+1]:
+            queue.append(pairs(rem.i,rem.j+1,rem.psf+"d2"+""))
+        if g==dp[rem.i+1][rem.j+1]:
+            queue.append(pairs(rem.i+1,rem.j+1,rem.psf+"d3"+""))
+        if g==dp[rem.i-1][rem.j+1]:
+            queue.append(pairs(rem.i-1,rem.j+1,rem.psf+"d1"+""))
+        
