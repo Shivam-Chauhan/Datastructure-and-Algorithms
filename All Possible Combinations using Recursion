@@ -1,0 +1,21 @@
+def combinations(string, position): # Recursive function to find all possible combinations
+    if position == len(string) - 1:
+        storage.add(''.join(string))  # Added to set
+    
+    for i in range(position, len(string)):
+        string[i],string[position]=string[position],string[i]
+        combinations(string, position + 1)        # Recursive call
+        string[i],string[position]=string[position],string[i]
+        
+        
+string=list(input('Input a String :- '))  ## Getting input of the user
+storage=set()
+combinations(string,0)
+for j in storage:
+    print(j,end=" ")
+
+
+
+# Set data structure is used to remove the duplicacy
+# Time complexity will be O((2^n)*(log(n))  
+# Space Complexity will be O(m) where m is the number of unique solutions
