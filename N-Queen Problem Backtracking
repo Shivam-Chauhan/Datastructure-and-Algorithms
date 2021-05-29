@@ -1,0 +1,39 @@
+# Link- https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/
+# Python Solution
+
+ct=0
+def display(grid):
+    global ct
+    ct+=1
+    if ct==1:
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                print(grid[i][j],end=" ")
+            print()
+    print()
+    
+def solve(grid,row,cols,ndiag,rdiag):
+    if row==len(grid):
+        display(grid)
+        return 
+    for col in range(0,len(grid)):
+        if cols[col]==False and ndiag[row+col]==False and rdiag[row-col+len(grid)-1]==False:
+            grid[row][col]=1
+            cols[col]=True
+            ndiag[col+row]=True
+            rdiag[row-col+len(grid)-1]=True
+            solve(grid,row+1,cols,ndiag,rdiag)
+            grid[row][col]=0
+            cols[col]=False
+            ndiag[col+row]=False
+            rdiag[row-col+len(grid)-1]=False
+grid=[[0,0,0,0,0],
+     [0,0,0,0,0],
+     [0,0,0,0,0],
+     [0,0,0,0,0],
+     [0,0,0,0,0]]
+cols=[False]*len(grid)
+ndiag=[False]*(2*len(grid)-1)
+rdiag=[False]*(2*len(grid)-1)
+grid2=[[]]
+solve(grid,0,cols,ndiag,rdiag)
