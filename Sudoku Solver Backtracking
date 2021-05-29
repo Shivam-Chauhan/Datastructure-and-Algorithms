@@ -1,0 +1,68 @@
+# Link :- https://www.geeksforgeeks.org/sudoku-backtracking-7/
+# Python Solution
+
+
+def isvalid(grid,x,y,val):
+    for j in range(len(grid[0])):
+        if grid[x][j]==val:
+            return False
+    for i in range(len(grid[0])):
+        if grid[i][y]==val:
+            return False
+    smi=(x//3)*3
+    smj=(y//3)*3
+    for i in range(0,3):
+        for j in range(0,3):
+            if grid[i+smi][j+smj]==val:
+                return False
+    return True
+
+def display(grid):
+    for po in range(1,10):
+        if isvalid(grid,8,8,po)==True:
+            grid[8][8]=po        
+    for i in range(len(grid[0])):
+        for j in range(len(grid[0])):
+            print(grid[i][j],end=" ")
+        print()
+            
+def sudokuSolver(grid,i,j):
+    if i==len(grid[0])-1 and j==len(grid[0])-1:
+        display(grid)
+        return 
+    ni,nj=0,0
+    if (j==len(grid[0])-1):
+        ni=i+1
+        nj=0
+    else:
+        ni=i
+        nj=j+1
+    
+    if grid[i][j] !=0:
+        sudokuSolver(grid,ni,nj)
+    else:
+        for po in range(1,10):
+            if isvalid(grid,i,j,po)==True:
+                grid[i][j]=po
+                sudokuSolver(grid,ni,nj)
+                grid[i][j]=0
+            
+    
+    
+
+
+
+    
+    
+grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
+        [5, 2, 0, 0, 0, 0, 0, 0, 0],
+        [0, 8, 7, 0, 0, 0, 0, 3, 1],
+        [0, 0, 3, 0, 1, 0, 0, 8, 0],
+        [9, 0, 0, 8, 6, 3, 0, 0, 5],
+        [0, 5, 0, 0, 9, 0, 6, 0, 0],
+        [1, 3, 0, 0, 0, 0, 2, 5, 0],
+        [0, 0, 0, 0, 0, 0, 0, 7, 4],
+        [0, 0, 5, 2, 0, 6, 3, 0, 0]]
+i,j=0,0
+sudokuSolver(grid,i,j)
+
