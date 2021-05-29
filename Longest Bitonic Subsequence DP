@@ -1,0 +1,31 @@
+Link :- https://www.geeksforgeeks.org/longest-bitonic-subsequence-dp-15/
+Python Solution
+
+def LIS(array):
+    increasing=[0]*len(array)
+    increasing[0]=1
+    for i in range(1,len(array)):
+        maxi=0
+        for j in range(0,i):
+            if array[i]>array[j]:
+                maxi=max(maxi,increasing[j])
+        increasing[i]=maxi+1
+    return increasing
+
+def LDS(array):
+    decreasing=[0]*len(array)
+    decreasing[len(array)-1]=1
+    for i in range(len(array)-2,-1,-1):
+        maxi=0
+        for j in range(len(array)-1,i,-1):
+            if array[i]>array[j]:
+                maxi=max(maxi,decreasing[j])
+        decreasing[i]=maxi+1
+    return decreasing
+            
+list1=LIS([10,22,9,33,21,50,41,60,80,3])
+list2=LDS([10,22,9,33,21,50,41,60,80,3])
+maxi=-10**9
+for i,j in zip(list1,list2):
+    maxi=max(maxi,i+j-1)
+print(maxi)
