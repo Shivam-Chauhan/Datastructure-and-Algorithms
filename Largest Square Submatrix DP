@@ -1,0 +1,25 @@
+# Link :- https://www.geeksforgeeks.org/maximum-size-sub-matrix-with-all-1s-in-a-binary-matrix
+# Python Solution
+
+grid=[[0,1,0,1,0,1],
+      [1,0,1,0,1,0],
+      [0,1,1,1,1,0],
+      [0,0,1,1,1,0],
+      [1,1,1,1,1,1]]
+dp=[[0 for j in range(len(grid[0]))] for i in range(len(grid))]
+maxi_size=0
+for i in range(len(grid)-1,-1,-1):
+    for j in range(len(grid[0])-1,-1,-1):
+        if grid[i][j]==0:
+            continue
+        elif i==len(grid)-1 or j==len(grid[0])-1:
+            dp[i][j]=1
+            
+        else:
+            dp[i][j]=min(dp[i+1][j],dp[i][j+1],dp[i+1][j+1])+grid[i][j]
+            maxi_size=max(maxi_size,dp[i][j])
+for i in range(len(grid)):
+    for j in range(len(grid[0])):
+        print(dp[i][j],end=" ")
+    print()
+print("Maximum Size Sqaure:-",maxi_size)
