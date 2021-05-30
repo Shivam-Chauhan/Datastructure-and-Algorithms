@@ -1,0 +1,42 @@
+# Link :- https://leetcode.com/problems/sort-the-matrix-diagonally/
+# Python Solution
+
+
+def diagonalSort(self, mat: List[List[int]]) -> List[List[int]]:
+        for g in range(len(mat[0])):
+            i=0
+            j=g
+            list1=[]
+            while i<len(mat) and j<len(mat[0]):
+                list1.append(mat[i][j])
+                i+=1
+                j+=1
+            list1.sort()
+            i=0
+            j=g
+            ct=0
+            while i<len(mat) and j<len(mat[0]):
+                mat[i][j]=list1[ct]
+                i+=1
+                j+=1
+                ct+=1
+
+        for g in range(1,len(mat)):
+            i=g
+            j=0
+            list1=[]
+            while i<len(mat) and j<len(mat[0]):
+                list1.append(mat[i][j])
+                i+=1
+                j+=1
+
+            list1.sort()
+            i=g
+            j=0
+            ct=0
+            while i<len(mat) and j<len(mat[0]):
+                mat[i][j]=list1[ct]
+                i+=1
+                j+=1
+                ct+=1
+        return mat
