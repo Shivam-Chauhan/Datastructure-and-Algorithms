@@ -1,0 +1,33 @@
+# Link :- https://www.geeksforgeeks.org/level-order-tree-traversal/
+# Python Solution
+
+class Node:
+    def __init__(self,val):
+        self.value=val
+        self.left=None
+        self.right=None
+        
+        
+def LevelOrderTraversal(root):
+    queue=[]
+    if root is None:
+        return None
+    queue.append(root)
+    while len(queue)>0:
+        rem=queue.pop(0)
+        print(rem.value,end=",")
+        if rem.left != None:
+            queue.append(rem.left)
+        if rem.right != None:
+            queue.append(rem.right)
+        
+        
+        
+        
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+print(LevelOrderTraversal(root))
