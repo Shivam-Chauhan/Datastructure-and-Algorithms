@@ -1,0 +1,13 @@
+# Link :- https://www.geeksforgeeks.org/painting-fence-algorithm/
+# Python Solution
+
+n=int(input())
+k=int(input())
+ii=k
+ij=k*(k-1)
+tot=ii+ij
+for j in range(3,n+1):
+    ii=ij
+    ij=tot*(k-1)
+    tot=ii+ij
+print(tot)
