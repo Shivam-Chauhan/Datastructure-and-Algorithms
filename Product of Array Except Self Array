@@ -1,0 +1,29 @@
+# Link :- https://leetcode.com/problems/product-of-array-except-self/submissions/
+# Python Solution
+
+def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        product,product1=1,1
+        if nums.count(0)==1:
+            for i in nums:
+                product*=i
+                if i!=0:
+                    product1*=i
+            for i,j in enumerate(nums):
+                if j!=0:
+                    nums[i]=product//j
+                else:
+                    nums[i]=product1
+        else:
+            for i in nums:
+                product*=i
+            for i,j in enumerate(nums):
+                if j==0:
+                    nums[i]=0
+                else:
+                    nums[i]=product//j
+
+        return nums
