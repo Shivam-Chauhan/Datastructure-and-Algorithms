@@ -1,0 +1,24 @@
+# Link :- https://leetcode.com/problems/partition-labels/
+# Python Solution
+
+# Brute Solution
+
+maxi=0
+counter=0
+list1=[]
+for i in range(len(s)-1):
+    for j in range(i,len(s)):
+        if s[j]==s[i]:
+            maxi=max(maxi,j)
+    if maxi==i:
+        # print(s[i],i,maxi)
+        list1.append(maxi-counter+1)
+        counter=maxi+1
+if counter!=maxi:
+    if maxi-counter+1==0:
+        list1.append(1)
+    else:
+        list1.append(maxi-counter+1)
+
+
+return list1
