@@ -1,0 +1,30 @@
+# Link :- https://leetcode.com/problems/partition-equal-subset-sum
+# Python Code
+
+class Solution(object):
+    def canPartition(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        sum1=sum(nums)
+        if sum1&1:
+            return False
+        sum1>>=1
+        
+        dp=[[False for j in range(sum1+1)] for i in range(len(nums)+1)]
+        
+        for i in range(0,len(nums)+1):
+            for j in range(0,sum1+1):
+                if i==0 and j==0:
+                    dp[i][j]=True
+                elif i==0:
+                    dp[i][j]=False
+                elif j==0:
+                    dp[i][j]=True
+                elif nums[i-1]>j:
+                    dp[i][j]=dp[i-1][j]
+                elif nums[i-1]<=j:
+                    dp[i][j]=dp[i-1][j] or dp[i-1][j-nums[i-1]]
+        return dp[len(nums)][sum1]
+        
