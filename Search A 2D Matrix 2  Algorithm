@@ -1,0 +1,40 @@
+# Link :- https://leetcode.com/problems/search-a-2d-matrix-ii
+# Python Solution 
+
+
+
+Brute Force :- 
+for i in range(len(matrix)):
+    for j in range(len(matrix[0])):
+        if matrix[i][j]==target:
+            return True
+return False
+
+# O(N*M)
+
+
+
+# Optimal Solution :-
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        
+        i=0
+        j=len(matrix[0])-1
+        while i<=len(matrix)-1 and j>=0:
+            if matrix[i][j]==target:
+                return True
+            if matrix[i][j]>target:
+                j-=1
+            else:
+                i+=1
+        return False
+        
+        
+        
+# O(N+M)
+        
