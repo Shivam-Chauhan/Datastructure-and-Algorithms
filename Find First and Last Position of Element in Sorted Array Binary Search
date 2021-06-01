@@ -1,0 +1,42 @@
+# Link :- https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions
+# Python Solution
+
+# Binary Search
+
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        i=0
+        j=len(nums)-1
+        counter=10**9
+        while i<=j:
+            mid=(i+j)//2
+            if nums[mid]==target:
+                counter=mid
+                i=mid+1
+            elif nums[mid]<target:
+                i=mid+1
+            else:
+                j=mid-1
+        i=0
+        j=len(nums)-1
+        counter1=10**9
+        while i<=j:
+            mid=(i+j)//2
+            if nums[mid]==target:
+                counter1=mid
+                j=mid-1
+            elif nums[mid]<target:
+                i=mid+1
+            else:
+                j=mid-1
+        if counter1==10**9 or counter==10**9:
+            return [-1,-1]
+        else:
+            return [counter1,counter]
+            
+            
