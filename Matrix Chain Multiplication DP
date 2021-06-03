@@ -1,0 +1,30 @@
+# Link :- https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
+# Python Code
+# Reference Pepcoding 
+
+arr=[40,20,30,10,30]
+dp=[[0 for j in range(len(arr)-1)] for i in range(len(arr)-1)]
+
+for g in range(0,len(dp)):
+    i,j=0,g
+    while j<len(dp[0]):
+        if g==0:
+            dp[i][j]=0
+        elif g==1:
+            dp[i][j]=arr[i]*arr[i+1]*arr[j+1]
+        else:
+            # Dp -> i,k left half and k+1,j right half
+            # arr-> i*k+1
+            mini=10**9
+            for k in range(i,j):
+                lc=dp[i][k]
+                rc=dp[k+1][j]
+                mc=arr[i]*arr[k+1]*arr[j+1]
+                tc=lc+rc+mc
+                mini=min(mini,tc)
+            dp[i][j]=mini
+        i+=1
+        j+=1
+print(dp[0][len(dp)-1])
+            
+    
