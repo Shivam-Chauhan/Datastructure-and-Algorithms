@@ -1,0 +1,26 @@
+# Link :- https://leetcode.com/problems/maximal-square/submissions/
+# Python Solution 
+# Time complexity O(N^2)
+# Space complexity O(1)
+
+class Solution(object):
+    def maximalSquare(self, matrix):
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        maxi=1
+        ct=0
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if int(matrix[i][j])==1:
+                    ct+=1
+                if j!=0 and i!=0 and int(matrix[i][j]):
+                    matrix[i][j]=min(int(matrix[i-1][j]),int(matrix[i][j-1]),int(matrix[i-1][j-1]))+1
+                    maxi=max(maxi,matrix[i][j])
+        
+        return 0 if ct==0 else maxi*maxi
+        
+              
+                    
+        
