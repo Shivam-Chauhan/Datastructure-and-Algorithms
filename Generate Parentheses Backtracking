@@ -1,0 +1,32 @@
+# Problem Link :- https://leetcode.com/problems/generate-parentheses
+# Python Solution
+
+
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        
+        open_bracket,close_bracket=n,n
+        psf=""
+        output=[]
+        self.parenthesis(open_bracket,close_bracket,psf,output)
+        
+        return output
+        
+    def parenthesis(self,open_bracket,close_bracket,psf,output):
+        if open_bracket==0 and close_bracket==0:
+            output.append(psf)
+            return
+        if open_bracket==close_bracket:
+            return self.parenthesis(open_bracket-1,close_bracket,psf+"(",output)
+        elif open_bracket>close_bracket:
+            return self.parenthesis(open_bracket-1,close_bracket,psf+"(",output) or self.parenthesis(open_bracket,close_bracket-1,psf+")",output)
+        else:
+            if open_bracket==0:
+                return self.parenthesis(open_bracket,close_bracket-1,psf+")",output)
+            else:
+                return self.parenthesis(open_bracket-1,close_bracket,psf+"(",output) or self.parenthesis(open_bracket,close_bracket-1,psf+")",output)
+
