@@ -1,8 +1,8 @@
 # Problem Link:- https://leetcode.com/problems/combination-sum/submissions/
 # Python Solution 
 
-# Time Complexity O(2^n) since it requires all possible paths
-# Space Complexity Size of Recursion Stack
+# Time Complexity O(2^n) since it requires all possible paths.
+# Space Complexity Size of Recursion Stack and Linear for storing a single component.
 
 
 class Solution(object):
