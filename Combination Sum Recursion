@@ -1,0 +1,33 @@
+# Problem Link:- https://leetcode.com/problems/combination-sum/submissions/
+# Python Solution 
+
+# Time Complexity O(2^n) since it requires all possible paths
+# Space Complexity Size of Recursion Stack
+
+
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        indx=0
+        comp=""
+        comps=[]
+        self.combination_sum(candidates,target,indx,comp,comps)
+        return comps
+    
+    def combination_sum(self,candidates,target,indx,comp,comps):
+        if target==0 and indx==len(candidates):
+            list2=list(map(int,comp.strip().split(" ")))
+            comps.append(list2)
+            return
+        elif target!=0 and indx==len(candidates):
+            return
+        elif target<candidates[indx]:
+            return self.combination_sum(candidates,target,indx+1,comp,comps)
+        else:
+            return self.combination_sum(candidates,target-candidates[indx],indx,comp+" "+str(candidates[indx]),comps) or self.combination_sum(candidates,target,indx+1,comp,comps) 
+
+        
