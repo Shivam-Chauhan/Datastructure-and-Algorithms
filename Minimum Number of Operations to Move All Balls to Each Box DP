@@ -1,0 +1,47 @@
+# Link :- https://leetcode.com/problems/minimum-number-of-operations-to-move-all-balls-to-each-box/submissions
+# Python Solution 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
+
+Brute Force :- O(n^2) time complexity and O(1) space complexity
+
+class Solution(object):
+    def minOperations(self, boxes):
+        """
+        :type boxes: str
+        :rtype: List[int]
+        """
+        list1=[]
+        for i in range(len(boxes)):
+            sum1=0
+            for j in range(len(boxes)):
+                if i!=j:
+                    if boxes[j]=="1":
+                        sum1+=abs(i-j)
+            list1.append(sum1)
+        return list1
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
+
+
+Optimal Solution :- O(n) time complexity and O(1) space complexity
+
+class Solution(object):
+    def minOperations(self, boxes):
+        """
+        :type boxes: str
+        :rtype: List[int]
+        """
+        
+        result=[0]*len(boxes)
+        curr,step=0,0
+        for j in range(1,len(boxes)):
+            curr+=int(boxes[j-1])
+            step+=curr
+            result[j]+=step
+        
+        curr,step=0,0
+        for j in range(len(boxes)-2,-1,-1):
+            curr+=int(boxes[j+1])
+            step+=curr
+            result[j]+=step
+        return result
