@@ -1,0 +1,18 @@
+# Problem Link :- https://leetcode.com/problems/reduction-operations-to-make-the-array-elements-equal
+# Python Solution
+
+
+class Solution(object):
+    def reductionOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        res=0
+        for i in range(len(nums)-1,0,-1):
+            if nums[i]!=nums[i-1]:
+                res+=len(nums)-i
+        return res
+                
+        
