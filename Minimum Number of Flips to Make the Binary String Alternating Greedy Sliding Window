@@ -1,0 +1,41 @@
+# Problem Link :- https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating
+# Python Solution 
+# Reference Solution :- https://www.youtube.com/watch?v=MOeuK6gaC2A
+
+
+
+class Solution(object):
+    def minFlips(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        n=len(s)
+        s+=s
+        alter1=""
+        alter2=""
+        diff1,diff2=0,0
+        left,mini=0,10**9
+        for i in range(len(s)):
+            if i&1:
+                alter1+="1"
+                alter2+="0"
+            else:
+                alter1+="0"
+                alter2+="1"
+        for right in range(len(s)):
+            if s[right] !=alter1[right]:
+                diff1+=1
+            if s[right] !=alter2[right]:
+                diff2+=1
+            if right-left+1>n:
+                if alter1[left]!=s[left]:
+                    diff1-=1
+                if alter2[left]!=s[left]:
+                    diff2-=1
+                left+=1
+            if right-left+1==n:
+                mini=min(mini,diff1,diff2)
+                
+                
+        return mini
