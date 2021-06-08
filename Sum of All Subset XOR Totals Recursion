@@ -1,0 +1,19 @@
+# Problem Statement :- https://leetcode.com/problems/sum-of-all-subset-xor-totals/submissions/
+# Python Solution
+
+
+class Solution(object):
+    def subsetXORSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        sum1,indx=0,0
+        return self.subset_xor(nums,sum1,indx)
+        
+        
+    def subset_xor(self,nums,sum1,indx):
+        if indx==len(nums):
+            return sum1
+        return self.subset_xor(nums,sum1^nums[indx],indx+1) + self.subset_xor(nums,sum1,indx+1) 
+        
