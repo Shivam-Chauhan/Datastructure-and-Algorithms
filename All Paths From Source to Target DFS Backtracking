@@ -1,0 +1,29 @@
+# Problem Link :- https://leetcode.com/problems/all-paths-from-source-to-target/submissions/
+# Python Solution
+
+class Solution(object):
+    def allPathsSourceTarget(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def dfs(graph,src,dest,visited,psf):
+            if src==dest:
+                out.append(psf[:])
+            if visited[src]==False:
+                visited[src]=True
+                for j in graph[src]:
+                    psf.append(j)
+                    dfs(graph,j,dest,visited,psf)
+                    psf.pop()
+                visited[src]=False
+
+        visited=[False]*len(graph)
+        psf=[0]
+        out=[]
+        for j in range(len(graph)):
+            if visited[j]==False:
+                dfs(graph,0,len(graph)-1,visited,psf)
+                visited[j]=True
+        return out
+        
