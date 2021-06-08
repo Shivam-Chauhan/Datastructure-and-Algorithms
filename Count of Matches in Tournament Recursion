@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/count-of-matches-in-tournament/submissions
+# Python Solution
+
+class Solution(object):
+    def numberOfMatches(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        sum1=0
+        return self.matchers(n,sum1)
+    def matchers(self,n,sum1):
+        if n==1:
+            return sum1
+        else:
+            sum1+=n//2
+            if n&1:
+                return self.matchers((n-1)//2+1,sum1)
+            else:
+                return self.matchers(n//2,sum1)
+        
+        
