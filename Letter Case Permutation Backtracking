@@ -1,0 +1,26 @@
+# Problem Link :- https://leetcode.com/problems/letter-case-permutation/submissions
+# Python Solution
+
+class Solution(object):
+    def letterCasePermutation(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        def permutator(s,indx,stri,output):
+            if indx==len(s):
+                output.append(stri)
+                return
+            else:
+                if s[indx]>='a' and s[indx]<='z':
+                    return permutator(s,indx+1,stri+chr(ord(s[indx])-32),output) or permutator(s,indx+1,stri+s[indx],output)
+                elif s[indx]>='A' and s[indx]<='Z':
+                    return permutator(s,indx+1,stri+chr(ord(s[indx])+32),output) or permutator(s,indx+1,stri+s[indx],output)
+                else:
+                    return permutator(s,indx+1,stri+s[indx],output)
+        indx=0
+        output=[]
+        stri=""
+        permutator(s,indx,stri,output)
+        return output
+        
