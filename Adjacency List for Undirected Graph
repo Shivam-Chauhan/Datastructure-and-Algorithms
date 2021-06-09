@@ -15,3 +15,25 @@ for j in list1:
 for i in graph.keys():
     print(i,graph[i])
     
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Where Weight is given
+
+from collections import defaultdict
+graph=defaultdict(list)
+list1=[
+    [1,2,12],
+    [2,4,44],
+    [3,4,55],
+    [3,1,7],
+    [3,2,90],
+    [1,4,20]
+]
+for j in list1:
+    u,v,weight=j[0],j[1],j[2]
+    graph[u].append((v,weight))
+    graph[v].append((u,weight))
+for i in graph.keys():
+    print(i,graph[i])
+    
