@@ -1,0 +1,40 @@
+# Problem Link :- https://leetcode.com/problems/combination-sum-iii/submissions/
+# Python Solution
+
+
+# Brute Force Solution
+
+from itertools import combinations
+k=3
+n=9
+list1=list(combinations([1,2,3,4,5,6,7,8,9],k))
+out=[]
+for j in list1:
+    if sum(j)==n:
+        out.append(list(j))
+return out
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Optimal Solution
+
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        list1=list(range(1,10))
+        output=[]
+        self.dfs(list1,[],output,n,k)
+        
+        return output
+    def dfs(self,list1,path,output,n,k):
+        if n<0 or k<0:
+            return 
+        if n==0 and k==0:
+            output.append(path)
+            return
+        for i in range(len(list1)):
+            self.dfs(list1[i+1:],path+[list1[i]],output,n-list1[i],k-1)
+            
