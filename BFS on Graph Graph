@@ -1,0 +1,40 @@
+from collections import defaultdict
+
+def bfs(graph,visited,psf,src):
+    queue=[]
+    queue.append(src)
+    while queue:
+        rem=queue.pop()
+        psf.append(rem)
+        for j in graph[rem]:
+            if visited[j]!=True:
+                visited[j]=True
+                queue.append(j)
+    print(psf)
+
+def graph_making(list1):
+    graph=defaultdict(list)
+    for j in list1:
+        u,v=j[0],j[1]
+        graph[u].append(v)
+        graph[v].append(u)
+    return graph
+    
+list1=[
+        [1,2],
+        [2,3],
+        [2,7],
+        [3,5],
+        [4,6],
+        [5,7],
+]
+graph=graph_making(list1)
+vtcs=7
+visited=[False]*(vtcs+1)
+for j in graph:
+    psf=[]
+    if visited[j] !=True:
+        visited[j]=True
+        bfs(graph,visited,psf,j)
+        
+    
