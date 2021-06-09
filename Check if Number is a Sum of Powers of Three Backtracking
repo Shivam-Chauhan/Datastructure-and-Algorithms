@@ -1,0 +1,23 @@
+# Problem Statement :- https://leetcode.com/problems/check-if-number-is-a-sum-of-powers-of-three/submissions
+# Python Solution
+
+class Solution(object):
+    def checkPowersOfThree(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        def issummation(n,dp,indx):
+            if n==0:
+                return True
+            elif n!=0 and indx==len(dp):
+                return False
+            elif dp[indx]>n:
+                return False
+            else:
+                return issummation(n-dp[indx],dp,indx+1) or issummation(n,dp,indx+1)
+            
+        
+        dp=[1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19683, 59049, 177147, 531441, 1594323, 4782969]
+        indx=0
+        return issummation(n,dp,indx)
