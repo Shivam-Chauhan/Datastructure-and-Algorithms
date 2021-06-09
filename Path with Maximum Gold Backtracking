@@ -1,0 +1,33 @@
+# Problem Link :- https://leetcode.com/problems/path-with-maximum-gold
+# Python Solution
+
+class Solution(object):
+    def getMaximumGold(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        
+        def max_sum(grid,sum1,i,j,visited):
+            if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]) or grid[i][j]==0 or visited[i][j]==True:
+                return sum1
+
+            visited[i][j]=True
+            sum1+=grid[i][j]
+            down=max_sum(grid,sum1,i+1,j,visited)
+            top=max_sum(grid,sum1,i-1,j,visited)
+            right=max_sum(grid,sum1,i,j+1,visited)
+            left=max_sum(grid,sum1,i,j-1,visited)
+            visited[i][j]=False
+            return max(down,top,right,left)
+
+        visited=[[False for j in range(len(grid[0]))] for i in range(len(grid))]
+        omax=0
+        sum1=0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]:
+                    omax=max(omax,max_sum(grid,sum1,i,j,visited))
+        return omax
+
+        
