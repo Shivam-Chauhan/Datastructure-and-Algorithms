@@ -1,0 +1,22 @@
+def dfs(graph,visited,src,psf):
+    psf.append(src)
+    visited[src]=True
+    for j in graph[src]:
+        if visited[j]==False:
+            dfs(graph,visited,j,psf)
+graph={
+    1:[2],
+    2:[1,4,7],
+    3:[5],
+    4:[2,6],
+    5:[3],
+    6:[2,7],
+    7:[2,6]
+}
+vtces=7
+visited=[False]*(vtces+1)
+psf=[]
+for vertice in graph:
+    if visited[vertice]==False:
+        dfs(graph,visited,vertice,psf)
+print(psf)
