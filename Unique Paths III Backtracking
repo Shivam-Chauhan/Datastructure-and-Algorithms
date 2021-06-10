@@ -1,0 +1,49 @@
+# Problem Link :- https://leetcode.com/problems/unique-paths-iii
+# Python Solution
+
+
+class Solution(object):
+    def uniquePathsIII(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        self.ocounter=0
+        def dfs(grid,visited,startx,starty,counter):
+            if startx<0 or starty<0 or startx>=len(grid) or starty>=len(grid[0]) or visited[startx][starty]==True or grid[startx][starty]==-1:
+                return
+            if grid[startx][starty]==2 and counter==0:
+                self.ocounter+=1
+                # print(ocounter)
+                return
+
+
+            visited[startx][starty]=True
+            dfs(grid,visited,startx-1,starty,counter-1)
+            dfs(grid,visited,startx+1,starty,counter-1)
+            dfs(grid,visited,startx,starty+1,counter-1)
+            dfs(grid,visited,startx,starty-1,counter-1)
+            visited[startx][starty]=False
+        
+        counter=0
+        visited=[]
+        startx,starty=0,0
+        for i in range(len(grid)):
+            temp=[]
+            for j in range(len(grid[0])):
+                temp.append(False)
+                if grid[i][j]==0:
+                    counter+=1
+                if grid[i][j]==1:
+                    startx=i
+                    starty=j
+            visited.append(temp)
+        
+        counter+=1
+        dfs(grid,visited,startx,starty,counter)
+        
+        return self.ocounter
+    
+
+
+        
