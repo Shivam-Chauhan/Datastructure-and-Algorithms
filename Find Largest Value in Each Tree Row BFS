@@ -1,0 +1,36 @@
+# Problem Link :- https://leetcode.com/problems/find-largest-value-in-each-tree-row/submissions
+# Python Solution
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def largestValues(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if root==None: return []
+        result=[0]*(1000)
+        queue=[(root,0)]
+        maxi=-10**10
+        levelc=0
+        while queue:
+            # print(queue)
+            rem,level=queue.pop(0)
+            if levelc!=level:
+                levelc=level
+                maxi=-10**10
+            if maxi<rem.val:
+                maxi=rem.val
+                levelc=level
+                result[level]=maxi
+            if rem.left: queue.append((rem.left,level+1))
+            
+            if rem.right: queue.append((rem.right,level+1))
+            
+        # print(result)
+        return result[0:level+1]
