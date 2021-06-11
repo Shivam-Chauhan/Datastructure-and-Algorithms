@@ -1,0 +1,32 @@
+# Problem Link :- https://leetcode.com/problems/cousins-in-binary-tree
+# Python Solution 
+
+
+from collections import defaultdict
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isCousins(self, root, x, y):
+        """
+        :type root: TreeNode
+        :type x: int
+        :type y: int
+        :rtype: bool
+        """
+        queue=[(root,0,0)]
+        dic=defaultdict(list)
+        while queue:
+            node,level,parent=queue.pop()
+            dic[node.val]=[level,parent]
+            if node.left:
+                queue.append((node.left,level+1,node))
+            if node.right:
+                queue.append((node.right,level+1,node))
+        # print(dic)
+        if dic[x][0]==dic[y][0] and dic[x][1] !=dic[y][1]:
+            return True
+        return False
