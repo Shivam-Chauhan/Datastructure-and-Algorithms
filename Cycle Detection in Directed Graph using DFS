@@ -1,0 +1,34 @@
+# Reference Striver's Graph Series
+
+def checkCycle(src,graph,visited,dfsvis):
+    visited[src]=1
+    dfsvis[src]=1
+    for it in graph[src]:
+        if not visited[it]:
+            if checkCycle(it,graph,visited,dfsvis): return True
+        elif dfsvis[it]: return True
+    dfsvis[src]=0
+    
+    return False
+
+def iscyclic(vtcs,graph):
+    visited=[0]*(vtcs+1)
+    dfsvis=[0]*(vtcs+1)
+    for j in range(1,vtcs+1):
+        if not visited[j]:
+            if checkCycle(j,graph,visited,dfsvis):
+                return True
+    return False
+graph={
+    1:[2],
+    2:[3],
+    3:[4,6],
+    4:[5],
+    5:[],
+    6:[5],
+    7:[2,8],
+    8:[9],
+    9:[7]
+}
+vtcs=9
+iscyclic(vtcs,graph)
