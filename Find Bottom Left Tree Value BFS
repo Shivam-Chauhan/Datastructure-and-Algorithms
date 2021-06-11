@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/find-bottom-left-tree-value/submissions/
+# Python Solution 
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def findBottomLeftValue(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if root==None: return
+        queue=[root]
+        while queue:
+            rem=queue.pop(0)
+            if rem.right: queue.append(rem.right)
+            
+            if rem.left: queue.append(rem.left)
+        
+        return rem.val
+        
