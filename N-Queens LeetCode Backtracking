@@ -1,0 +1,51 @@
+# Problem Link :- https://leetcode.com/problems/n-queens/
+# Python Solution
+
+class Solution(object):
+    def solveNQueens(self, n):
+        """
+        :type n: int
+        :rtype: List[List[str]]
+        """
+        ct=0
+        self.number=[]
+        grid=[[0 for j in range(n)] for i in range(n)]
+        cols=[False]*len(grid)
+        ndiag=[False]*(2*len(grid)-1)
+        rdiag=[False]*(2*len(grid)-1)
+        
+        self.solve(grid,0,cols,ndiag,rdiag)
+        return self.number
+
+    
+    def display(self,grid):
+        list1=[]
+        for i in range(len(grid)):
+            temp=""
+            for j in range(len(grid)):
+                if grid[i][j]==1:
+                    temp+="Q"
+                else:
+                    temp+="."
+            list1.append(temp)
+        self.number.append(list1)
+            
+                    
+    
+    def solve(self,grid,row,cols,ndiag,rdiag):
+        if row==len(grid):
+            self.display(grid)
+            return 
+        for col in range(0,len(grid)):
+            if cols[col]==False and ndiag[row+col]==False and rdiag[row-col+len(grid)-1]==False:
+                grid[row][col]=1
+                cols[col]=True
+                ndiag[col+row]=True
+                rdiag[row-col+len(grid)-1]=True
+                self.solve(grid,row+1,cols,ndiag,rdiag)
+                grid[row][col]=0
+                cols[col]=False
+                ndiag[col+row]=False
+                rdiag[row-col+len(grid)-1]=False
+
+        
