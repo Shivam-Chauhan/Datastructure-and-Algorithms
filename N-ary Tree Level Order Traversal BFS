@@ -1,0 +1,40 @@
+# Problem Link :- https://leetcode.com/problems/n-ary-tree-level-order-traversal
+# Python Solution
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: Node
+        :rtype: List[List[int]]
+        """
+        if root==None: return []
+        
+        queue=[]
+        queue.append(root)
+        queue.append(10**9)
+        result=[]
+        temp=[]
+        while queue:
+            rem=queue.pop(0)
+            if rem==10**9 :
+                if temp!=[]:
+                    result.append(temp)
+                temp=[]
+            else:
+                temp.append(rem.val)
+                for j in rem.children:
+                    if j !=None:
+                        queue.append(j)
+                if queue[0]==10**9:
+                    queue.append(10**9)
+                
+        return result
+                
+        
