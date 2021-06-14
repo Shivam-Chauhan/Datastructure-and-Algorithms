@@ -1,0 +1,36 @@
+# Problem Link :- https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+# Python Solution
+# Time Complexity O(N)+O(N)
+# Space Complexity O(N)+O(N)
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def levelOrderBottom(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root==None: return []
+        queue=[]
+        dic=dict()
+        level=0
+        queue.append((root,level))
+        while queue:
+            node,level=queue.pop(0)
+            if level in dic:
+                dic[level].append(node.val)
+            else:
+                dic[level]=[node.val]
+            if node.left: queue.append((node.left,level+1))
+            
+            if node.right: queue.append((node.right,level+1))
+            
+        out=[]
+        for j in reversed(dic.keys()):
+            out.append(dic[j])
+        return out
