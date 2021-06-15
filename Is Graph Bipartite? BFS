@@ -1,0 +1,38 @@
+# Problem Link :- https://leetcode.com/problems/is-graph-bipartite/
+# Python Solution 
+# Time Complexity :- O(N)+O(N+E)
+# Space Complexity :- O(N)+O(N)
+class Solution(object):
+    def isBipartite(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: bool
+        """
+        def bfs(src,color,graph):
+            queue=[]
+            queue.append(src)
+            color[src]=1
+            while queue:
+                rem=queue.pop(0)
+                for j in graph[rem]:
+                    if color[j]==-1:
+                        color[j]=1-color[rem]
+                        queue.append(j)
+                    elif color[j]==color[rem]:
+                        return False
+            return True
+
+        
+        
+        vtcs=0
+        for j in graph:
+            if j !=[]:
+                vtcs=max(vtcs,max(j))
+        color=[-1]*(vtcs+1)
+        for j in range(0,vtcs+1):
+            if color[j]==-1:
+                if not bfs(j,color,graph):
+                    return False
+        return True
+        
+        
