@@ -1,0 +1,31 @@
+# Python Solution
+# Reference Striver's Graph Challenge
+
+def dfs(graph,src,visited,stack):
+    visited[src]=True
+    for j in graph[src]:
+        if visited[j]==False:
+            dfs(graph,j,visited,stack)
+    stack.append(src)
+            
+def topoSort(vtcs,graph):
+    visited=[False]*(vtcs+1)
+    stack=[]
+    out=[]
+    for j in range(0,vtcs+1):
+        if visited[j]==False:
+            dfs(graph,j,visited,stack)
+    while stack:
+        out.append(stack.pop())
+    return out
+        
+graph={
+    0:[],
+    1:[],
+    2:[3],
+    3:[1],
+    4:[0,1],
+    5:[0,2]
+}
+vtcs=5
+topoSort(vtcs,graph)
