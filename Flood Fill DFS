@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/flood-fill/
+# Python Solution
+class Solution(object):
+    def floodFill(self, image, sr, sc, newColor):
+        """
+        :type image: List[List[int]]
+        :type sr: int
+        :type sc: int
+        :type newColor: int
+        :rtype: List[List[int]]
+        """
+        def floodfill(image,sr,sc,newColor,color):
+            if sr<0 or sr>=len(image) or sc<0 or sc>=len(image[0]) or image[sr][sc] !=color:
+                return
+            image[sr][sc]=newColor
+            floodfill(image,sr+1,sc,newColor,color)
+            floodfill(image,sr-1,sc,newColor,color)
+            floodfill(image,sr,sc+1,newColor,color)
+            floodfill(image,sr,sc-1,newColor,color)
+        if image[sr][sc]==newColor:
+            return image
+        floodfill(image,sr,sc,newColor,image[sr][sc])
+        return image
+        
