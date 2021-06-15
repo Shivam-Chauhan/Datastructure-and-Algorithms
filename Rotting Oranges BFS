@@ -1,0 +1,47 @@
+# Problem Link :- https://leetcode.com/problems/rotting-oranges/
+# Python Solution
+
+class data_element:
+    def __init__(self,x,y,timeframe):
+        self.x=x
+        self.y=y
+        self.timeframe=timeframe
+    
+class Solution(object):
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        queue=[]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]==2:
+                    queue.append(data_element(i,j,0))
+        total_time=0
+        while queue:
+            values=queue.pop(0)
+            x,y,timeframe=values.x,values.y,values.timeframe
+            total_time=timeframe
+            if y+1<len(grid[0]) and grid[x][y+1]!=0 and grid[x][y+1]!=2:
+                queue.append(data_element(x,y+1,timeframe+1))
+                grid[x][y+1]=2
+            if x-1>=0 and grid[x-1][y]!=0 and grid[x-1][y]!=2:
+                queue.append(data_element(x-1,y,timeframe+1))
+                grid[x-1][y]=2
+            if x+1<len(grid) and grid[x+1][y]!=0 and grid[x+1][y]!=2:
+                queue.append(data_element(x+1,y,timeframe+1))
+                grid[x+1][y]=2
+            if y-1>=0 and grid[x][y-1]!=0 and grid[x][y-1]!=2:
+                queue.append(data_element(x,y-1,timeframe+1))
+                grid[x][y-1]=2
+
+
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]==1:
+                    return -1
+
+        return total_time
+
+        
