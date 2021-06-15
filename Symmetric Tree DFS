@@ -1,0 +1,26 @@
+# Problem Link :- https://leetcode.com/problems/symmetric-tree/submissions/
+# Python Solution
+# Time Complexity :- O(N+E)
+# Space Complexity :- Auxillary Space of Stack used for implementing the DFS
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def dfs(root1,root2):
+            if root1==None and root2==None:
+                return True
+            if root1==None or root2==None:
+                return False
+            if root1.val==root2.val:
+                return dfs(root1.left,root2.right) and dfs(root1.right,root2.left)
+            return False
+        return dfs(root,root)
