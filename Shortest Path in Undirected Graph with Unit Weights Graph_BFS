@@ -1,0 +1,29 @@
+# Python Solution 
+# Reference Striver's Graph Challenge
+
+def shortestpath(graph,vtcs,src):
+    distance=[10**9]*(vtcs+1)
+    queue=[]
+    queue.append(src)
+    distance[src]=0
+    while queue:
+        rem=queue.pop(0)
+        for j in graph[rem]:
+            if distance[rem]+1<distance[j]:
+                distance[j]=distance[rem]+1
+                queue.append(j)
+    print(distance)
+        
+graph={
+    0:[1,3],
+    1:[0,2,3],
+    2:[1,6],
+    3:[0,4],
+    4:[3,5],
+    5:[4,6],
+    6:[2,5,7,8],
+    7:[6,8],
+    8:[6,7],
+}
+vtcs=8
+shortestpath(graph,vtcs,0)
