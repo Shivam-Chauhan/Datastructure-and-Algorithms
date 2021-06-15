@@ -1,0 +1,30 @@
+# Problem Link :- https://leetcode.com/problems/range-sum-of-bst/
+# Python Solution
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def rangeSumBST(self, root, low, high):
+        """
+        :type root: TreeNode
+        :type low: int
+        :type high: int
+        :rtype: int
+        """
+        
+        def dfs(root,low,high):
+            if root==None:
+                return 0
+            if root.val>=low and root.val<=high:
+                self.sum1+=root.val
+            
+            dfs(root.left,low,high)
+            dfs(root.right,low,high)
+        self.sum1=0
+        dfs(root,low,high)
+        return self.sum1
+        
+        
