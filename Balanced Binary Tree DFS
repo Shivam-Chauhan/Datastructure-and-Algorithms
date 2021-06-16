@@ -1,0 +1,30 @@
+# Problem Link :- https://leetcode.com/problems/balanced-binary-tree/submissions/
+# Python Solution
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isBalanced(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        self.bool=True
+        def dfs(root):
+            if root==None:
+                return 0
+            
+            lh=dfs(root.left)
+            rh=dfs(root.right)
+            gap=abs(lh-rh)
+            if gap>1:
+                self.bool=False
+            return max(lh,rh)+1
+            
+        dfs(root)
+        return self.bool
+        
