@@ -1,0 +1,38 @@
+# Problem Link :- https://leetcode.com/problems/deepest-leaves-sum/
+# Python Solution
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def deepestLeavesSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.sum1=0
+        def height(root):
+            if root==None:
+                return 0
+            lh=height(root.left)
+            rh=height(root.right)
+            return max(lh,rh)+1
+        
+        def max_depth_sum(root,height,max_depth):
+            if root==None:
+                return
+            if max_depth==height:
+                self.sum1+=root.val
+            if root.left: max_depth_sum(root.left,height+1,max_depth)
+            if root.right: max_depth_sum(root.right,height+1,max_depth)
+            
+        
+        max_depth=height(root)
+        max_depth_sum(root,1,max_depth)
+        return self.sum1
+        
+        
+        
+        
