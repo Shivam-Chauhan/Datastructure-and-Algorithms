@@ -1,0 +1,29 @@
+# Problem Link :- https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/submissions/
+# Python Solution
+# Reference @JatinYadav on LeetCode
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def sumEvenGrandparent(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.sum1=0
+        def dfs(child,parent,grandparent):
+            if child==None:
+                return 
+            if (grandparent!=None) and (grandparent.val%2==0):
+                self.sum1+=child.val
+                
+            dfs(child.left,child,parent)
+            dfs(child.right,child,parent)
+
+        
+        dfs(root,None,None)
+        return self.sum1
