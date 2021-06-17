@@ -1,0 +1,18 @@
+# Problem Link :- https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons
+# Python Solution
+class Solution(object):
+    def findMinArrowShots(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        points=sorted(points,key=lambda i: i[1])
+        arrow=1
+        end=points[0][1]
+        for j in range(1,len(points)):
+            if end<points[j][0]:
+                arrow+=1
+                end=points[j][1]
+            
+        return arrow
+        
