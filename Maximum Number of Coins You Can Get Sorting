@@ -1,0 +1,19 @@
+# Problem Link :- https://leetcode.com/problems/maximum-number-of-coins-you-can-get/
+# Python Solution
+# Time Complexity :- O(N*Log(N))+O(N)
+# Space Complexity :- O(1)
+class Solution(object):
+    def maxCoins(self, piles):
+        """
+        :type piles: List[int]
+        :rtype: int
+        """
+        piles=sorted(piles,reverse=True)
+        yo,fr=1,len(piles)-1
+        sum1=0
+        while yo<fr:
+            sum1+=piles[yo]
+            yo+=2
+            fr-=1
+        return sum1
+        
