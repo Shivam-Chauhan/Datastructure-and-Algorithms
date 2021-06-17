@@ -1,0 +1,31 @@
+# Problem Link :- https://leetcode.com/problems/all-elements-in-two-binary-search-trees/
+# Python Solution
+# It's using Tim Sort whose best time can go to linear solution hence it can be said that it's linear time solution
+# Space Complexity is O(N1+N2) where N1 and N2 are the number of nodes in both trees
+# Auxillary Space complexity is also there.
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def getAllElements(self, root1, root2):
+        """
+        :type root1: TreeNode
+        :type root2: TreeNode
+        :rtype: List[int]
+        """
+        output=[]
+        def dfs(root):
+            if root:
+                if root.left: dfs(root.left)
+                output.append(root.val)
+                if root.right: dfs(root.right)
+        
+        
+        dfs(root1)
+        dfs(root2)
+        return sorted(output)
+            
