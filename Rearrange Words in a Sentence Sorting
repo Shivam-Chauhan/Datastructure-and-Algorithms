@@ -1,0 +1,16 @@
+# Problem Link :- https://leetcode.com/problems/rearrange-words-in-a-sentence/
+# Python Solution 
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def arrangeWords(self, text):
+        """
+        :type text: str
+        :rtype: str
+        """
+        text=list(map(str,text.split(" ")))
+        text[0]=text[0][0].lower()+text[0][1:]
+        text=sorted(text,key=lambda i: len(i))
+        text[0]=text[0][0].upper()+text[0][1:]
+        return(' '.join(text).strip())
