@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/arithmetic-subarrays/
+# Python Solution
+
+class Solution(object):
+    def checkArithmeticSubarrays(self, nums, l, r):
+        """
+        :type nums: List[int]
+        :type l: List[int]
+        :type r: List[int]
+        :rtype: List[bool]
+        """
+        output=[]
+        for i,j in zip(l,r):
+            temp=nums[i:j+1]
+            temp.sort()
+            ct=0
+            for k in range(len(temp)-1):
+                if temp[k+1]-temp[k]!=temp[1]-temp[0]:
+                    output.append(False)
+                    ct+=1
+                    break
+            if ct==0: output.append(True)
+        return output
+                    
