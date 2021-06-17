@@ -1,0 +1,31 @@
+# Problem Link :- https://leetcode.com/problems/number-of-enclaves/
+# Python Solution 
+class Solution(object):
+    def numEnclaves(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        
+        def dfs(grid,x,y):
+            if x<0 or y<0 or x>=len(grid) or y>=len(grid[0]) or grid[x][y]==0:
+                return
+            
+            grid[x][y]=0
+            dfs(grid,x+1,y)
+            dfs(grid,x-1,y)
+            dfs(grid,x,y+1)
+            dfs(grid,x,y-1)
+        
+        
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if (i==0 or j==0 or i==len(grid)-1 or j==len(grid[0])-1) and grid[i][j]==1: 
+                    
+                    dfs(grid,i,j)
+        
+        counter=0
+        for i in range(len(grid)):
+            counter+=grid[i].count(1)
+        return counter
+        
