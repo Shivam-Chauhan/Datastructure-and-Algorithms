@@ -1,0 +1,41 @@
+# Problem Link :- https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/
+# Python Solution 
+# TC O(N+E)
+# SC O(N) and auxillary space
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def pseudoPalindromicPaths (self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.counter=0
+        def dfs(root,dic):
+            if root==None:
+                return 
+            if root.val in dic.keys():
+                dic[root.val]+=1
+            else:
+                dic[root.val]=1
+            
+            if root.left==None and root.right==None:
+                ct=0
+                for j in dic.keys():
+                    if dic[j]&1: ct+=1
+                if ct<=1:
+                    self.counter+=1
+            
+            if root.left : dfs(root.left,dic)
+            if root.right: dfs(root.right,dic)
+            # backtrack
+            dic[root.val]-=1
+            
+        
+        
+        dfs(root,{})
+        return self.counter
