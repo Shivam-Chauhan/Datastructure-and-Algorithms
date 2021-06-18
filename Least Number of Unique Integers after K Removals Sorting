@@ -1,0 +1,23 @@
+# Problem Link :- https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals
+# Python Solution
+# Time Complexity :- O(N*(Log(N)))+O(N)+O(N)
+# Space Complexity :- O(N)
+class Solution(object):
+    def findLeastNumOfUniqueInts(self, arr, k):
+        """
+        :type arr: List[int]
+        :type k: int
+        :rtype: int
+        """
+        c = Counter(arr)
+        dic=sorted(c.items(),key=lambda x: x[1])
+        rem=0
+        for j in dic:
+            if j[1]<=k:
+                k-=j[1]
+                rem+=1
+            else:
+                break
+        return len(c)-rem
+
+            
