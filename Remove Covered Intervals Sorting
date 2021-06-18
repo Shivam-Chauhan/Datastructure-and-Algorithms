@@ -1,0 +1,19 @@
+# Problem Link :- https://leetcode.com/problems/remove-covered-intervals/
+# Python Solution
+# Time Complexity :- O(N*Log(N))+O(N)
+# Space Complexity :- O(1)
+class Solution(object):
+    def removeCoveredIntervals(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        
+        intervals = sorted(intervals, key = lambda x : (x[0], -x[1]))
+        end=0
+        counter=0
+        for j in intervals:
+            if j[1]>end:
+                end=j[1]
+                counter+=1
+        return counter
