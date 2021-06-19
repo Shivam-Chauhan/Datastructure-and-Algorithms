@@ -1,0 +1,32 @@
+# Problem Link :- https://leetcode.com/problems/valid-sudoku/
+# Python Solution 
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        def isvalid(board,x,y,n,m,ele):
+            for j in range(m):
+                if ele==board[x][j] and j!=y:
+                    return False
+            for j in range(n):
+                if ele==board[j][y] and j!=x:
+                    return False
+            x1=3*(x//3)
+            y1=3*(y//3)
+            for i in range(3):
+                for j in range(3):
+                    if board[i+x1][j+y1]==ele and (i+x1)!=x and (j+y1)!=y:
+                        return False
+            return True
+        
+        n=len(board)
+        m=len(board[0])
+        for i in range(n):
+            for j in range(m):
+                if board[i][j]!=".":
+                    if not isvalid(board,i,j,n,m,board[i][j]):
+                        return False
+        return True
+        
