@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+# Python Solution 
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def minAddToMakeValid(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        stack=deque()
+        counter=0
+        for j in s:
+            if j=='(': stack.append(j)
+            else:
+                if (len(stack)!=0 and stack[-1]!='(') or len(stack)==0: counter+=1
+                else: stack.pop()
+        return len(stack)+counter
+                
+                
