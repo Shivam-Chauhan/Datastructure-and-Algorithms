@@ -1,0 +1,26 @@
+# Problem Link :- https://leetcode.com/problems/merge-intervals/
+# Python Solution
+# Time Complexity :- O(N*Log(N))+O(N)
+# Space Complexity :- O(1)
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        intervals=sorted(intervals,key=lambda x: x[0])
+        start=intervals[0][0]
+        end=intervals[0][1]
+        out=[]
+        for j in range(1,len(intervals)):
+            if end>=intervals[j][0]:
+                end=max(end,intervals[j][1])
+                start=min(start,intervals[j][0])
+            else:
+                out.append([start,end])
+                start=intervals[j][0]
+                end=intervals[j][1]
+            
+        out.append([start,end])
+        return out
+            
