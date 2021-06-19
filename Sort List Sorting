@@ -1,0 +1,58 @@
+# Problem Link :- https://leetcode.com/problems/sort-list/
+# Python Solution 
+# Time Complexity :- O(N*(Log(N))
+# Space Complexity :- O(1)
+# It is also using stack space which comes under auxillary space
+# Algorithm used to sort the list in MergeSort
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def sortList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head==None or head.next==None: return head
+        mid=self.midofLL(head)
+        newHead=mid.next
+        mid.next=None
+        l1=self.sortList(head)
+        l2=self.sortList(newHead)
+        
+        return self.mergeSortLL(l1,l2)
+        
+    
+    def mergeSortLL(self, l1,l2):
+        if l1==None or l2==None: return l1 if l1!=None else l2
+        c1,c2=l1,l2
+        dummy=ListNode(-1)
+        prev=dummy
+        while c1!=None and c2!=None:
+            if c1.val<c2.val:
+                prev.next=c1
+                c1=c1.next
+            else:
+                prev.next=c2
+                c2=c2.next
+            prev=prev.next
+        if c1==None: prev.next=c2
+        else: prev.next=c1
+        
+        return dummy.next
+        
+        
+    def midofLL(self,head):
+        slow=head
+        fast=head
+        while fast.next !=None and fast.next.next!=None:
+            fast=fast.next.next
+            slow=slow.next
+        
+        return slow
+            
+        
+        
