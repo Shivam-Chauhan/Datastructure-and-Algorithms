@@ -1,19 +1,27 @@
+# @Reference Striver's Binary Search
+# Link to the Video :- https://www.youtube.com/watch?v=WjpswYrS2nY&list=PLgUwDviBIf0qYbL4TBaEWgb-ljVdhkM7R&index=1
+# Time Complexity :- O(N*Log2(M*10^d))
+# Space Complexity :- O(1)
+
 def product(mid,times):
     val=1.0
     for j in range(times):
         val*=mid
-    print(val)
+    
     return val
     
-n,m=3,27
+n,m=map(int,input("Enter root value and number(Space seperated)").split(" "))
 low=1
-high=27
+high=m
 eps=10**-9 # Number of Decimal Places the output is to be considered
 while (high-low)>eps:
     mid=(high+low)/2
-    print(mid,low,high)
     if product(mid,n)<m:
         low=mid
     else:
         high=mid
 print(low)
+
+
+    
+    
