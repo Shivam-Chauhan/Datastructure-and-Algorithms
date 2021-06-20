@@ -1,0 +1,17 @@
+# Problem Link :- https://leetcode.com/problems/find-and-replace-pattern/
+# Python Solution 
+# Time Complexity :- O(M*N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def findAndReplacePattern(self, words, pattern):
+        """
+        :type words: List[str]
+        :type pattern: str
+        :rtype: List[str]
+        """
+        out=[]
+        for i in words:
+            if len(set(pattern))==len(set(i))==len(set(zip(pattern,i))): out.append(i)
+                
+        return out
