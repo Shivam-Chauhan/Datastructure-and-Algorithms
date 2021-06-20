@@ -1,0 +1,19 @@
+def product(mid,times):
+    val=1.0
+    for j in range(times):
+        val*=mid
+    print(val)
+    return val
+    
+n,m=3,27
+low=1
+high=27
+eps=10**-9 # Number of Decimal Places the output is to be considered
+while (high-low)>eps:
+    mid=(high+low)/2
+    print(mid,low,high)
+    if product(mid,n)<m:
+        low=mid
+    else:
+        high=mid
+print(low)
