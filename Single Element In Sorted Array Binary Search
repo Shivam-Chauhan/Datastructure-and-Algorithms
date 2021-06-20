@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/single-element-in-a-sorted-array/
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+# Refernce @Striver's Binary Search Playlist
+class Solution(object):
+    def singleNonDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        low,high=0,len(nums)-2
+        while low<=high:
+            mid=(high+low)>>1
+            if nums[mid]==nums[mid^1]:
+                low=mid+1
+            else:
+                high=mid-1
+        return nums[low]
+            
