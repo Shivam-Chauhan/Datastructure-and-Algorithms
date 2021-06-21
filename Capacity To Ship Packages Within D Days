@@ -1,0 +1,31 @@
+# Problem Link :- https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
+# Python Solution 
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        def allocation(mid,weights,days):
+            allo,pages=1,0
+            for j in weights:
+                if j>mid: return False
+                if j+pages>mid:
+                    allo+=1
+                    pages=j
+                else:
+                    pages+=j
+            
+            return True if allo<=days else False
+                    
+        low,high=min(weights),sum(weights)
+        res=-1
+        while low<=high:
+            mid=(low+high)>>1
+            if allocation(mid,weights,days):
+                res=mid
+                high=mid-1
+            else:
+                low=mid+1
+        return res
+                
+        
