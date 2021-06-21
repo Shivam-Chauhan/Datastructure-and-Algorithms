@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+# Python Solution 
+# Time Complexity :- O(N)+O(N)
+# Space Complexity :- O(N)+O(N)
+
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack=[]
+        string=""
+        for i,j in enumerate(s):
+            if j=="(":
+                stack.append(("(",i))
+            elif j==")":
+                if stack and stack[-1][0]=="(":
+                    stack.pop()
+                else:
+                    stack.append((")",i))
+        list1=list(s)
+        while stack:
+            brack,indx=stack.pop()
+            list1.pop(indx)
+        return (''.join(list1)).strip()
+                
+            
