@@ -1,0 +1,28 @@
+# Problem Link :- https://leetcode.com/problems/spiral-matrix/submissions/
+# Python Solution 
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        
+        c,left,right,up,down=0,0,len(matrix[0])-1,0,len(matrix)-1
+        output=[]
+        while left<=right and up<=down:
+            if c%4==0:
+                for i in range(left,right+1):
+                    output.append(matrix[up][i])
+                up+=1
+            if c%4==1:
+                for j in range(up,down+1):
+                    output.append(matrix[j][right])
+                right-=1
+            if c%4==2:
+                for j in range(right,left-1,-1):
+                    output.append(matrix[down][j])
+                down-=1
+            if c%4==3:
+                for j in range(down,up-1,-1):
+                    output.append(matrix[j][left])
+                left+=1
+            c+=1
+        return output
