@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/largest-divisible-subset/submissions/
+# Python Solution
+# Time Complexity :- O(N^2)+O(N*Log(N))
+# Space Complexity :- O(N+K) where K is the number of elements in Hashtable's value
+class Solution:
+    def largestDivisibleSubset(self, nums: List[int]) -> List[int]:
+        nums.sort()
+        dic=dict()
+        for j in range(len(nums)):
+            dic[j]=[]
+        dic[0].append(nums[0])
+        maxi=0
+        indx=0
+        for i in range(1,len(nums)):
+            for j in range(0,i):
+                if nums[i]%dic[j][-1]==0 and len(dic[j])>len(dic[i]):
+                    dic[i]=dic[j][::]
+            dic[i].append(nums[i])
+            if len(dic[i])>maxi:
+                maxi=len(dic[i])
+                indx=i
+        return dic[indx]
+
+        
+            
