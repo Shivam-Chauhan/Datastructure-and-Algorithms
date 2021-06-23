@@ -1,0 +1,16 @@
+# Problem Link :- https://leetcode.com/problems/count-binary-substrings/
+# Python Solution
+# Time Complexity :- O(N)
+# Space COmplexity :- O(1)
+@ Reference Lee215
+class Solution:
+    def countBinarySubstrings(self, s: str) -> int:
+        curr,prev,sum1=1,0,0
+        for i in range(1,len(s)):
+            if s[i-1]==s[i]: curr+=1
+            else:
+                sum1+=min(curr,prev)
+                prev=curr
+                curr=1
+        return sum1+min(curr,prev)
+        
