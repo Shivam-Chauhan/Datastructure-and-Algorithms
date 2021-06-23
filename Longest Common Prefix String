@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/longest-common-prefix/submissions/
+# Python Solution
+# Time Complexity :- O(K*N) where K is the size of first element in array and N is the size of String
+# Space Complexity :- O(1)
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        string=""
+        for i,k in enumerate(strs[0]):
+            ct=0
+            for j in range(1,len(strs)):
+                if i>=len(strs[j]) or strs[j][i]!=k:
+                    ct+=1
+                    break
+            if ct==1:
+                break
+            else:
+                 string+=k
+        return string
+            
+                
