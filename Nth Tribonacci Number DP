@@ -1,0 +1,16 @@
+# Problem Link :- https://leetcode.com/problems/n-th-tribonacci-number/submissions/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def tribonacci(self, n: int) -> int:
+        n0,n1,n2=0,1,1
+        if n==0: return 0
+        if n<=2: return 1
+        for j in range(3,n+1):
+            sum1=n0+n1+n2
+            n0,n1,n2=n1,n2,sum1
+        return sum1
+        
+        
