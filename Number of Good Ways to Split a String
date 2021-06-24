@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/number-of-good-ways-to-split-a-string/
+# Python Solution
+# Time Complexity :- O(N)+O(N)+O(N)
+# Space Complexity :- O(N)+O(N)
+class Solution:
+    def numSplits(self, s: str) -> int:
+        counter=0
+        pref=[0]*(len(s))
+        suff=[0]*(len(s))
+        set1=set()
+        for i,j in enumerate(s):
+            set1.add(j)
+            pref[i]=len(set1)
+        set1=set()
+        for i in range(len(s)-1,-1,-1):
+            set1.add(s[i])
+            suff[i]=len(set1)
+ 
+        for i in range(1,len(s)):
+            if pref[i-1]==suff[i]: counter+=1
+
+        return counter
