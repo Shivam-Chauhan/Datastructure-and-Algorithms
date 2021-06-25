@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/battleships-in-a-board/
+# Python Solution
+# Time Complexity :- k*O(M*N) where K is the depth of DFS
+# Space Complexity :- Auxillary Space of Recursion running for DFS
+
+class Solution:
+    def countBattleships(self, board: List[List[str]]) -> int:
+        def dfs(board,x,y):
+            if x<0 or x>=len(board) or y<0 or y>=len(board[0]) or board[x][y]==".":  return 
+            board[x][y]="."
+            dfs(board,x+1,y)
+            dfs(board,x-1,y)
+            dfs(board,x,y+1)
+            dfs(board,x,y-1)
+    
+
+        counter=0
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j]=="X":
+                    counter+=1
+                    dfs(board,i,j)
+
+        return counter
