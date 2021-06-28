@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/problems/reduce-array-size-to-the-half/
+# Python Solution 
+# Time Complexity :- O(N*Log(N)) + O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def minSetSize(self, arr: List[int]) -> int:
+        dic=dict()
+        for j in arr:
+            if j not in dic.keys(): dic[j]=1
+            else: dic[j]+=1
+        dic=sorted(dic.items(),key=lambda x: x[1], reverse=True)
+        counter,sum1=0,0
+        for j in dic:
+            if sum1>=len(arr)>>1:
+                return counter
+            sum1+=j[1]
+            counter+=1
+        return counter
+                
