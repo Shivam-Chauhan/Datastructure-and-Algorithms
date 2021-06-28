@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/
+# Python Solution 
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+class Solution:
+    def canThreePartsEqualSum(self, arr: List[int]) -> bool:
+        total=sum(arr)
+        if total%3!=0: return False
+        counter,partsum=0,0
+        for j in arr:
+            partsum+=j
+            if partsum==total//3:
+                partsum=0
+                counter+=1
+        return counter>=3
