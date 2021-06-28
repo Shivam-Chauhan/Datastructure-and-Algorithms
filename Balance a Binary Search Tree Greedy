@@ -1,0 +1,38 @@
+# Problem Link :- https://leetcode.com/problems/balance-a-binary-search-tree/
+# Python Solution 
+# Time Complexity :- O(N) 
+# Space Complexity :- O(N) + Auxillary Space of Recursion  
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def balanceBST(self, root: TreeNode) -> TreeNode:
+        def inorder(root):
+            if root==None: return
+            inorder(root.left)
+            self.arr.append(root.val)
+            inorder(root.right)
+        
+        def bstMaker(start,end):
+            if start>end: return 
+            
+            mid=(start+end)>>1
+            root=TreeNode(self.arr[mid])
+            root.left=bstMaker(start,mid-1)
+            root.right=bstMaker(mid+1,end)
+            
+            return root
+        
+        self.arr=[]
+        inorder(root)
+        start,end=0,len(self.arr)-1
+        return bstMaker(start,end)  
+        
+        
+                
+        
+        
