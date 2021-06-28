@@ -1,0 +1,12 @@
+# Problem Link :- https://leetcode.com/problems/smallest-string-with-a-given-numeric-value/?__cf_chl_jschl_tk__=daa9ce17377f3c65d172955f7f5411a8f90f87dc-1624895859-0-AcBtnKPrcay2TuW4C4HB_I_UaphFM6PurYiChPm6_zFMr3_z7XMbJ3sRpwPhXdy3uIGwDOC6cce1WLH6hp9h6C3W7WzjVz70LnI0yPE5nemdJ86AqGQkZfsl1JnCupZYrm7g99CVHMAYNeyTypHpE1dhk6CH54h0WwDwHq32K2JfHMMvTSOnAYS9vQ0sdLLg72Z_U6tWDZqT82uBh6SEFlJqyKRDMiluelNNxYHfbzOJrm20y4_Qp3JERfgS1j7edJzcx_xY7-DgJttfi04qMroX07gmPIQ3rPVWHsrYpLNuIyfis2zCCVvS5gwwcGQE0S4IU5C6y0_XQhvvLMhMYCX0X_aM4BAPd9xLhZfe_k1x3BFQ1tVG9lKvSAfVYS7FK-Z4sQ3slVXN02KLul8rlU-p6KuHk9xonE1_4yPvpfXLexg_G9_9q4FfBTX_yi3xKjgisOr-55JDtMUg2eM76wY
+# Python Solution 
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+class Solution:
+    def getSmallestString(self, n: int, k: int) -> str:
+        out=['a']*(n)
+        k-=n
+        for j in range(n-1,-1,-1):
+            out[j]=chr(ord(out[j])+min(25,k))
+            k-=min(25,k)
+        return ''.join(out)
