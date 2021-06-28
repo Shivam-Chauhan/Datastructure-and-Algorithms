@@ -1,0 +1,13 @@
+# Problem Link :- https://leetcode.com/problems/largest-perimeter-triangle/
+# Python Solution
+# Time Complexity :- O(N*Log(N))+O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        nums=sorted(nums,reverse=True)
+        for j in range(len(nums)-2):
+            if nums[j]<nums[j+1]+nums[j+2]:
+                return nums[j]+nums[j+1]+nums[j+2]
+        return 0
+        
