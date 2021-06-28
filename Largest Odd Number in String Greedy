@@ -1,0 +1,11 @@
+# Problem Link :- https://leetcode.com/problems/largest-odd-number-in-string/
+# Python Solution 
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def largestOddNumber(self, num: str) -> str:
+        for j in range(len(num)-1,-1,-1):
+            if int(num[j])&1:
+                return num[0:j+1]
+        return ""
