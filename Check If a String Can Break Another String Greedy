@@ -1,0 +1,14 @@
+# Problem Link :- https://leetcode.com/problems/check-if-a-string-can-break-another-string/
+# Python Solution 
+# Time Complexity :- 2*O(N*Log(N)) + O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def checkIfCanBreak(self, s1: str, s2: str) -> bool:
+        s1=sorted(list(s1))
+        s2=sorted(list(s2))
+        ct1,ct2=0,0
+        for i,j in zip(s1,s2):
+            if i>=j: ct1+=1
+            if j>=i: ct2+=1
+        return True if ct1==len(s1) or ct2==len(s2) else False
