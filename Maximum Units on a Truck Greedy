@@ -1,0 +1,18 @@
+# Problem Link :- https://leetcode.com/problems/maximum-units-on-a-truck/
+# Python Solution
+# Time Compplexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+        boxTypes=sorted(boxTypes,key=lambda x: x[1],reverse=True)
+        total=0
+        for j in boxTypes:
+            if j[0]<=truckSize:
+                total+=j[0]*j[1]
+                truckSize-=j[0]
+            else:
+                total+=truckSize*j[1]
+                truckSize=0
+        return total
+                
