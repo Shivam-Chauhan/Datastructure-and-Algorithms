@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/power-of-three/
+# Python Solution 
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        val=1
+        counter=0
+        if n==1: return True
+        while val<n:
+            val=3**counter
+            counter+=1
+            if val==n: return True
+        return False
