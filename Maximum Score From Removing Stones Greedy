@@ -1,0 +1,47 @@
+# Problem Link :- https://leetcode.com/problems/maximum-score-from-removing-stones/
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution 
+# Time Complexity :- O(N*Log(3)) Where N is the number of moves taken by element to attain 0 value
+# Space Complexity :- O(1)
+
+class Solution:
+    def maximumScore(self, a: int, b: int, c: int) -> int:
+        list1=[0]*3
+        list1[0],list1[1],list1[2]=a,b,c
+        counter=0
+        while True:
+            list1.sort()
+            if list1[0]==0 and list1[1]==0: break
+            counter+=1
+            list1[-1]-=1
+            list1[-2]-=1
+        return counter
+        
+        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution 
+# Time Complexity :- O(N*Log(2)) Where N is the number of moves taken by element to attain 0 value
+# Space Complexity :- O(1)
+
+from heapq import heappush, heappop
+class Solution:
+    def maximumScore(self, a: int, b: int, c: int) -> int:
+        heap=[]
+        heapify(heap)
+        heappush(heap,-1*a)
+        heappush(heap,-1*b)
+        heappush(heap,-1*c)
+        counter=0
+        while True:
+            a=heappop(heap)
+            b=heappop(heap)
+            if b==0: break
+            counter+=1
+            a+=1
+            heappush(heap,a)
+            b+=1
+            heappush(heap,b)
+        return counter        
