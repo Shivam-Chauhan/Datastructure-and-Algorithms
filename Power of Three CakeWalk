@@ -13,3 +13,11 @@ class Solution:
             counter+=1
             if val==n: return True
         return False
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution 
+# Time Complexity :- O(1)
+# Space Complexity :- O(1)
+
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        return ( n>0 and  1162261467%n==0)
