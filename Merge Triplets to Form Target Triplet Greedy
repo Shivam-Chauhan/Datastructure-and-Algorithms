@@ -1,0 +1,12 @@
+# Problem Link :- https://leetcode.com/problems/merge-triplets-to-form-target-triplet/
+# Python Solution 
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+        x,y,z=0,0,0
+        for a,b,c in triplets:
+            if a<=target[0] and b<=target[1] and c<=target[2]:
+                x,y,z=max(a,x),max(b,y),max(c,z)
+        return [x,y,z]==target
