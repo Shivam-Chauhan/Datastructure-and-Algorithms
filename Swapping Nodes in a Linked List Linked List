@@ -1,0 +1,28 @@
+# Problem Link :- https://leetcode.com/problems/swapping-nodes-in-a-linked-list/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapNodes(self, head: ListNode, k: int) -> ListNode:
+        first_k=head
+        prev=None
+        last_k=head
+        while k:
+            prev=first_k
+            first_k=first_k.next
+            k-=1
+        
+        fast=first_k
+        while fast!=None:
+            fast=fast.next
+            last_k=last_k.next
+        prev.val,last_k.val=last_k.val,prev.val
+        
+        return head
+        
