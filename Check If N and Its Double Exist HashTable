@@ -1,0 +1,13 @@
+# Problem Link :- https://leetcode.com/problems/check-if-n-and-its-double-exist/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def checkIfExist(self, arr: List[int]) -> bool:
+        st=set(arr)
+        if arr.count(0)==2: return True
+        for j in arr:
+            if j!=0 and j*2 in st: return True
+            
+        return False
