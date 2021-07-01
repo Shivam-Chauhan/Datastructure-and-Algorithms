@@ -1,0 +1,11 @@
+# Problem Link :- https://leetcode.com/problems/reverse-words-in-a-string-iii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        list1=list(s.split(" "))
+        for i,j in enumerate(list1):
+            list1[i]=j[::-1]
+        return (' '.join(list1)).strip()
