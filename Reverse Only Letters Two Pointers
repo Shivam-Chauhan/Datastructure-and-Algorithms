@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/reverse-only-letters/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1) (strings can't be manipulated in Python hence I have to explicilty converts the string into List else it's an inplace algo)
+
+class Solution:
+    def reverseOnlyLetters(self, s: str) -> str:
+        def issafe(val):
+            if (ord(val)>=65 and ord(val)<=90) or (ord(val)>=97 and ord(val)<=122):
+                return True
+            return False
+        
+        list1=list(s)
+        i,j=0,len(s)-1
+        while i<j:
+            if issafe(list1[i])==False: i+=1
+            if issafe(list1[j])==False: j-=1
+            elif issafe(list1[i]) and issafe(list1[j]):
+                list1[i],list1[j]=list1[j],list1[i]
+                i+=1
+                j-=1
+        return ''.join(list1)
