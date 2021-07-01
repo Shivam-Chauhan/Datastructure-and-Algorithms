@@ -1,0 +1,17 @@
+# Problem Link :- https://leetcode.com/problems/valid-palindrome-ii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        i,j=0,len(s)-1
+        while i<j:
+            if s[i]!=s[j]:
+                leftex,rightex=s[i+1:j+1],s[i:j]
+                if leftex==leftex[::-1] or rightex==rightex[::-1]: return True
+                else: return False
+            else:
+                i+=1
+                j-=1
+        return True
