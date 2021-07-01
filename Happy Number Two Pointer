@@ -1,0 +1,48 @@
+# Problem Link :- https://leetcode.com/problems/happy-number/
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        def divider(num):
+            sum1=0
+            while num:
+                x=num%10
+                sum1+=x**2
+                num//=10
+            return sum1
+                
+        st=set()
+        ct=0
+        while ct<30:
+            temp=divider(n)
+            if temp in st: return False
+            if temp==1: return True
+            n=temp
+            st.add(temp)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)       
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        def divider(num):
+            sum1=0
+            while num:
+                x=num%10
+                sum1+=x**2
+                num//=10
+            return sum1
+                
+        ct=0
+        while ct<27:
+            temp=divider(n)
+            if temp==1: return True
+            n=temp
+            ct+=1
+        return False
