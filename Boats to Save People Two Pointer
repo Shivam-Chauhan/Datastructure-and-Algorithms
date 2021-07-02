@@ -1,0 +1,23 @@
+# Problem Link :- https://leetcode.com/problems/boats-to-save-people/
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def numRescueBoats(self, people, limit):
+        """
+        :type people: List[int]
+        :type limit: int
+        :rtype: int
+        """
+        counter=0
+        people.sort()
+        i,j=0,len(people)-1
+        while i<=j:
+            counter+=1
+            if i==j: break
+            
+            if people[i]+people[j]<=limit: i+=1
+            j-=1
+        return counter
+            
