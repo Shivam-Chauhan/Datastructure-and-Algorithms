@@ -1,0 +1,12 @@
+# Problem Link :- https://leetcode.com/problems/length-of-last-word/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return len(list(s.strip().split(" "))[-1])
