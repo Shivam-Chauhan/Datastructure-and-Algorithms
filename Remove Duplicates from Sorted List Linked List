@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def deleteDuplicates(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head==None or head.next==None: return head
+        start=head
+        while start.next!=None:
+            if start.val==start.next.val:
+                start.next=start.next.next
+                
+            else:
+                start=start.next
+        return head
