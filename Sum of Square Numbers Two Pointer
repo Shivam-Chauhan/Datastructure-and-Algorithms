@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/sum-of-square-numbers/
+# Python Solution
+# Time Complexity :- O(Sqrt(N))
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def judgeSquareSum(self, c):
+        """
+        :type c: int
+        :rtype: bool
+        """
+        low,high=0,int(math.sqrt(c))
+        while low<=high:
+            sum1=low*low+high*high
+            if sum1==c:
+                return True
+            if sum1>c:
+                high-=1
+            else:
+                low+=1
+            
+        return False
+                
+        
