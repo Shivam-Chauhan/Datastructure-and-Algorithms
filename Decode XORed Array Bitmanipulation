@@ -1,0 +1,13 @@
+# Problem Link :- https://leetcode.com/problems/decode-xored-array/submissions/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def decode(self, encoded: List[int], first: int) -> List[int]:
+        output=[]
+        output.append(first)
+        for j in encoded:
+            first^=j
+            output.append(first)
+        return output
