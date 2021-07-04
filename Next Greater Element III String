@@ -1,0 +1,28 @@
+# Problem Link :- https://leetcode.com/problems/next-greater-element-iii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def nextGreaterElement(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        list1=list(str(n))
+        i=len(list1)-2
+        while i>=0 and list1[i]>=list1[i+1]: i-=1
+        if i==-1: return -1
+        j=len(list1)-1
+        while list1[j]<=list1[i]:
+            j-=1
+        list1[i],list1[j]=list1[j],list1[i]
+        j=len(list1)-1
+        i+=1
+        while i<=j:
+            list1[i],list1[j]=list1[j],list1[i]
+            i+=1
+            j-=1
+        result=int(''.join(list1))
+        return result if result < 1<<31 else -1
+            
