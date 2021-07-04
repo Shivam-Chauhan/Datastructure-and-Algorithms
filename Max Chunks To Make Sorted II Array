@@ -1,0 +1,61 @@
+# Problem Link :- https://leetcode.com/problems/max-chunks-to-make-sorted-ii/
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- O(N)+O(N)+O(N)
+# Space Complexity :- O(N)+O(N)
+# Brute Force
+
+class Solution(object):
+    def maxChunksToSorted(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        n=len(arr)
+        rmin=[0]*(n+1)
+        lmax=[0]*(n+1)
+        rmin[n]=10**9
+        lmaxi,rmini=0,10**9
+        for j in range(n-1,-1,-1):
+            rmini=min(rmini,arr[j])
+            rmin[j]=rmini
+        for j in range(0,n):
+            lmaxi=max(lmaxi,arr[j])
+            lmax[j]=lmaxi
+        lmax[n]=lmaxi
+        
+        counter=0
+        for i in range(n):
+            if lmax[i]<=rmin[i+1]:
+                counter+=1
+        return counter if counter>=1 else 1
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- O(N)+O(N)
+# Space Complexity :- O(N)
+# Optimal 
+class Solution(object):
+    def maxChunksToSorted(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        n=len(arr)
+        rmin=[0]*(n+1)
+        rmin[n]=10**9
+        rmini=10**9
+        for j in range(n-1,-1,-1):
+            rmini=min(rmini,arr[j])
+            rmin[j]=rmini
+        lmax=arr[0]
+        counter=0
+        for j in range(n):
+            lmax=max(lmax,arr[j])
+            if lmax<=rmin[j+1]: counter+=1
+        return counter if counter>=1 else 1
+                
+            
