@@ -1,0 +1,42 @@
+# Problem Link :- https://leetcode.com/problems/maximum-number-of-balloons/submissions/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N+5)
+
+class Solution(object):
+    def maxNumberOfBalloons(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        dic=collections.Counter(text)
+        mini=10**9
+        st=set()
+        for key,val in dic.items():
+            if key in "ban":
+                mini=min(mini,val)
+                st.add(key)
+            if key in "lo":
+                mini=min(mini,val//2)
+                st.add(key)
+        return mini if len(st)==5 else 0
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+                
+class Solution(object):
+    def maxNumberOfBalloons(self, text):
+        """
+        :type text: str
+        :rtype: int
+        """
+        list1=[0]*26
+        for j in text:
+            list1[ord(j)-ord('a')]+=1
+        return min(list1[0],list1[1],list1[11]//2,list1[13],list1[14]//2)
+        
+    
+        
