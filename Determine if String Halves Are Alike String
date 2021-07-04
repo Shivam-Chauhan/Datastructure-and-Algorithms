@@ -1,0 +1,19 @@
+# Problem Link :- https://leetcode.com/problems/determine-if-string-halves-are-alike/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def halvesAreAlike(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        def vowelcal(string):
+            counter=0
+            for j in string:
+                if j in "aeiouAEIOU": counter+=1
+            return counter
+        # print(s[0:len(s)//2],s[len(s)//2:])
+        return vowelcal(s[0:len(s)//2])==vowelcal(s[len(s)//2:])
+                
