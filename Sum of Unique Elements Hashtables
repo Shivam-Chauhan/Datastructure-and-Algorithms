@@ -1,0 +1,38 @@
+# Problem Link :- https://leetcode.com/problems/sum-of-unique-elements/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def sumOfUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dic=dict()
+        for j in nums:
+            if j in dic.keys():
+                dic[j]+=1
+            else:
+                dic[j]=1
+        sum1=0
+        for key,val in dic.items():
+            if val==1:
+                sum1+=key
+        return sum1
+                
+                
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# One Linear
+class Solution(object):
+    def sumOfUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(key for key,val in collections.Counter(nums).items() if val==1)
+        
