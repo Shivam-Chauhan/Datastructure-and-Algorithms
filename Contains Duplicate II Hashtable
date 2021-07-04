@@ -1,0 +1,14 @@
+# Problem Link :- https://leetcode.com/problems/contains-duplicate-ii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        dic=dict()
+        for i,j in enumerate(nums):
+            if j in dic:
+                if (i-dic[j])<=k: return True
+                dic[j]=i
+            else:
+                dic[j]=i
+        return False
