@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/first-unique-character-in-a-string/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def firstUniqChar(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        dic={}
+        for i in s: 
+            if i not in dic:
+                dic[i]=1
+            else:
+                dic[i]+=1
+        
+        for key,val in dic.items():
+            if val==1: return s.index(key)
+        return -1
+        
