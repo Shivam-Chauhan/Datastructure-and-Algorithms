@@ -1,0 +1,15 @@
+# Time Complexity :- O(N*(Log(Log(N))))
+# Space Complexity :- O(N)
+import math
+n=100
+number=[True]*(n+1)
+number[0]=number[1]=False
+for j in range(2,int(math.sqrt(n))+1):
+    if number[j]==True:
+        for p in range(2*j,n+1,j):
+            number[p]=False
+output=[]
+for i,j in enumerate(number):
+    if j==True: output.append(i)
+print(output)
+        
