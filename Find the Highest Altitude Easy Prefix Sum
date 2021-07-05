@@ -1,0 +1,12 @@
+# Problem Link :- https://leetcode.com/problems/find-the-highest-altitude/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+        maxi,sum1=0,0
+        for j in gain:
+            sum1+=j
+            maxi=max(sum1,maxi)
+        return maxi
