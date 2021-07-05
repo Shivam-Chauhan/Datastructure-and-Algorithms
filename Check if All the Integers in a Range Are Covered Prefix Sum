@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)   (51 sized array can be considered as O(1))
+
+class Solution:
+    def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
+        list1=[False]*(51)
+        for first,second in ranges:
+            for j in range(first,second+1):
+                list1[j]=True
+        for st in range(left,right+1):
+            if list1[st]==False: return False
+        return True
+        
