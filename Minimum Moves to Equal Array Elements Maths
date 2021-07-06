@@ -1,0 +1,8 @@
+# Problem Link :- https://leetcode.com/problems/minimum-moves-to-equal-array-elements/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def minMoves(self, nums: List[int]) -> int:
+        return sum(nums)-min(nums)*len(nums)
