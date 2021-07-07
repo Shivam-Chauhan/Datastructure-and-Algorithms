@@ -1,0 +1,32 @@
+# Problem Link :- https://leetcode.com/problems/find-mode-in-binary-search-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findMode(self, root: TreeNode) -> List[int]:
+        self.dic=dict()
+        output=[]
+        def inorder(root):
+            if root:
+                inorder(root.left)
+                if root.val in self.dic.keys():
+                    self.dic[root.val]+=1
+                else:
+                    self.dic[root.val]=1
+                inorder(root.right)
+                
+            return 
+        
+        inorder(root)
+        maxi=max(self.dic.values())
+        for key,val in self.dic.items():
+            if val==maxi:
+                output.append(key)
+        return output
