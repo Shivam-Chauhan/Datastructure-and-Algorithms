@@ -1,0 +1,31 @@
+# Problem Link :- https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getMinimumDifference(self, root: TreeNode) -> int:
+        self.output=[]
+        
+        def inorder(root):
+            if root:
+                inorder(root.left)
+                self.output.append(root.val)
+                inorder(root.right)
+            return
+        inorder(root)
+        mini=10**9
+        # print(self.output)
+        for i in range(len(self.output)-1):
+            mini=min(mini,self.output[i+1]-self.output[i])
+        return mini
+            
+        
+
