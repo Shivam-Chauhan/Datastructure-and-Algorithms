@@ -1,0 +1,13 @@
+# Problem Link :- https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def countGoodSubstrings(self, s: str) -> int:
+        counter=0
+        for j in range(len(s)-2):
+    
+            if s[j]!=s[j+1] and s[j]!=s[j+2] and s[j+1]!=s[j+2]: counter+=1
+        return counter
+                
