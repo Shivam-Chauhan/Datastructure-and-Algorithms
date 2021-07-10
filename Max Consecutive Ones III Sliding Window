@@ -1,0 +1,16 @@
+# Problem Link :- https://leetcode.com/problems/max-consecutive-ones-iii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        res,ws=0,0
+        for we in range(len(nums)):
+            if nums[we]==0: k-=1
+            if k<0:
+                if nums[ws]==0: k+=1
+                ws+=1
+            res=max(res,we-ws+1)
+        return res
+                
