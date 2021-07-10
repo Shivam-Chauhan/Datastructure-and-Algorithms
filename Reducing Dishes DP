@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/problems/reducing-dishes/
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Brute Force
+# Python Solution
+# Time Complexity :- O(N*N)+O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+    def maxSatisfaction(self, satisfaction: List[int]) -> int:
+        satisfaction.sort()
+        maxi=0
+        for i in range(len(satisfaction)):
+            sum1,counter=0,1
+            for j in range(i,len(satisfaction)):
+                sum1+=counter*satisfaction[j]
+                counter+=1
+            maxi=max(maxi,sum1)
+        return maxi
+       
