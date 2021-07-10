@@ -1,0 +1,18 @@
+# Problem Link :- https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        res,zeroes,counter,ws=0,1,0,0
+        for we in range(len(nums)):
+            if nums[we]==0: zeroes-=1
+            if zeroes<0:
+                if nums[ws]==0: zeroes+=1
+                ws+=1
+                
+            
+            res=max(res,we-ws+1)
+                    
+        return res-1
