@@ -1,0 +1,16 @@
+# Problem Link :- https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        sum1,counter,we=0,0,0
+        for ws in range(len(arr)):
+            sum1+=arr[ws]
+            if ws+1>=k:
+                counter+=sum1/k>=threshold
+                sum1-=arr[we]
+                we+=1
+        return counter
+      
