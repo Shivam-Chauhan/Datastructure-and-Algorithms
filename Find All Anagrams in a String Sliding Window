@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/find-all-anagrams-in-a-string/
+# Python Solution
+# Time Complexity :- O(N) # Length of txt
+# Space Complexity :- O(K) # Length of pat
+
+class Solution:
+    def findAnagrams(self, txt: str, pat: str) -> List[int]:
+        output,dic=[],dict()
+        counter,ws=0,0
+        for j in pat:
+            if j in dic.keys():
+                dic[j]+=1
+            else:
+                dic[j]=1
+
+        for we in range(len(txt)):
+            if txt[we] in dic.keys():
+                dic[txt[we]]-=1
+            if we-ws+1==len(pat):
+                if not any(dic.values()):
+                    output.append(we+1-len(pat))
+                if txt[ws] in dic.keys():
+                    dic[txt[ws]]+=1
+                ws+=1
+        return output
