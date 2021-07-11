@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/sliding-window-maximum/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(K)
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        queue=[]
+        output=[]
+        ws=0
+        for we in range(len(nums)):
+            if len(queue)==0:
+                queue.append(nums[we])
+            else:
+                while len(queue) and queue[-1]<nums[we]:
+                    queue.pop()
+                queue.append(nums[we])
+            if we-ws+1==k:
+                output.append(queue[0])
+                if nums[ws]==queue[0]:
+                    queue.pop(0)
+                ws+=1
+
+        return output
+        
