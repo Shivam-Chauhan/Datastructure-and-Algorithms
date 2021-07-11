@@ -1,0 +1,26 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-occurences-of-anagrams5839/1
+# Python Solution
+# Time Complexity :- O(N)  # Length of txt
+# Space Complexity :- O(P) # Size of pat
+
+class Solution:
+  def search(self,pat, txt):
+	    dic=dict()
+        counter,ws=0,0
+        for j in pat:
+            if j in dic.keys():
+                dic[j]+=1
+            else:
+                dic[j]=1
+                
+        for we in range(len(txt)):
+            if txt[we] in dic.keys():
+                dic[txt[we]]-=1
+            if we-ws+1==len(pat):
+                if not any(dic.values()):
+                    counter+=1
+                if txt[ws] in dic.keys():
+                    dic[txt[ws]]+=1
+                ws+=1
+        return counter
+        
