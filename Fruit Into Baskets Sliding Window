@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/fruit-into-baskets/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def totalFruit(self, string: List[int]) -> int:
+        ws,dic,maxi=0,dict(),0
+        for we in range(len(string)):
+            if string[we] in dic.keys():
+                dic[string[we]]+=1
+            else:
+                dic[string[we]]=1
+            if len(dic)<=2:
+                maxi=max(maxi,sum(dic.values()))
+            elif len(dic)>2:
+                while len(dic)>2:
+                    dic[string[ws]]-=1
+                    if dic[string[ws]]==0:
+                        del dic[string[ws]]
+                    ws+=1
+        return maxi
