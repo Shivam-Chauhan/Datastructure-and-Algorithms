@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/problems/custom-sort-string/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N+M)
+
+class Solution:
+    def customSortString(self, order: str, str: str) -> str:
+        output=""
+        for j in order:
+            x=str.count(j)
+            output+=j*x
+        st=set(order)
+        for j in str:
+            if j not in st:
+                output+=j
+        return output
+            
+            
+            
+        
