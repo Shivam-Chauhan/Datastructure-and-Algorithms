@@ -1,0 +1,24 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+
+    def longestKSubstr(self, string, k):
+        dic=dict()
+        ws,maxi=0,0
+        for we in range(len(string)):
+            if string[we] in dic.keys():
+                dic[string[we]]+=1
+            else:
+                dic[string[we]]=1
+            if len(dic)==k:
+                maxi=max(maxi,sum(dic.values()))
+            elif len(dic)>k:
+                while len(dic)>k:
+                    dic[string[ws]]-=1
+                    if dic[string[ws]]==0:
+                        del dic[string[ws]]
+                    ws+=1
+        return -1 if maxi==0 else maxi
