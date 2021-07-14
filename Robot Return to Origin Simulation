@@ -1,0 +1,17 @@
+# Problem Link :- https://leetcode.com/problems/robot-return-to-origin/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def judgeCircle(self, moves: str) -> bool:
+        x,y=0,0
+        for j in moves:
+            if j=="U"   : x-=1
+            elif j=='D' : x+=1
+            elif j=='L' : y-=1
+            else        : y+=1
+        return True if x==0 and y==0 else False
+            
+                
+                
