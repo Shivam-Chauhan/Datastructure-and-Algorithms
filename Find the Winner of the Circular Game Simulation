@@ -1,0 +1,14 @@
+# Problem Link :- https://leetcode.com/problems/find-the-winner-of-the-circular-game/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        list1=list(range(1,n+1))
+        indx=0
+        for i in range(n-1):
+            indx=(indx+k-1)%len(list1)
+            list1.pop(indx)
+        return list1[-1]
+            
