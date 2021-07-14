@@ -1,0 +1,14 @@
+# Problem Link :- https://tenderleo.gitbooks.io/leetcode-solutions-/content/GoogleMedium/280.html
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+nums = [10,12,15,6,9,8,3,4,11]
+for j in range(len(nums)-1):
+    if j&1:
+        if nums[j+1]>nums[j]:
+            nums[j],nums[j+1]=nums[j+1],nums[j]
+    else:
+        if nums[j+1]<nums[j]:
+            nums[j],nums[j+1]=nums[j+1],nums[j]
+print(nums)
