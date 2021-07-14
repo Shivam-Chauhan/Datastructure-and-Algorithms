@@ -1,0 +1,19 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+#Your task is to complete this function
+#Your should return the required output
+def maxLen(n, array):
+    dic=dict()
+    maxi,sum1=0,0
+    dic[0]=-1
+    for i,j in enumerate(array):
+        sum1+=j
+        if sum1 in dic.keys():
+            maxi=max(maxi,i-dic[sum1])
+        else:
+            dic[sum1]=i
+    
+    return maxi
