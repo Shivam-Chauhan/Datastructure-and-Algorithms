@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/score-after-flipping-matrix/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def matrixScore(self, array: List[List[int]]) -> int:
+        
+        for i in range(len(array)):
+            if array[i][0]==0:
+                for j in range(len(array[0])):
+                    array[i][j]=1-array[i][j]
+        
+        for i in range(1,len(array[0])):
+            counter=0
+            for j in range(len(array)):
+                if array[j][i]==1: counter+=1
+            if counter<=len(array)//2:
+                for j in range(len(array)):
+                    array[j][i]=1-array[j][i]
+        
+        sum1=0
+        for i in range(len(array)):
+            sum1+=int(''.join(map(str,array[i])),2)
+        return sum1
