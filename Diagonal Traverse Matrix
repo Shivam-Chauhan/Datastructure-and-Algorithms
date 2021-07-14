@@ -1,0 +1,23 @@
+# Problem Link :- https://leetcode.com/problems/diagonal-traverse/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :-O(N*M)
+
+class Solution:
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        dic=dict()
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                if i+j not in dic.keys():
+                    dic[i+j]=[mat[i][j]]
+                else:
+                    dic[i+j].append(mat[i][j])
+        output=[]
+        for j in dic.keys():
+            if j&1==0:
+                [output.append(x) for x in dic[j][::-1]]
+            else:
+                [output.append(x) for x in dic[j]]
+        return output
+                    
+                
