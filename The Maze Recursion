@@ -1,0 +1,22 @@
+# Problem Link :- https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/solutions-451-500/490-the-maze.html
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+# It has Auxillary Space of Recursion.
+
+def traversal(maze,xsource,ysource,xdesti,ydesti):
+    if xsource<0 or ysource<0 or xsource>=len(maze) or ysource>=len(maze[0]) or maze[xsource][ysource]==1:
+        return False
+    if xsource==xdesti and ysource==ydesti:
+        return True
+    maze[xsource][ysource]=1
+    return traversal(maze,xsource+1,ysource,xdesti,ydesti) or traversal(maze,xsource-1,ysource,xdesti,ydesti) or traversal(maze,xsource,ysource+1,xdesti,ydesti) or traversal(maze,xsource,ysource-1,xdesti,ydesti) 
+maze=[
+    [0,0,1,0,0],
+    [0,0,0,0,0],
+    [0,0,0,1,0],
+    [1,1,0,1,1],
+    [0,0,0,0,0]]
+xsource,ysource=0,0
+xdesti,ydesti=1,3
+traversal(maze,xsource,ysource,xdesti,ydesti)
