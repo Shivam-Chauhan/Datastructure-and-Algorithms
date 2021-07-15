@@ -1,0 +1,29 @@
+# Problem Link :- https://leetcode.com/problems/word-search/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def traversal(board,x,y,word,counter):
+            if x<0 or y<0 or x>=len(board) or y>=len(board[0]) or counter>=len(word) or board[x][y]!=word[counter] or board[x][y]==0 :
+                return False
+            if counter==len(word)-1 and board[x][y]==word[counter]:
+                return True
+            if board[x][y]==word[counter]:
+                counter+=1
+                ele=board[x][y]
+                board[x][y]=0
+                res=traversal(board,x+1,y,word,counter) or traversal(board,x-1,y,word,counter) or traversal(board,x,y+1,word,counter) or traversal(board,x,y-1,word,counter)
+                board[x][y]=ele
+                return res
+    
+        counter=0
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j]==word[0]:
+                    if traversal(board,i,j,word,counter):
+                        return True
+
+        return False
+
