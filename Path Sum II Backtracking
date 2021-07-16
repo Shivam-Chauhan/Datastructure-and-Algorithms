@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/path-sum-ii/
+# Python Solution
+# Time Complexity :- O(N) # N is the number of nodes
+# Space Complexity :- O(N)+O(N) 
+# Auxillary Space of Recursion Stack
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
+        def traversal(root,sum1,list1,result):
+            if root:
+                if root.left==None and root.right==None and root.val==sum1:
+                    list1.append(root.val)
+                    result.append(list1)
+                traversal(root.left,sum1-root.val,list1+[root.val],result)
+                traversal(root.right,sum1-root.val,list1+[root.val],result)
+        
+        result=[]
+        traversal(root,targetSum,[],result)
+        return result
