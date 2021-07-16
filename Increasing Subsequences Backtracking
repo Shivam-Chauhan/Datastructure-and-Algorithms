@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/increasing-subsequences/
+# Python Solution
+# Time Complexity :- 
+# Space Complexity :- O(N)+O(N)+O(N)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
+        def isub(nums,counter,ls,hashi,hashst,res):
+            if counter==len(nums):
+                if len(ls)>=2 and hashi not in hashst:
+                    hashst.add(hashi)
+                    res.append(ls)
+                return
+            if len(ls)==0 or ls[-1]<=nums[counter]:
+                isub(nums,counter+1,ls+[nums[counter]],hashi+" "+str(nums[counter]),hashst,res) or isub(nums,counter+1,ls,hashi,hashst,res)
+            else:
+                isub(nums,counter+1,ls,hashi,hashst,res)
+        res=[]
+        isub(nums,0,[],"",set(),res)
+        return res
