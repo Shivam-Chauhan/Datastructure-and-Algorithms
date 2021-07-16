@@ -1,4 +1,5 @@
 # Problem Link :- https://leetcode.com/problems/find-the-student-that-will-replace-the-chalk/
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Python Solution
 # Time Complexity :- O(N)
 # Space Complexity :- O(1)
@@ -11,4 +12,16 @@ class Solution:
             x-=chalk[counter]
             counter+=1
         return counter
-      
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+class Solution:
+    def chalkReplacer(self, chalk: List[int], k: int) -> int:
+        x=k%sum(chalk)
+        for i,j in enumerate(chalk):
+            if x>=j: x-=j
+            else: return i
+            
+        
