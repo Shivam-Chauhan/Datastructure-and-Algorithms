@@ -1,0 +1,16 @@
+# Problem Link :- https://leetcode.com/problems/letter-tile-possibilities/
+# Python Solution
+# Time Complexity :- 
+# Space Complexity :- O(N)
+
+class Solution:
+    def numTilePossibilities(self, tiles: str) -> int:
+        self.st=set()
+        
+        def traversal(path,tiles):
+            if path:
+                self.st.add(path)
+            for j in range(len(tiles)):
+                traversal(path+tiles[j],tiles[:j]+tiles[j+1:])
+        traversal('',tiles)
+        return len(self.st)
