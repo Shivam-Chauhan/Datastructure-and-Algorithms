@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
+# Python Solution
+# Time Complexity :- 
+# Space Complexity :- O(N*M) # Number of Subsequence
+# Auxillary Space of Recursion Stack
+class Solution:
+    def maxLength(self, arr: List[str]) -> int:
+        def traversal(arr,counter,st):
+            if counter==len(arr):
+                return len(st)
+            if len(set(st+arr[counter]))==len(st)+len(arr[counter]):
+                return max(traversal(arr,counter+1,st+arr[counter]),traversal(arr,counter+1,st))
+            else:
+                return traversal(arr,counter+1,st)
+        return traversal(arr,0,"")
