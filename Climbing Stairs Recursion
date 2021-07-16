@@ -1,0 +1,36 @@
+# Problem Link :- https://leetcode.com/problems/climbing-stairs/
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# Recursive Approach
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        self.dic={}
+        def traversal(n):
+            if n==0:
+                return 1
+            if n<=-1:
+                return 0
+            if n in self.dic.keys():
+                return self.dic[n]
+            else:
+                self.dic[n]=traversal(n-1)+traversal(n-2)
+                return self.dic[n]
+        return traversal(n)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Iterative Approach
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        prev,second=1,2
+        if n==1: return 1
+        if n==2: return 2
+        for j in range(2,n):
+            prev,second=second,prev+second
+        return second        
