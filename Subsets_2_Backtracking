@@ -1,0 +1,18 @@
+# Problem Link :- https://leetcode.com/problems/subsets-ii/
+# Python Solution
+# Time Complexity :- O(2^N)*N +O(N*Log(N))
+# Space Complexity :- O(2^N)+O(N)
+
+class Solution:
+    def subsetsWithDup(self, arr: List[int]) -> List[List[int]]:
+        def traversal(arr,indx,path,res):
+            res.append(path[:])
+            for j in range(indx,len(arr)):
+                if j!=indx and arr[j]==arr[j-1]: continue
+                path.append(arr[j])
+                traversal(arr,j+1,path,res)
+                path.pop()
+        arr.sort()
+        res=[]
+        traversal(arr,0,[],res)
+        return res
