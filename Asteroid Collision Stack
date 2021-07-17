@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/asteroid-collision/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack=[]
+        for rock in asteroids:
+            while len(stack) and rock<0 and stack[-1]>0:
+                if stack[-1]==-rock:
+                    stack.pop()
+                    break
+                elif stack[-1]<-rock:
+                    stack.pop()
+                    continue
+                elif stack[-1]>-rock:
+                    break
+            else:
+                stack.append(rock)
+        return stack
