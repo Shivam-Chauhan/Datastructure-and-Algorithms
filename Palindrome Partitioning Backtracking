@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/palindrome-partitioning/
+# Python Solution
+# Time Complexity :-
+# Space Complexity :- O(N+N)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    def partition(self, stri: str) -> List[List[str]]:
+        
+        def ispalindrome(string):
+            return string==string[::-1]
+
+        def pp(stri,indx,path,res):
+            if indx==len(stri):
+                res.append(path[:])
+                return 
+            for i in range(indx,len(stri)):
+                if ispalindrome(stri[indx:i+1]):
+                    path.append(stri[indx:i+1])
+                    pp(stri,i+1,path,res)
+                    path.pop()
+        res=[]
+        pp(stri,0,[],res)
+        return res
