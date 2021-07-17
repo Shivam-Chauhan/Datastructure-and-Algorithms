@@ -1,0 +1,36 @@
+# Problem Link :- https://leetcode.com/problems/find-center-of-star-graph/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+        dic=dict()
+        ans=0
+        for u,v in edges:
+            if u in dic.keys():
+                dic[u]+=1
+            else:
+                dic[u]=1
+            if v in dic.keys():
+                dic[v]+=1
+            else:
+                dic[v]=1
+            
+            if dic[v]==len(edges): ans=v
+            if dic[u]==len(edges): ans=u
+        return ans
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
+# Python Solution
+# Time Complexity :- O(1)
+# Space Complexity :- O(1)
+        
+class Solution(object):
+    def findCenter(self, edges):
+        """
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        return edges[0][0] if edges[0][0]==edges[1][0] or edges[0][0]==edges[1][1] else edges[0][1]        
