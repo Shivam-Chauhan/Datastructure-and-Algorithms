@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/find-the-town-judge/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def findJudge(self, n, trust):
+        """
+        :type n: int
+        :type trust: List[List[int]]
+        :rtype: int
+        """
+        
+        list1=[0]*(n+1)
+        for u,v in trust:
+            list1[u]-=1
+            list1[v]+=1
+        for i,j in enumerate(list1):
+            if i==0: continue
+            if j==n-1:
+                return i
+        return -1
