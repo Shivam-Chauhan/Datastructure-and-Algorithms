@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/keys-and-rooms/
+# Python Solution
+# Time Complexity :- O(N*M) # Number of elements in array
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def canVisitAllRooms(self, rooms):
+        """
+        :type rooms: List[List[int]]
+        :rtype: bool
+        """
+        
+        def dfs(rooms,key,visited):
+            for j in rooms[key]:
+                if visited[j]==0:
+                    visited[j]=1
+                    dfs(rooms,j,visited)
+        visited=[0]*len(rooms)
+        visited[0]=1
+        dfs(rooms,0,visited)
+        return False if visited.count(0) else True
