@@ -1,0 +1,28 @@
+# Problem Link :- https://leetcode.com/problems/as-far-from-land-as-possible/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+class Solution(object):
+    def maxDistance(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        level=0
+        queue=[]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]==1:
+                    queue.append((i,j))
+        while queue:
+            level+=1
+            for _ in range(len(queue)):
+                x,y=queue.pop(0)
+                for i,j in [(-1,0),(1,0),(0,-1),(0,1)]:
+                    xi,yi=x+i,y+j
+                    if xi>=0 and yi>=0 and xi<len(grid) and yi<len(grid[0]) and grid[xi][yi]==0:
+                        queue.append((xi,yi))
+                        grid[xi][yi]=1
+            
+        return -1 if level==1 else level-1
