@@ -1,0 +1,71 @@
+# Problem Link :-https://leetcode.com/problems/number-of-provinces/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+# Adjacency Matrix Solution
+class Solution(object):
+    def findCircleNum(self, isConnected):
+        """
+        :type isConnected: List[List[int]]
+        :rtype: int
+        """
+        def dfs(isConnected, visited,x):
+            visited[x]=1
+            for j in range(len(isConnected[0])):
+                if x!=j and isConnected[x][j]==1 and visited[j]==0:
+                    dfs(isConnected,visited,j)
+
+        visited=[0]*(len(isConnected))
+        
+        counter=0
+        for i in range(len(isConnected)):
+            for j in range(len(isConnected[0])):
+                if visited[i]==0:
+                    dfs(isConnected,visited,i)
+                    counter+=1
+                    
+        return counter
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N+E)
+# Space Complexity :- O(N) +O(N+E)
+# Auxillary Space of Recursion Stack
+# Adjacency list solution
+
+from collections import defaultdict
+class Solution(object):
+    def findCircleNum(self, isConnected):
+        """
+        :type isConnected: List[List[int]]
+        :rtype: int
+        """
+        def dfs(graph, visited, src):
+            visited[src]=1
+            for j in graph[src]:
+                if visited[j]==0:
+                    dfs(graph,visited,j)
+    
+            
+        
+        graph=defaultdict(list)
+        for i in range(len(isConnected)):
+            for j in range(len(isConnected[0])):
+                if isConnected[i][j]==1 and i!=j:
+                    graph[i+1].append(j+1)
+        
+
+        visited=[0]*(len(isConnected)+1)
+        counter=0
+        for i in range(1,len(isConnected)+1):
+            if visited[i]==0:
+                counter+=1
+                dfs(graph,visited,i)
+
+
+        return counter
