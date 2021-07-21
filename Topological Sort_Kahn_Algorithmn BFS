@@ -1,0 +1,37 @@
+# Python Solution
+# Time Complexity :- O(2*(N+E)) + O(N)
+# Space Complexity :- O(N)+O(N)+O(N)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def bfs(graph,queue,indegree,topo):
+    while queue:
+        node=queue.pop(0)
+        topo.append(node)
+        for ele in graph[node]:
+            indegree[ele]-=1
+            if indegree[ele]==0:
+                queue.append(ele)
+
+graph={
+    0:[3],
+    1:[],
+    2:[0,3],
+    3:[1],
+    4:[0,1],
+    5:[0,2]
+}
+topo=[]
+indegree=[0]*len(graph)
+queue=[]
+for j in range(len(graph)):
+    for ele in graph[j]:
+        indegree[ele]+=1
+for i,j in enumerate(indegree):
+    if j==0:
+        queue.append(i) 
+bfs(graph,queue,indegree,topo)
+for j in topo:
+    print(j,end=" ")
+    
+    
+    
