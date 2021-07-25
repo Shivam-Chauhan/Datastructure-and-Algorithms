@@ -1,0 +1,137 @@
+# Problem Link :- https://leetcode.com/problems/design-hashset/
+
+
+
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+# Where N is the number of Nodes
+class MyHashSet:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.array=[0]
+
+    def add(self, key: int) -> None:
+        if key not in self.array:
+            self.array.append(key)
+
+    def remove(self, key: int) -> None:
+        if key in self.array:
+            self.array.remove(key)
+        
+
+    def contains(self, key: int) -> bool:
+        """
+        Returns true if this set contains the specified element
+        """
+        return key in self.array
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
+
+# Python Solution
+# Time Complexity :- O(1)
+# Space Complexity :- O(10**6+1)
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)
+
+
+
+
+class MyHashSet:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.array=[0]*(10**6+1)
+
+    def add(self, key: int) -> None:
+        self.array[key]=1
+    def remove(self, key: int) -> None:
+        self.array[key]=0
+
+    def contains(self, key: int) -> bool:
+        """
+        Returns true if this set contains the specified element
+        """
+        return self.array[key]
+        
+
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- Depends on the throughput and number distribution but better than O(N)
+# Space Complexity :- O(N)
+
+class Node:
+    def __init__(self,key,val):
+        self.key=key
+        self.val=val
+        self.next=None
+        
+class MyHashSet:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.array=[None]*(500)
+
+    def add(self, key: int) -> None:
+        indx=key%500
+        if self.array[indx]==None:
+            self.array[indx]=Node(key,True)
+        else:
+            currNode=self.array[indx]
+            self.array[indx]=Node(key,True)
+            self.array[indx].next=currNode
+            
+    def remove(self, key: int) -> None:
+        indx=key%500
+        if self.array[indx]==Node:
+            return 
+        else:
+            currNode=self.array[indx]
+            while currNode:
+                if currNode.key==key:
+                    currNode.val=False
+                    break 
+                currNode=currNode.next
+
+    def contains(self, key: int) -> bool:
+        """
+        Returns true if this set contains the specified element
+        """
+        indx=key%500
+        if self.array[indx]==None:
+            return False
+        else:
+            currNode=self.array[indx]
+            while currNode:
+                if currNode.key==key:
+                    if currNode.val==False: return False
+                    else: return True
+                currNode=currNode.next
+            return False
+                    
+        
+
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)
