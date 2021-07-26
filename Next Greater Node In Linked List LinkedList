@@ -1,0 +1,30 @@
+# Problem Link :- https://leetcode.com/problems/next-greater-node-in-linked-list/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def nextLargerNodes(self, head: ListNode) -> List[int]:
+        array=[]
+        temp=head
+        while temp:
+            array.append(temp.val)
+            temp=temp.next
+        stack=[]
+        # Will find the next greater element in an array
+        for j in range(len(array)-1,-1,-1):
+            val=array[j]
+            while len(stack) and stack[-1]<=array[j]: stack.pop()
+            
+            array[j]= 0 if len(stack)==0 else stack[-1]
+            stack.append(val)
+        return array
+            
+            
+                
+                
