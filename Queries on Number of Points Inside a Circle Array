@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle/
+# Python Solution
+# Time Complexity :- O(N*Q)
+# Space Complexity :- O(1)
+class Solution:
+    def countPoints(self, points: List[List[int]], queries: List[List[int]]) -> List[int]:
+        output=[]
+        for x,y,r in queries:
+            counter=0
+            for i,j in points:
+                if ((x-i)**2+(y-j)**2)**.5 <= r:
+                    counter+=1
+            output.append(counter)
+        return output
+        
