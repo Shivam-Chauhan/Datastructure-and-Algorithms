@@ -1,0 +1,121 @@
+# Problem Link :- https://leetcode.com/problems/design-hashmap/
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(1)
+# Space Complexity :- O(N)
+
+class MyHashMap:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.key=[-1]*(10**6+1)
+        
+        
+
+    def put(self, key: int, value: int) -> None:
+        """
+        value will always be non-negative.
+        """
+        self.key[key]=value
+        
+
+    def get(self, key: int) -> int:
+        """
+        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
+        """
+        return -1 if self.key[key]==-1 else self.key[key]
+        
+
+    def remove(self, key: int) -> None:
+        """
+        Removes the mapping of the specified value key if this map contains a mapping for the key
+        """
+        self.key[key]=-1
+
+
+# Your MyHashMap object will be instantiated and called as such:
+# obj = MyHashMap()
+# obj.put(key,value)
+# param_2 = obj.get(key)
+# obj.remove(key)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- Depends upon the distribution of numbers in input array
+# Space Complexity :- O(1000)
+
+class Node:
+    def __init__(self,key,value):
+        self.pair=(key,value)
+        self.next=None
+        
+class MyHashMap:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.array=[None]*1000
+        
+        
+
+    def put(self, key: int, value: int) -> None:
+        """
+        value will always be non-negative.
+        """
+        indx=key%1000
+        if self.array[indx]==None:
+            self.array[indx]=Node(key,value)
+        else:
+            currNode=self.array[indx]
+            while True:
+                if currNode.pair[0]==key:
+                    currNode.pair=(key,value)
+                    return
+                if currNode.next==None:
+                    break
+                currNode=currNode.next
+            currNode.next=Node(key,value)
+                
+        
+
+    def get(self, key: int) -> int:
+        """
+        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
+        """
+        indx=key%1000
+        if self.array[indx]==None: return -1
+        currNode=self.array[indx]
+        while currNode:
+            if currNode.pair[0]==key:
+                return currNode.pair[1]
+            currNode=currNode.next
+        return -1
+        
+
+    def remove(self, key: int) -> None:
+        """
+        Removes the mapping of the specified value key if this map contains a mapping for the key
+        """
+        indx=key%1000
+        prev=curr=self.array[indx]
+        if curr==None: return
+        if curr.pair[0]==key:
+            self.array[indx]=curr.next
+        else:
+            curr=curr.next
+            while curr:
+                if curr.pair[0]==key:
+                    prev.next=curr.next
+                    break
+                curr,prev=curr.next,prev.next
+                
+
+
+# Your MyHashMap object will be instantiated and called as such:
+# obj = MyHashMap()
+# obj.put(key,value)
+# param_2 = obj.get(key)
+# obj.remove(key)
