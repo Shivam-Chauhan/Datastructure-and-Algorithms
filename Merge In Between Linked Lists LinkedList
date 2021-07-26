@@ -1,0 +1,30 @@
+# Problem Link :- https://leetcode.com/problems/merge-in-between-linked-lists/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
+        def tail(node):
+            while node.next!=None:
+                node=node.next
+            return node
+        def indexnth(node,pos):
+            while pos:
+                node=node.next
+                pos-=1
+            return node
+        
+        ptr1=indexnth(list1,a-1)
+        ptr2=indexnth(list1,b)
+        ptr1.next,tail(list2).next=list2,ptr2.next
+        
+        
+        return list1
+        
+        
