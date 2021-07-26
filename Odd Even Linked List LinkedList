@@ -1,0 +1,31 @@
+# Problem Link :- https://leetcode.com/problems/odd-even-linked-list/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def oddEvenList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        
+        if head==None or head.next==None: return head
+        
+        odd=head
+        even=head.next
+        evenHead=even
+        while even and odd and even.next and odd.next:
+            odd.next=even.next
+            odd=odd.next
+            even.next=odd.next
+            even=even.next
+            
+        odd.next=evenHead
+        return head
+        
