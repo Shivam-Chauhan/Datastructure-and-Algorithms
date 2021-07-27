@@ -1,0 +1,47 @@
+# Problem Link :- https://leetcode.com/problems/pascals-triangle/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        output=[[1]]
+        for j in range(1,numRows):
+            temp=[]
+            ct=0
+            for i in range(j+1):
+                if i==0 or i==j:
+                    temp.append(1)
+                else:
+                    temp.append(output[j-1][ct]+output[j-1][ct+1])
+                    ct+=1
+            output.append(temp)
+
+        return output
+        
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        def combinations(row,col):
+            deno=num=1
+            for j in range(1,col+1):
+                num*=row
+                deno*=j
+                row-=1
+            return num//deno
+
+        
+        output=[]
+        for i in range(1,numRows+1):
+            temp=[]
+            for j in range(1,i+1):
+                temp.append(combinations(i-1,j-1))
+            output.append(temp)
+        return output
+        
+        
