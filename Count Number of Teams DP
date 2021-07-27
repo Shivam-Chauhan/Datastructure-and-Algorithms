@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/problems/count-number-of-teams/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def numTeams(self, rating: List[int]) -> int:
+        counter=0
+        for j in range(len(rating)):
+            leftsmaller=rightsmaller=leftgreater=rightgreater=0
+            for i in range(0,j):
+                if rating[i]<rating[j]: leftsmaller+=1
+                if rating[i]>rating[j]: leftgreater+=1
+            
+            for k in range(j+1,len(rating)):
+                if rating[k]>rating[j]: rightgreater+=1
+                if rating[k]<rating[j]: rightsmaller+=1
+            counter+=leftsmaller*rightgreater + leftgreater*rightsmaller
+        return counter
+            
