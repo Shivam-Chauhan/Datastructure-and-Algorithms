@@ -1,0 +1,13 @@
+# Problem Link :- https://leetcode.com/problems/stone-game/
+# Python Solution
+# Time Complexity :- O(1)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def stoneGame(self, piles):
+        """
+        :type piles: List[int]
+        :rtype: bool
+        """
+        return True
+        
