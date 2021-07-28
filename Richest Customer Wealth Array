@@ -1,0 +1,29 @@
+# Problem Link :- https://leetcode.com/problems/richest-customer-wealth/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def maximumWealth(self, accounts):
+        """
+        :type accounts: List[List[int]]
+        :rtype: int
+        """
+        maxi=0
+        for j in accounts: maxi=max(maxi,sum(j))
+        
+        return maxi
+        
+        
+# Python Solution
+# One Linear
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def maximumWealth(self, accounts):
+        """
+        :type accounts: List[List[int]]
+        :rtype: int
+        """
+        return max([sum(j) for j in accounts])        
