@@ -1,0 +1,12 @@
+# Problem Link :- https://leetcode.com/problems/concatenation-of-array/
+# Python Solution
+# Time Complexity :- O(1)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def getConcatenation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        return nums+nums
