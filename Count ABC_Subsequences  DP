@@ -1,0 +1,15 @@
+# Problem :- Count Subsequences of form A^i B^j C^k | Count A+ B+ C+ Subsequences 
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+stri="abcabc"
+a=ab=abc=0
+for j in stri:
+    if j=="a":
+        a=2*a+1
+    elif j=="b":
+        ab=2*ab+a
+    else:
+        abc=2*abc+ab
+print(abc)
