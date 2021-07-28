@@ -1,0 +1,53 @@
+# Problem Link :- https://leetcode.com/problems/single-number-iii/
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)+O(Log2(N))
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def set_finder(num):
+            pos=0
+            while num&1==0:
+                pos+=1
+                num>>=1
+            return pos
+        
+        xored=0
+        set_bit,unset_bit=0,0
+        for j in nums:
+            xored^=j
+        pos=set_finder(xored)
+        for j in nums:
+            if j&(1<<pos):
+                set_bit^=j
+            else:
+                unset_bit^=j
+        return [set_bit,unset_bit]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        xored=0
+        set_bit,unset_bit=0,0
+        for j in nums:
+            xored^=j
+        diff=xored&-xored
+        for j in nums:
+            if j&diff==0:
+                set_bit^=j
+            else:
+                unset_bit^=j
+        return [set_bit,unset_bit]
