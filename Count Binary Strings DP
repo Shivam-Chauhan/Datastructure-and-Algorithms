@@ -1,0 +1,14 @@
+# Problem :- Binary Strings with no consecutive 0's
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+n=6
+ocount0,ocount1=1,1
+for j in range(2,n+1):
+    ncount1=ocount0+ocount1
+    ncount0=ocount1
+
+    ocount0=ncount0
+    ocount1=ncount1
+print(ocount0+ocount1)
