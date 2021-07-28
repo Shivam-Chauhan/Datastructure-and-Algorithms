@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+from collections import defaultdict
+class Solution(object):
+    def groupThePeople(self, groupSizes):
+        """
+        :type groupSizes: List[int]
+        :rtype: List[List[int]]
+        """
+        output=[]
+        dic=defaultdict(list)
+        for i,j in enumerate(groupSizes):
+            dic[j].append(i)
+        for key,val in dic.items():
+            for j in range(0,len(val),key):
+                output.append(val[j:j+key])
+
+        return output
