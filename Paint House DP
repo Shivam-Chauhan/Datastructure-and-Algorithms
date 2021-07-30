@@ -1,0 +1,52 @@
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+n=int(input())
+color=[[0 for col in range(n)] for row in range(3)]
+dp=[[0 for col in range(n)] for row in range(3)]
+
+for col in range(n):
+    color[0][col],color[1][col],color[2][col]=map(int,input().split(" "))
+
+for j in range(n):
+    if j==0:
+        dp[0][j],dp[1][j],dp[2][j]=color[0][j],color[1][j],color[2][j]
+    else:
+        dp[0][j]=color[0][j]+min(dp[1][j-1],dp[2][j-1])
+        dp[1][j]=color[1][j]+min(dp[0][j-1],dp[2][j-1])
+        dp[2][j]=color[2][j]+min(dp[1][j-1],dp[0][j-1])
+
+print(min(dp[0][n-1],dp[1][n-1],dp[2][n-1]))
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+n=int(input())
+
+color=[[0 for col in range(n)] for row in range(3)]
+
+for col in range(n):
+    color[0][col],color[1][col],color[2][col]=map(int,input().split(" "))
+
+for j in range(n):
+    if j==0:
+        continue
+    else:
+        color[0][j]=color[0][j]+min(color[1][j-1],color[2][j-1])
+        color[1][j]=color[1][j]+min(color[0][j-1],color[2][j-1])
+        color[2][j]=color[2][j]+min(color[1][j-1],color[0][j-1])
+
+print(min(color[0][n-1],color[1][n-1],color[2][n-1]))
+
+
+
+        
+
+
+
+
+    
+    
