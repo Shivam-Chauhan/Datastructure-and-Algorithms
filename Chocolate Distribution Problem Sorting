@@ -1,0 +1,11 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+arr.sort()
+mini=10**9
+for i in range(0,len(arr)-m+1):
+    print(arr[i+m-1],arr[i])
+    mini=min(arr[i+m-1]-arr[i],mini)
+print(mini)
