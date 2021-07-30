@@ -1,0 +1,21 @@
+# Problem Link :- https://www.geeksforgeeks.org/print-matrix-reverse-wave-form/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+
+arr = [ [ 1, 2, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11,12 ],
+        [ 13, 14, 15,16 ]]
+
+output=[]
+for col in range(len(arr[0])-1,-1,-1):
+    if col&1==0:
+        for row in range(len(arr)-1,-1,-1):
+            output.append(arr[row][col])
+    else:
+        for row in range(0,len(arr)):
+            
+            output.append(arr[row][col])
+            
+print(output)
