@@ -1,0 +1,30 @@
+# Python Solution
+# Time Complexity :- O(ROW*COL*COL)
+# Space Complexity :- O(ROW*COL)
+
+n,k=map(int,input("Number of Color and Houses"))
+color=[[1,5,7,2,1,4],[5,8,4,3,6,1],[3,2,9,7,2,3],[1,2,4,9,1,7]]
+
+dp=[[0 for j in range(k)] for i in range(n)]
+ans=10**9
+for row in range(len(dp)):
+    for col in range(len(dp[0])):
+        if row==0:
+            dp[row][col]=color[row][col]
+        else:
+            mini=10**9
+            for j in range(len(dp[0])):
+                if j!=col:
+                    mini=min(mini,dp[row-1][j])
+                    
+            dp[row][col]=color[row][col]+mini
+        
+        if col==len(dp)-1:
+            ans=min(ans,dp[row][col])
+        
+
+print(ans)
+
+
+
+
