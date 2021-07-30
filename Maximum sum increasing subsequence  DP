@@ -1,0 +1,13 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/maximum-sum-increasing-subsequence4749/1
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+
+dp=[0]*(len(list1))
+for i in range(len(list1)):
+    maxi=0
+    for j in range(i+1):
+        if list1[j]<list1[i]:
+            maxi=max(maxi,dp[j])
+    dp[i]=maxi+list1[i]
+print(dp)
