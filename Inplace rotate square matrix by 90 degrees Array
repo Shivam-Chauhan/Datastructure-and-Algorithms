@@ -1,0 +1,21 @@
+# Problem Link :- https://www.geeksforgeeks.org/inplace-rotate-square-matrix-by-90-degrees/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+
+mat = [ [1, 2, 3 ],
+        [4, 5, 6 ],
+        [7, 8, 9 ] ]
+
+for row in range(len(mat)):
+    for col in range(row):
+        temp=mat[row][col]
+        mat[row][col]=mat[col][row]
+        mat[col][row]=temp 
+
+
+for row in range(len(mat)//2):
+    for col in range(len(mat[0])):
+        mat[row][col],mat[len(mat)-row-1][col]=mat[len(mat)-row-1][col],mat[row][col]
+print(mat)       
+ 
