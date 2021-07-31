@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/maximum-length-of-repeated-subarray/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+class Solution(object):
+    def findLength(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        def LCS_DP(string1,string2):
+            res=0
+            dp=[[0 for col in range(len(string2)+1)] for row in range(len(string1)+1)]
+
+            for row in range(1,len(dp)):
+                for col in range(1,len(dp[0])):
+                    if string1[row-1]==string2[col-1]:
+                        dp[row][col]=1+dp[row-1][col-1]
+                    else:
+                        dp[row][col]=0
+                    res=max(res,dp[row][col])
+            return res
+        return LCS_DP(nums1,nums2)
