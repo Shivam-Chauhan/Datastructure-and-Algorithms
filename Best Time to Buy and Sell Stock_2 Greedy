@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        
+        buy=sell=0
+        amount=0
+        for j in range(1,len(prices)):
+            if prices[j]>=prices[j-1]:
+                sell+=1
+            else:
+                amount+=prices[sell]-prices[buy]
+                sell+=1
+                buy=sell
+        amount+=prices[sell]-prices[buy]
+        return amount
+        
