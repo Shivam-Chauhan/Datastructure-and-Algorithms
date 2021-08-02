@@ -1,0 +1,35 @@
+# Problem Link :- https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- o(N)
+
+class Solution(object):
+    def areOccurrencesEqual(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        dic=dict()
+        for j in s:
+            if j not in dic.keys():
+                dic[j]=1
+            else:
+                dic[j]+=1
+            val=dic[j]
+        for key,valu in dic.items():
+            if val!=valu: return False
+        return True
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------            
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- o(1)
+class Solution(object):
+    def areOccurrencesEqual(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        return len(set(Counter(s).values()))==1
+        
+        
