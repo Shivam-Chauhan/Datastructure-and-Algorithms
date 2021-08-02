@@ -1,0 +1,23 @@
+# Problem Link :- https://leetcode.com/problems/maximum-number-of-words-you-can-type/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(M)
+
+class Solution(object):
+    def canBeTypedWords(self, text, brokenLetters):
+        """
+        :type text: str
+        :type brokenLetters: str
+        :rtype: int
+        """
+        brokenLetters=set(brokenLetters)
+        res=0
+        for j in list(text.split(" ")):
+            counter=1
+            for ele in j:
+                if ele in brokenLetters:
+                    counter=0
+                    break
+            res+=counter
+        return res
+        
