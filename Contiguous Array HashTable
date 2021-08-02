@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/contiguous-array/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        dic=dict()
+        # Key --> sum  and value --> index
+        dic[0]=-1
+        maxi,sum1=0,0
+        for i,j in enumerate(nums):
+            if j==0: sum1+=-1
+            else: sum1+=1
+            if sum1 in dic.keys():
+                maxi=max(maxi,i-dic[sum1])
+            else:
+                dic[sum1]=i               
+            
+        
+        return maxi
+                
