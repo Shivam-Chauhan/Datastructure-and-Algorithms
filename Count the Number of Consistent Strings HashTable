@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/count-the-number-of-consistent-strings/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def countConsistentStrings(self, allowed, words):
+        """
+        :type allowed: str
+        :type words: List[str]
+        :rtype: int
+        """
+        
+        st=set(allowed)
+        counter=0
+        for j in words:
+            flag=1
+            for ele in j:
+                if ele not in st:
+                    flag=0
+                    break
+            counter+=flag
+                    
+        return counter
+        
