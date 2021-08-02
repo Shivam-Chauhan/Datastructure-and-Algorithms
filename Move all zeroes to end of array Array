@@ -1,0 +1,13 @@
+# Problem Link :- https://www.geeksforgeeks.org/move-zeroes-end-array/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+counter=0
+for j in arr:
+    if j!=0:
+        arr[counter]=j
+        counter+=1
+for j in range(counter,len(arr)):
+    arr[j]=0
+print(arr)
