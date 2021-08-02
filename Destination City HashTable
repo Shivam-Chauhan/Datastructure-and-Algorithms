@@ -1,0 +1,18 @@
+# Problem Link :- https://leetcode.com/problems/destination-city/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def destCity(self, paths):
+        """
+        :type paths: List[List[str]]
+        :rtype: str
+        """
+        outgoing_path=set()
+        for ele in paths:
+            outgoing_path.add(ele[0])
+        for source,desti in paths:
+            if source not in outgoing_path: return source
+            if desti not in outgoing_path: return desti
+            
