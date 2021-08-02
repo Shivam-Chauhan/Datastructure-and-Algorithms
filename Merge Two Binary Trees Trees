@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/problems/merge-two-binary-trees/
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(N+M)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+        if root1==None and root2==None : return None
+        value=(root1.val if root1!=None else 0) + (root2.val if root2!=None else 0)
+        newNode=TreeNode(value)
+        newNode.left=self.mergeTrees(root1.left if root1!=None else None, root2.left if root2!=None else None)
+        newNode.right=self.mergeTrees(root1.right if root1!=None else None, root2.right if root2!=None else None)
+        
+        return newNode
