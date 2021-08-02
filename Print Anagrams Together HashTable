@@ -1,0 +1,13 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/print-anagrams-together/1
+# Python Solution
+# Time Complexity :- O(N*Log(M))
+# Space Complexity :- O(N)
+
+dic=dict()
+for j in WordArr:
+    l=''.join(sorted(j))
+    if l in dic.keys():
+        dic[l].append(j)
+    else:
+        dic[l]=[j]
+print(dic)
