@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumRootToLeaf(self, root: TreeNode) -> int:
+        self.output=0
+        def dfs(root,summation):
+            if root.left==None and root.right==None:
+                self.output+=int(summation+str(root.val),2)
+                return
+            if root.left: dfs(root.left,summation+str(root.val))
+            if root.right: dfs(root.right,summation+str(root.val))
+        dfs(root,"")
+        return self.output
