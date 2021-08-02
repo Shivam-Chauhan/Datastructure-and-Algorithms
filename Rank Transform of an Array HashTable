@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/rank-transform-of-an-array/
+# Python Solution
+# Time Complexity :- O(N*Log(N))+O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def arrayRankTransform(self, arr: List[int]) -> List[int]:
+        dic=dict()
+        temp=sorted(arr)
+        output=[]
+        counter=1
+        for i,j in enumerate(temp):
+            if j not in dic.keys():
+                dic[j]=counter
+                counter+=1
+        for k in arr:
+            output.append(dic[k])
+            
+                
+        return output
+            
+    
