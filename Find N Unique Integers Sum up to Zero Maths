@@ -1,0 +1,27 @@
+# Problem Link :- https://leetcode.com/problems/find-n-unique-integers-sum-up-to-zero/
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def sumZero(self, n: int) -> List[int]:
+        output=[]
+        if n&1:
+            for j in range(-1*(n>>1),(n>>1)+1):
+                output.append(j)
+        else:
+            for j in range(-1*(n>>1),(n>>1)+1):
+                if j!=0: output.append(j)
+        return output
+        
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------        
+# More concise solution        
+class Solution:
+    def sumZero(self, n: int) -> List[int]:
+        output=[]
+        for j in range(-1*(n>>1),(n>>1)+1):
+            if n&1==0 and j==0: continue
+            output.append(j)
+        return output
+                
