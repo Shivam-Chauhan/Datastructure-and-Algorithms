@@ -1,0 +1,23 @@
+# Problem Link :- https://leetcode.com/problems/determine-color-of-a-chessboard-square/
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(1)
+# Space Complexity :- O(1)
+
+class Solution:
+    def squareIsWhite(self, coordinates: str) -> bool:
+        row,col=int(coordinates[1]),int(ord(coordinates[0]))
+        if row&1:
+            if col&1: return False
+            return True
+        else:
+            if col&1: return True
+            return False
+            
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------            
+# More concise solution            
+class Solution:
+    def squareIsWhite(self, coordinates: str) -> bool:
+        row,col=int(coordinates[1]),int(ord(coordinates[0]))
+        return True if ((row&1 and col&1==0) or (row&1==0 and col&1)) else False                                
+                    
