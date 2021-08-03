@@ -1,0 +1,12 @@
+# Problem Link :- https://leetcode.com/problems/sign-of-the-product-of-an-array/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def arraySign(self, nums: List[int]) -> int:
+        countneg=0
+        for j in nums:
+            if j<0: countneg+=1
+            elif j==0: return 0
+        return -1 if countneg&1 else 1
