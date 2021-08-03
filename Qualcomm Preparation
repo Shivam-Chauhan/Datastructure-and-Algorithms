@@ -1,0 +1,93 @@
+# Problem Link :- https://www.geeksforgeeks.org/qualcomm-recruitment-process/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Question 1
+def issubset():
+    a1 = [10, 5, 2, 23, 19]
+    a2 = [19, 5, 3]
+    dic=dict()
+    for j in a1:
+        if j not in dic.keys():
+            dic[j]=1
+        else:
+            dic[j]+=1
+    for j in a2:
+        if j not in dic.keys(): return "No"
+        else:
+            if dic[j]==0: return "No"
+            dic[j]-=1
+    return "Yes"
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Question 2
+def countSetBits():
+    N=6
+    counter=0
+    while N:
+        N&=(N-1)
+        counter+=1
+    return counter
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Question 3
+def binarySearch():
+    arr=[1,2,3,4,5]
+    K = 4
+    low,high=0,len(arr)-1
+    while low<=high:
+        mid=low+(high-low)//2
+        
+        if arr[mid]==K: return mid
+        elif arr[mid]<K: low=mid+1
+        else: high=mid-1
+    return -1
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Question 4
+def nonRepeatingNumber():
+    arr=[1,2,3,2,1,4]
+    res=0
+    ones,zeroes=0,0
+    for j in arr: res^=j
+    temp=res
+    counter=0
+    while temp&1!=1:
+        temp>>=1
+        counter+=1
+        
+    for k in arr:
+        if k&(1<<counter): ones^=k
+        else: zeroes^=k
+            
+    return [ones,zeroes]
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Question 5
+def reverseBits():
+    X=5
+    counter=0
+    num=""
+    while counter<32:
+        num+=str(1&(X>>counter))
+        print(num)
+        counter+=1
+    return int(num,2)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Question 6
+def isprime(num):
+        counter=0
+        for k in range(2,int(num**.5)+1):
+            if num%k==0: return False
+        return True
+def primenumberRange():
+        m,n=1,100
+        output=[]
+        for j in range(m,n+1):
+            if j!=1 and isprime(j):
+                output.append(j)
+        return output
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+   
+            
+# issubset()
+# countSetBits()
+# binarySearch()
+# nonRepeatingNumber()
+# reverseBits()
+# primenumberRange()
