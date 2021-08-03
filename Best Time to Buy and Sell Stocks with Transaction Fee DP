@@ -1,0 +1,26 @@
+# Problem :- Best Time to Buy and Sell Stocks with Transaction Fee and Infinite Transactions Dynamic Programming
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Reference @PepCoding
+
+arr=[10,15,17,20,16,18,22,20,22,20,23,25]
+obsp=-arr[0]
+fees=2
+ossp=0
+for j in range(1,len(arr)):
+    if ossp-arr[j]>obsp:
+        nbsp=ossp-arr[j]
+    else:
+        nbsp=obsp
+    
+    if obsp+arr[j]-fees>ossp:
+        nssp=obsp+arr[j]-fees
+    else:
+        nssp=ossp
+    obsp=nbsp
+    ossp=nssp
+print(ossp)
+
+
+
