@@ -1,0 +1,33 @@
+# Problem Link :- https://leetcode.com/problems/majority-element-ii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Boyer Moore Voting Algorithm
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        num1,num2=10**9+1,10**9+1
+        counter1,counter2=0,0
+        for ele in nums:
+            if ele == num1:
+                counter1+=1
+            elif ele ==num2:
+                counter2+=1
+            elif counter1==0:
+                num1=ele
+                counter1=1
+            elif counter2==0:
+                num2=ele
+                counter2=1
+            else:
+                counter1-=1
+                counter2-=1
+        counter1,counter2=0,0
+        for ele in nums:
+            if ele==num1: counter1+=1
+            elif ele==num2: counter2+=1
+        if counter1>len(nums)//3 and counter2>len(nums)//3: return [num1,num2]
+        elif counter1<=len(nums)//3 and counter2>len(nums)//3: return [num2]
+        elif counter1>len(nums)//3 and counter2<=len(nums)//3: return [num1]
+        return []
+                
