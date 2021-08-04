@@ -1,0 +1,62 @@
+# Problem Link :- https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTarget(self, root: TreeNode, k: int) -> bool:
+        self.ans=False
+        def traversal_tree(root,dic,k):
+            if root:
+                if (k-root.val) in dic.keys():
+                    self.ans=True
+                dic[root.val]=1
+                traversal_tree(root.left,dic,k)
+                traversal_tree(root.right,dic,k)
+                
+            
+        traversal_tree(root,{},k)
+        return self.ans
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTarget(self, root: TreeNode, k: int) -> bool:
+        self.ans=False
+        self.temp=False
+        def search(data,root,original):
+            if original:
+                if data==original.val and original!=root: self.temp=True
+                    
+                if data<original.val: search(data,root,original.left)
+                else: search(data,root,original.right)
+            
+                    
+        def traversal(root,k,original):
+            if root:
+                self.temp=False
+                search(k-root.val,root,original)
+                if self.temp==True: self.ans=True
+                traversal(root.left,k,original)
+                traversal(root.right,k,original)
+        
+        traversal(root,k,root)
+        return self.ans
+        
+        
