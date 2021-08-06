@@ -1,0 +1,16 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+low,mid,high=0,0,len(array)-1
+while mid<=high:
+    if array[mid]==0:
+        array[low],array[mid]=array[mid],array[low]
+        low+=1
+    elif array[mid]==1:
+        mid+=1
+    elif array[mid]==2:
+        array[mid],array[high]=array[high],array[mid]
+        high-=1
+print(array)
