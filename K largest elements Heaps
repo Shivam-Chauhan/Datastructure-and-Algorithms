@@ -1,0 +1,19 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/k-largest-elements3736/1#
+# Python Solution
+# Time Complexity :- O(N*Log(K))
+# Space Complexity :- O(K)
+
+#User function Template for python3
+import heapq
+class Solution:
+    #Function to return k largest elements from an array.
+    def kLargest(self,array,n,k):
+        li=[]
+        output=[]
+        heapq.heapify(li)
+        for j in array:
+            heapq.heappush(li,j)
+            if len(li)>k: heapq.heappop(li)
+        while li:
+            output.append(heapq.heappop(li))
+        return output[::-1]
