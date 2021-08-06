@@ -1,0 +1,27 @@
+# Problem Link :- https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
+        self.output=0
+        def dfs(cloned,target):
+            
+            if cloned is None: return 
+            if cloned.val==target.val: self.output=cloned
+            if cloned: 
+                dfs(cloned.left,target)
+                dfs(cloned.right,target)
+                
+        dfs(cloned,target)
+        
+        return self.output
