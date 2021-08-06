@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(Log(N))
+
+
+class Solution(object):
+    def pathInZigZagTree(self, label):
+        """
+        :type label: int
+        :rtype: List[int]
+        """
+        level=0
+        res=[]
+        while 2**level<=label:
+            level+=1
+        
+        while label!=0:
+            res.append(label)
+            max_val=(2**level)-1
+            min_val=2**(level-1)
+            label=int((max_val+min_val-label)/2)
+            level-=1
+        return res[::-1]
