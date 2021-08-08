@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/contest/weekly-contest-248/problems/count-good-numbers/
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion 
+
+import math
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        def fastexpo(x,y,mod):
+            if y==0: return 1
+            if y&1: return (x*fastexpo((x*x)%mod,(y-1)//2,mod))%(mod)
+            else: return fastexpo((x*x)%mod,y//2,mod)
+            
+            
+        mod=(10**9+7)
+        x=(fastexpo(5,math.ceil(n/2),mod))%mod
+        y=(fastexpo(4,math.floor(n/2),mod))%mod
+        
+        return (x*y)%(mod)
