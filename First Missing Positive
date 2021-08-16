@@ -1,0 +1,27 @@
+# Problem Link :- https://leetcode.com/problems/first-missing-positive/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        onespresence=False
+        for i in range(len(nums)):
+            if nums[i]<1 or nums[i]>len(nums):
+                nums[i]=1
+            elif nums[i]==1: onespresence=True
+        if onespresence==False: return 1
+        
+        for i in range(len(nums)):
+            if nums[abs(nums[i])-1]>=1: nums[abs(nums[i])-1]=-1*nums[abs(nums[i])-1]
+        for i,j in enumerate(nums):
+            if j>0:
+                return i+1
+        return len(nums)+1
+            
+        
+            
