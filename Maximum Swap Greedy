@@ -1,0 +1,47 @@
+# Problem Link :- https://leetcode.com/problems/maximum-swap/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def maximumSwap(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        num=list(str(num))
+        maxi=0
+        for i in range(len(num)):
+            for j in range(i,len(num)):
+                temp=num[::]
+                temp[i],temp[j]=temp[j],temp[i]
+                maxi=max(maxi,int(''.join(temp)))
+        return maxi
+        
+        
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+class Solution(object):
+    def maximumSwap(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        nums=str(num)
+        list1=[0]*len(nums)
+        maxi=-10**9
+        pos=len(nums)-1
+        for j in range(len(nums)-1,-1,-1):
+            if int(nums[j])>maxi:
+                maxi=int(nums[j])
+                pos=j
+            list1[j]=pos
+        nums=list(nums)
+        for i,j in enumerate(nums):
+            if int(j)<int(nums[list1[i]]):
+                nums[i],nums[list1[i]]=nums[list1[i]],nums[i]
+                break
+        return ''.join(nums)        
