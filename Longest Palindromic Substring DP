@@ -1,0 +1,30 @@
+# Problem Link :- https://leetcode.com/problems/longest-palindromic-substring/submissions/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(1)
+
+
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def finder(s,x,y):
+            while x>=0 and y<len(s) and s[x]==s[y]:
+                x-=1
+                y+=1
+            return s[x+1:y]
+        maxi,output=0,""
+        for i in range(len(s)):
+            # odd length palindrome 
+            output=finder(s,i,i)
+            if len(output)>maxi:
+                res=output[::]
+                maxi=len(output)
+            # even length palindrome
+            output=finder(s,i,i+1)
+            if len(output)>maxi:
+                res=output[::]
+                maxi=len(output)
+        return res
