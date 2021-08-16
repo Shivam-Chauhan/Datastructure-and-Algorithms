@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution(object):
+    def check(self, array):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        k=0
+        for i in range(len(array)):
+            if array[i]>array[(i+1)%len(array)]: k+=1
+        return False if k>1 else True
