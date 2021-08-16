@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/matrix-cells-in-distance-order/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def allCellsDistOrder(self, rows, cols, rCenter, cCenter):
+        """
+        :type rows: int
+        :type cols: int
+        :type rCenter: int
+        :type cCenter: int
+        :rtype: List[List[int]]
+        """
+        element=[]
+        for i in range(rows):
+            for j in range(cols):
+                distance=abs(i-rCenter)+abs(j-cCenter)
+                element.append([distance,i,j])
+        element=sorted(element,key=lambda x:x[0])
+        output=[]
+        for distance,x,y in element:
+            output.append([x,y])
+        return output
