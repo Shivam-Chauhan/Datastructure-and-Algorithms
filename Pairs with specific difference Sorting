@@ -1,0 +1,16 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/pairs-with-specific-difference1533/1
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+    def maxSumPairWithDifferenceLessThanK(self, array, N, k): 
+        array.sort()
+        sum1=0
+        j=len(array)-1
+        while j>0:
+            if array[j]-array[j-1]<k:
+                sum1+=array[j]+array[j-1]
+                j-=1
+            j-=1
+        return sum1
