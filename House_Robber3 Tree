@@ -1,0 +1,28 @@
+# Problem Link :- https://leetcode.com/problems/house-robber-iii/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def rob(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(root):
+            if root==None: return (0,0)
+            
+            left=dfs(root.left)
+            right=dfs(root.right)
+            
+            robbery=left[1]+root.val+right[1]
+            withoutrobbery=max(left)+max(right)
+            return (robbery,withoutrobbery)
+        return max(dfs(root))
