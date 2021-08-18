@@ -1,0 +1,33 @@
+# Problem Link :- https://leetcode.com/problems/word-break/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
+        def partitionWord(string,wordDict,lookup):
+            n=len(string)
+            
+            if n==0: return 1
+            
+            if lookup[n]==-1:
+                lookup[n]=0
+                for i in range(1,len(string)+1):
+                    prefix=string[:i]
+                    if (prefix in wordDict) and (partitionWord(string[i:],wordDict,lookup)):
+                        lookup[n]=1
+                        return lookup[n]
+                return lookup[n]==1
+            
+        lookup=[-1]*(len(s)+1)
+        
+        return True if partitionWord(s,wordDict,lookup) else False
+                
+                
+            
+            
