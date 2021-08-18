@@ -1,0 +1,67 @@
+# Problem Link :- https://leetcode.com/problems/validate-binary-search-tree/
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        self.output=[]
+        def dfs(root):
+            if root==None: return
+            dfs(root.left)
+            self.output.append(root.val)
+            dfs(root.right)
+            
+        dfs(root)
+        for j in range(len(self.output)-1):
+            if self.output[j]>=self.output[j+1]: return False
+        return True
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        self.prev=None
+        def dfs(root):
+            
+            if root==None: return True
+            
+            if dfs(root.left)==False: return False
+            
+            if self.prev!=None and self.prev.val>=root.val: return False
+            
+            self.prev=root
+            
+            if dfs(root.right)==False: return False
+            
+            else: return True
+        
+        return dfs(root)
+        
+        
