@@ -1,0 +1,15 @@
+# Problem Link :- https://www.geeksforgeeks.org/width-binary-tree-set-1/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+def verticalWidth(root,minimum,maximum,curr):
+    if root==None:
+        return
+    
+    if root.left!=None:
+        verticalWidth(root.left,minimum,maximum,curr-1)
+    minimum=min(minimum,curr)
+    if root.right!=None:
+        verticalWidth(root.right,minimum,maximum,curr+1)
+    maximum=max(maximum,curr)
