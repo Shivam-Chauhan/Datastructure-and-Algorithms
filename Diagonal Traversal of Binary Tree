@@ -1,0 +1,33 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/diagonal-traversal-of-binary-tree/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+'''
+# Node Class:
+class Node:
+    def _init_(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+#Complete the function below
+def diagonal(root):
+    #:param root: root of the given tree.
+    #return: print out the diagonal traversal,  no need to print new line
+    #code here
+    queue=[]
+    queue.append(root)
+    output=[]
+    while queue:
+        size=len(queue)
+        while size:
+            rem=queue.pop(0)
+            while rem!=None:
+                output.append(rem.data)
+                if rem.left!=None:
+                    queue.append(rem.left)
+                rem=rem.right
+            size-=1
+        
+    return output
