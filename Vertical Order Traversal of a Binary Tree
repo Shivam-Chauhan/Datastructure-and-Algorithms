@@ -1,0 +1,44 @@
+# Problem Link :- https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+# Reference from @cglotr
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def verticalTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        res = []
+        
+        # pre-order dfs & store (x, y) position of each node
+        def dfs(node, x, y):
+            if not node:
+                return
+            res.append(((x, y), node.val))
+            dfs(node.left, x - 1, y + 1)
+            dfs(node.right, x + 1, y + 1)
+            
+        dfs(root, 0, 0)
+        res.sort()
+        
+        # group nodes into it's vertical group
+        groups = collections.defaultdict(list)
+        for k, v in res:
+            x, _ = k
+            groups[x].append(v)
+            
+        # sort the vertical groups & generate the final answer
+        ans = []
+        for k in sorted(list(groups.keys())):
+            ans.append(groups[k])
+            
+        return ans
+        
