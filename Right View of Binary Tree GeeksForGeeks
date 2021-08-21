@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/right-view-of-binary-tree/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    #Function to return list containing elements of right view of binary tree.
+    def rightView(self,root):
+        output,queue=[],[]
+        queue.append(root)
+        while queue:
+            size=len(queue)
+            while size:
+                rem=queue.pop(0)
+                if size==1:
+                    output.append(rem.data)
+                if rem.left!=None:
+                    queue.append(rem.left)
+                if rem.right!=None:
+                    queue.append(rem.right)
+                size-=1
+        return(output)
