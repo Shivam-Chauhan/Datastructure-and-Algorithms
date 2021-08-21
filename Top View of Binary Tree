@@ -1,0 +1,32 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/top-view-of-binary-tree/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    
+    #Function to return a list of nodes visible from the top view 
+    #from left to right in Binary Tree.
+    def topView(self,root):
+        dic=dict()
+        queue,output=[],[]
+        queue.append((root,0))
+        while queue:
+            size=len(queue)
+            while size:
+                rem,align=queue.pop(0)
+                # Stores the (key,value) in dic
+                if align not in dic.keys():
+                    dic[align]=[rem.data]
+                else:
+                    dic[align].append(rem.data)
+                
+                # Helps in traversal of the children of the tree(BFS)
+                if rem.left!=None:
+                    queue.append((rem.left,align-1))
+                if rem.right!=None:
+                    queue.append((rem.right,align+1))
+                size-=1
+        for j in sorted(dic.keys()):
+            output.append(dic[j][0])
+        return output
