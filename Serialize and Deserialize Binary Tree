@@ -1,0 +1,65 @@
+# Problem Link :- https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+    
+    
+    
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        self.output=[]
+        def preorder(root):
+            if root==None:
+                self.output.append(None)
+                return
+            
+            self.output.append(root.val)
+            preorder(root.left)
+            preorder(root.right)
+        
+        preorder(root)
+        return self.output        
+        
+    
+    
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        self.indx=0
+        def desMaker(data):
+            if self.indx>=len(data) or data[self.indx]==None:
+                self.indx+=1
+                return None
+
+            node=TreeNode(data[self.indx])
+            self.indx+=1
+            node.left=desMaker(data)
+            node.right=desMaker(data)
+
+            return node
+        return desMaker(data)
+        
+        
+        
+        
+
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
