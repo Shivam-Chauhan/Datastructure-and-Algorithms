@@ -1,0 +1,32 @@
+# All Node Shortest Path
+# Floyd Warshall Algorithm
+graph={
+    0:[(1,5),(3,10)],
+    1:[(2,3)],
+    2:[(3,1)],
+    3:[]
+    
+}
+length=len(graph)
+grid=[]
+for i in range(length):
+    temp=[]
+    for j in range(length):
+        if i==j:
+            temp.append(0)
+        else:
+            temp.append(10**9)
+    grid.append(temp)
+        
+for i in range(len(graph)):
+    for node,distance in graph[i]:
+        grid[i][node]=distance
+        
+
+for k in range(length):
+    for i in range(length):
+        for j in range(length):
+            grid[i][j]=min(grid[i][j],grid[i][k]+grid[k][j])
+print(grid)
+        
+        
