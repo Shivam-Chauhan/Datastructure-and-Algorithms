@@ -1,0 +1,39 @@
+# Problem Link :- https://www.geeksforgeeks.org/diagonal-sum-binary-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# DFS Implementation of Diagonal Sum of Binary Tree
+def diagonalSum(root,size,output):
+    if size==len(output):
+        output.append(0)
+    output[size]+=root.data
+    
+    diagonalSum(root.left,size+1,output)
+    diagonalSum(root.right,size,output)
+    
+output=[]
+diagonalSum(root,0,output)
+print(output)
+    
+    
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+# BFS Implementation of Diagonal Sum of Binary Tree
+
+def diagonalSumBFS(root):
+    output,queue=[],[]
+    queue.append(root)
+    while queue:
+        size=len(queue)
+        sum1=0
+        while size>0: # Emptying queue in Level Order Fashion
+            rem=queue.pop(0)
+            while rem:    
+                if rem.left!=None:
+                    queue.append(rem.left)
+                sum1+=rem.data
+                rem=rem.right  # Moving to the deepest node from rem -> right
+            size-=1
+        output.append(sum1)
+    return output # Returning output
