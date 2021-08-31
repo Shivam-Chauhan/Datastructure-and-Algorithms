@@ -1,0 +1,20 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/inorder-traversal/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def InOrder(self,root):
+        inorderArray=[]
+        stack=[]
+        while True:
+            if root!=None:
+                stack.append(root)
+                root=root.left
+            else:
+                if len(stack)==0:
+                    break
+                root=stack.pop()
+                inorderArray.append(root.data)
+                root=root.right
+        return(inorderArray)
