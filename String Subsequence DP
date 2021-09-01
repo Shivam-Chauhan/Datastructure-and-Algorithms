@@ -1,0 +1,24 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/find-number-of-times-a-string-occurs-as-a-subsequence3020/1/?company[]=Accolite&company[]=Accolite&page=1&query=company[]Accolitepage1company[]Accolite#
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+class Solution:
+    def countWays(self, S1, S2):
+        def count(string1,string2,dp,i,j):
+            if j==len(string2):
+                dp[i][j]=1
+                return 1
+            elif i==len(string1):
+                dp[i][j]=0
+                return 0
+            elif dp[i][j]!=-1:
+                return dp[i][j]
+            elif string1[i]==string2[j]:
+                dp[i][j]=count(string1,string2,dp,i+1,j+1) + count(string1,string2,dp,i+1,j)
+            else:
+                dp[i][j]=count(string1,string2,dp,i+1,j)
+            return dp[i][j]
+            
+        dp=[[-1 for j in range(len(S2)+1)] for i in range(len(S1)+1)]
+        return(count(S1,S2,dp,0,0))
