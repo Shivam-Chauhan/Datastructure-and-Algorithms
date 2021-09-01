@@ -1,0 +1,45 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/sort-a-linked-list/1/?company[]=Accolite&company[]=Accolite&page=1&query=company[]Accolitepage1company[]Accolite#
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+
+class Solution:
+    #Function to sort the given linked list using Merge Sort.
+    def mergeSort(self, head):
+        if head==None or head.next==None:
+            return head
+        
+        middle=self.getMiddle(head)
+        middleNext=middle.next
+        middle.next=None
+        
+        left=self.mergeSort(head)
+        right=self.mergeSort(middleNext)
+        sortedList=self.merge(left,right)
+        return sortedList
+        
+    def merge(self,left,right):
+        result=None
+        if left==None:
+            return right
+        if right==None:
+            return left
+        if left.data<=right.data:
+            result=left
+            result.next=self.merge(left.next,right)
+        else:
+            result=right
+            result.next=self.merge(left,right.next)
+        return result
+        
+    
+    
+    def getMiddle(self,head):
+        if head==None:
+            return head
+        slow=fast=head
+        while fast.next and fast.next.next:
+            slow=slow.next
+            fast=fast.next.next
+        return slow
+        
