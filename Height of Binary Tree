@@ -1,0 +1,12 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/height-of-binary-tree/1/?company[]=Amazon&company[]=Amazon&page=1&query=company[]Amazonpage1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    #Function to find the height of a binary tree.
+    def height(self, root):
+        if root==None:
+            return 0
+        return max(self.height(root.left),self.height(root.right))+1    
