@@ -1,0 +1,11 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/occurences-of-2-as-a-digit/1/?company[]=Amazon&company[]=Amazon&difficulty[]=1&difficulty[]=2&page=1&query=company[]Amazondifficulty[]1difficulty[]2page1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*(len(Number))
+# Space Complexity :- O(1)
+
+def number0f2s(n):
+    pass
+    #add Code here
+    
+def numberOf2sinRange(n):
+    return sum(str(i).count("2") for i in range(0,n+1))
