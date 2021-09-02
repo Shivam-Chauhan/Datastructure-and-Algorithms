@@ -1,0 +1,17 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/rotate-by-90-degree0356/1/?company[]=Amazon&company[]=Amazon&page=1&query=company[]Amazonpage1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(1)
+
+def rotate(matrix): 
+    row=len(matrix)
+    for i in range(row):
+        for j in range(i+1,row):
+            matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]
+    
+    for i in range(row//2):
+        for j in range(row):
+            matrix[i][j],matrix[row-i-1][j]=matrix[row-i-1][j],matrix[i][j]
+            
+    
+    return matrix
