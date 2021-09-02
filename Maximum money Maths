@@ -1,0 +1,9 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/maximum-money2855/1/?company[]=Amazon&company[]=Amazon&page=1&query=company[]Amazonpage1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(1)
+# Space Complexity :- O(1)
+
+class Solution:
+    def maximizeMoney(self, n , K):
+        # code here 
+        return ((n//2)+1)*K if n&1 else (n//2)*K
