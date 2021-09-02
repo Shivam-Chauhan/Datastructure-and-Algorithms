@@ -1,0 +1,26 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/x-total-shapes3617/1#
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+# Auxiallary Space of Recursion Stack
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+class Solution:
+    
+    #Function to find the number of 'X' total shapes.
+	def xShape(self, grid):
+	    def num(grid,i,j):
+            if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]) or grid[i][j]=='O':
+                return 
+            grid[i][j]='O'
+            num(grid,i+1,j)
+            num(grid,i-1,j)
+            num(grid,i,j+1)
+            num(grid,i,j-1)
+
+        ct=0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]=="X":
+                    ct+=1
+                    num(grid,i,j)
+        return ct
