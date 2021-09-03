@@ -1,0 +1,12 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/wave-array-1587115621/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&page=1&query=company[]AmazonproblemStatusunsolvedpage1company[]Amazon
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    #Complete this function
+    #Function to sort the array into a wave-like array.
+    def convertToWave(self,arr,N):
+        for i in range(0,N-1,2):
+            arr[i],arr[i+1]=arr[i+1],arr[i]
+        return arr
