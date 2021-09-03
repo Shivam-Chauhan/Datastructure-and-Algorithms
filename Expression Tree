@@ -1,0 +1,25 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/expression-tree/1/?company[]=Amazon&company[]=Amazon&page=2&query=company[]Amazonpage2company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    # function should return an integer denoting the required answer
+    def evalTree(self, root):
+        if root!=None:
+            if root.left==None and root.right==None:
+                return int(root.data)
+            a=self.evalTree(root.left)
+            b=self.evalTree(root.right)
+            
+            if root.data=="+":
+                return a+b
+            elif root.data=="-":
+                return a-b
+            elif root.data=="*":
+                return a*b
+            else:
+                if a%b==0:
+                    return a//b
+                return int(a/b)
