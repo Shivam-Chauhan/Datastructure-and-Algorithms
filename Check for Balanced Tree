@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/check-for-balanced-tree/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    def isBalanced(self,root):
+        def balancedChecker(root):
+            if root==None:
+                return 0
+            
+            lh=balancedChecker(root.left)
+            rh=balancedChecker(root.right)
+            if lh==-1 or rh==-1:
+                return -1
+                
+            if abs(lh-rh)>1:
+                return -1
+            return max(lh,rh)+1
+        
+        return 0 if balancedChecker(root)==-1 else 1            
+    
