@@ -1,0 +1,31 @@
+# Problem Link :- https://leetcode.com/problems/sum-of-left-leaves/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def sumOfLeftLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.sum1=0
+        def dfs(root,direction):
+            if root==None:
+                return 
+            if root.left==None and root.right==None and direction=="L":
+                self.sum1+=root.val
+                return
+            
+            dfs(root.left,"L")
+            dfs(root.right,"R")
+                
+        dfs(root,"")
+        return self.sum1
+            
