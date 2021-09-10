@@ -1,0 +1,38 @@
+# Problem Link :- https://leetcode.com/problems/average-of-levels-in-binary-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N) + O(N)
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def averageOfLevels(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[float]
+        """
+        queue,output=[],[]
+        queue.append((root,0))
+        dic=dict()
+        while queue:
+            rem,level=queue.pop(0)
+            if level not in dic.keys():
+                dic[level]=[rem.val]
+            else:
+                dic[level].append(rem.val)
+            if rem.left!=None:
+                queue.append((rem.left,level+1))
+            if rem.right!=None:
+                queue.append((rem.right,level+1))
+                
+            
+        for i,j in dic.items():
+            sum1,l=sum(j),len(j)
+            ans=sum1/float(l)
+            output.append(ans)
+        return output
+            
