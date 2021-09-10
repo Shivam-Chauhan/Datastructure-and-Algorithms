@@ -1,0 +1,37 @@
+# Problem Link :- https://leetcode.com/problems/n-ary-tree-preorder-traversal/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack 
+
+
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution(object):
+    def preorder(self, root):
+        """
+        :type root: Node
+        :rtype: List[int]
+        """
+        self.output=[]
+        
+        def dfs(root):
+            if root==None:
+                return
+            
+            self.output.append(root.val)
+            
+            for child in root.children:
+                dfs(child)
+                
+        dfs(root)
+        
+        return self.output
+            
+        
