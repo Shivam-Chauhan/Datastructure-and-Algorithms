@@ -1,0 +1,33 @@
+# Problem Link :- https://leetcode.com/problems/n-ary-tree-postorder-traversal/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution(object):
+    def postorder(self, root):
+        """
+        :type root: Node
+        :rtype: List[int]
+        """
+        def dfs(root):
+            if root==None:
+                return
+            
+            for child in root.children:
+                dfs(child)
+                
+            self.output.append(root.val)
+            
+        self.output=[]            
+        dfs(root)
+        
+        return self.output
