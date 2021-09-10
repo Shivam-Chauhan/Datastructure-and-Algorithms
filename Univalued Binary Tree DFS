@@ -1,0 +1,30 @@
+# Problem Link :- https://leetcode.com/problems/univalued-binary-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isUnivalTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        
+        def dfs(root,actualData):
+            if root==None:
+                return True
+            
+            if root.val!=actualData:
+                    return False
+            return dfs(root.left,actualData) and dfs(root.right,actualData)
+        
+        
+        return dfs(root,root.val)
+            
