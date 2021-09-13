@@ -1,0 +1,28 @@
+# Problem Link :- https://leetcode.com/problems/next-greater-element-ii/
+# Python Solution
+# Time Complexity :- O(2*N) + O(N)
+# Space Complexity :- O(N)
+
+
+class Solution(object):
+    def nextGreaterElements(self, array):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        n=len(array)
+        output,stack=[0]*n,[]
+
+        for j in range(2*len(array)-1,-1,-1):
+            if len(stack)==0:
+                output[j%n]=-1
+            else:
+                while len(stack)!=0 and stack[-1]<=array[j%n]:
+                    stack.pop()
+
+                if len(stack)==0:
+                    output[j%n]=-1
+                else:
+                    output[j%n]=stack[-1]
+            stack.append(array[j%n])
+        return output
