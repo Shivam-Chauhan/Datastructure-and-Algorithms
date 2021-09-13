@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/next-larger-element
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N)
+    
+class Solution:
+    def nextLargerElement(self,array,n):
+        output,stack=[],[]
+        for j in range(len(array)-1,-1,-1):
+            if len(stack)==0:
+                output.append(-1)
+            else:
+                while len(stack)!=0 and stack[-1]<=array[j]:
+                    stack.pop()
+                
+                if len(stack)==0:
+                    output.append(-1)
+                else:
+                    output.append(stack[-1])
+            stack.append(array[j])
+        return(output[::-1])
+        
