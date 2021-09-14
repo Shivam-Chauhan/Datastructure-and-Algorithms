@@ -1,0 +1,20 @@
+# Problem Link :- https://www.geeksforgeeks.org/find-expression-duplicate-parenthesis-not/
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N)
+
+def redundantBrackets():
+    string = "((a+(b))+(c+d))"
+    stack=[]
+    for j in string:
+        if j==")":
+            if stack[-1]=="(":
+                return True
+                
+            else:
+                while len(stack) and stack[-1]!="(":
+                    stack.pop()
+                stack.pop()
+        else:
+            stack.append(j)
+    return False
