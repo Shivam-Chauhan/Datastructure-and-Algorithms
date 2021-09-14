@@ -1,0 +1,18 @@
+# Problem Link :- https://www.geeksforgeeks.org/print-bracket-number/
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N)
+
+def printBracketNumber():
+    s="((())(()))"
+    stack,counter=[],1
+    output=[]
+    for j in s:
+        if j=="(":
+            stack.append(("(",counter))
+            output.append(counter)
+            counter+=1
+        elif j==")":
+            element,val=stack.pop()
+            output.append(val)
+    print(output)
