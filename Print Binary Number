@@ -1,0 +1,17 @@
+# Problem Link :- https://www.geeksforgeeks.org/interesting-method-generate-binary-numbers-1-n/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# Reference GFG
+
+def printBinary():
+    n=10
+    queue=[]
+    queue.append("1")
+    while n>0:
+        s=queue.pop(0)
+        print(s)
+        s1=s
+        queue.append(s+"0")
+        queue.append(s1+"1")
+        n-=1
