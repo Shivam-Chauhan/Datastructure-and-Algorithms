@@ -1,0 +1,68 @@
+# Problem Link :- https://leetcode.com/problems/maximal-rectangle/
+# Python Solution
+# Time Complexity :- O(N*N*N)
+# Space Complexity :- O(N) +O(N) +O(N)
+
+class Solution(object):
+    def maximalRectangle(self, matrix):
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        
+        def largestRectangleArea(heights):
+
+            right,stack=[],[]
+            # Smaller in Right
+            for j in range(len(heights)-1,-1,-1):
+                if len(stack)==0:
+                    right.append(len(heights))
+                else:
+                    while len(stack) and heights[j]<=stack[-1][0]:
+                        stack.pop()
+
+                    if len(stack)==0:
+                        right.append(len(heights))
+                    else:
+                        right.append(stack[-1][1])
+                stack.append((heights[j],j))
+
+            right=right[::-1]
+
+
+
+            # Smaller in Left
+            left,stack=[],[]
+            for j in range(0,len(heights)):
+                if len(stack)==0:
+                    left.append(-1)
+                else:
+                    while len(stack) and heights[j]<=stack[-1][0]:
+                        stack.pop()
+
+                    if len(stack)==0:
+                        left.append(-1)
+                    else:
+                        left.append(stack[-1][1])
+                stack.append((heights[j],j))
+
+            # Distance Finder
+            maxi=-10**9
+            for i,j,k in zip(left,right,heights):
+                maxi=max(maxi,(j-i-1)*k)
+
+            return maxi
+        
+        if matrix==[]:
+            return 0
+        
+        heights=[0]*(len(matrix[0]))
+        maxi=-10**9
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j]=='0':
+                    heights[j]=0
+                else:
+                    heights[j]+=1
+            maxi=max(maxi,largestRectangleArea(heights))
+        return maxi
