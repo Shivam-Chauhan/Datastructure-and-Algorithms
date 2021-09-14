@@ -1,0 +1,32 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/valid-substring0624/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def findMaxLen(ob, s):
+        # code here 
+        res,open1,close=0,0,0
+        for j in s:
+            if j=="(":
+                open1+=1
+            else:
+                close+=1
+            if open1==close:
+                res=max(res,2*open1)
+            
+            if close>open1:
+                open1=close=0
+        
+        open1=close=0
+        for j in range(len(s)-1,-1,-1):
+            if s[j]=="(":
+                open1+=1
+            else:
+                close+=1
+            if open1==close:
+                res=max(2*open1,res)
+            if open1>close:
+                open1=close=0
+        return res
+                
