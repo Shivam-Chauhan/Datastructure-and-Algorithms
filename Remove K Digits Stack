@@ -1,0 +1,23 @@
+# Problem Link :- https://leetcode.com/problems/remove-k-digits/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution(object):
+    def removeKdigits(self, num, k):
+        """
+        :type num: str
+        :type k: int
+        :rtype: str
+        """
+        stack=[]
+        for j in num:
+            while len(stack) and k>0 and stack[-1]>j:
+                stack.pop()
+                k-=1
+            stack.append(j)
+        while k>0:
+            k-=1
+            stack.pop()
+
+        return (str(int("".join(stack)))) if len(stack) else "0"
