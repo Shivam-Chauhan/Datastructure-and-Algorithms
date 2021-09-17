@@ -1,0 +1,16 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/reverse-first-k-elements-of-queue/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+def modifyQueue(q,k):
+    n=len(q)
+    stack=[]
+    for j in range(k):
+        stack.append(q.pop(0))
+    while len(stack)!=0:
+        q.append(stack.pop())
+    for j in range(n-k):
+        front=q.pop(0)
+        q.append(front)
+    return q
