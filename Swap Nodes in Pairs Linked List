@@ -1,0 +1,28 @@
+# Problem Link :- https://leetcode.com/problems/swap-nodes-in-pairs/submissions/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        dummy=ListNode(0)
+        dummy.next=head
+        curr=dummy
+        while curr.next and curr.next.next:
+            first=curr.next
+            second=curr.next.next
+            curr.next=second
+            first.next=second.next
+            second.next=first
+            curr=curr.next.next
+        return dummy.next
+            
