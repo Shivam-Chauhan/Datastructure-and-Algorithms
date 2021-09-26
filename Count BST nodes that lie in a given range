@@ -1,0 +1,21 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-bst-nodes-that-lie-in-a-given-range/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+def getCount(root,low,high):
+    ##Your code here
+    
+    def counter(root,low,high):
+        count=0
+        if root==None:
+            return 0
+        if root.data>=low and root.data<=high:
+            count+=1
+        
+        count+= counter(root.left,low,high) + counter(root.right,low,high)
+        return count
+    
+    
+    return counter(root,low,high)
