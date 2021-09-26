@@ -1,0 +1,56 @@
+# Problem Link :- https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N) + O(N) + O(N)
+
+class Solution(object):
+    def distanceK(self, root, target, k):
+        """
+        :type root: TreeNode
+        :type target: TreeNode
+        :type k: int
+        :rtype: List[int]
+        """
+        def conversionTreeToGraph(root,pointer,target):
+            indx,queue=0,[]
+            queue.append(root)
+            while len(queue):
+                rem=queue.pop(0)
+                if rem.left!=None:
+                    pointer[rem.left]=rem
+                    queue.append(rem.left)
+                
+                if rem.right!=None:
+                    pointer[rem.right]=rem
+                    queue.append(rem.right)
+                if rem.val==target.val:
+                    indx=rem
+            return indx
+                    
+        def findElements(root,indx,pointer,k):
+            
+            visited,output,queue=set(),[],[]
+            queue.append((indx,0))
+            while len(queue):
+                rem,distance=queue.pop(0)
+                if distance==k:
+                    output.append(rem.val)
+                if rem.left!=None and (rem.left not in visited):
+                    queue.append((rem.left,distance+1))
+                    visited.add(rem.left)
+                if rem.right!=None and (rem.right not in visited):
+                    queue.append((rem.right,distance+1))
+                    visited.add(rem.right)
+                if rem in pointer and (pointer[rem] not in visited):
+                    queue.append((pointer[rem],distance+1))
+                    visited.add(pointer[rem])
+                visited.add(rem)
+                
+            return output
+                    
+                                
+        
+        pointer=dict()
+        indx=conversionTreeToGraph(root,pointer,target)
+        
+        return findElements(root,indx,pointer,k)
