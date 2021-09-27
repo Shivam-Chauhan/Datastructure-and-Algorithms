@@ -1,0 +1,21 @@
+# Problem Link :- https://leetcode.com/problems/binary-tree-tilt/submissions/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+def findTilt(self, root: Optional[TreeNode]) -> int:
+        self.tilt=0
+        def finder(root):
+            
+            if root==None:
+                return 0
+            
+            lefttilt=finder(root.left)
+            righttilt=finder(root.right)
+            lt=abs(lefttilt-righttilt)
+            self.tilt+=lt
+            return lefttilt+root.val+righttilt
+            
+        finder(root)
+        return self.tilt
