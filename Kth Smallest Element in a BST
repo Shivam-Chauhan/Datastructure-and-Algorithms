@@ -1,0 +1,36 @@
+# Problem Link :- https://leetcode.com/problems/kth-smallest-element-in-a-bst/submissions/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        self.output=0
+        self.k=k
+        def dfs(root):
+            if root.left:
+                dfs(root.left)
+            self.k-=1
+            if self.k==0:
+                self.output=root.val
+                return 
+            if root.right:
+                dfs(root.right)
+            
+        
+        dfs(root)
+        return self.output
+
+       
