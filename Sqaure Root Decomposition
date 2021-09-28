@@ -1,0 +1,26 @@
+# Python Solution
+# Time Complexity :- O(N) + O((N^.5)*Q)
+# Space Complexity :- O(N^.5)
+
+def sqaureRootDecompostion():
+    def preprocessing(array,length,sqrtArray):
+        for j in range(len(array)):
+            sqrtArray[j//length]=min(sqrtArray[j//length],array[j])
+        
+        
+    array=list(map(int,input().split(" ")))
+    length=math.ceil(len(array)**.5)
+    sqrtArray=[10**9]*length
+    preprocessing(array,length,sqrtArray)
+    t=int(input())
+    while t:
+        left,right=map(int,input().split(" "))
+        ans=10**9
+        while left<=right:
+            if left%length==0 and left+length-1<=right:
+                ans=min(ans,sqrtArray[left//length])
+                left+=length
+            else:
+                ans=min(ans,array[left])
+                left+=1
+        print(ans)
