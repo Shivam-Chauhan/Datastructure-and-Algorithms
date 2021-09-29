@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/array-of-doubled-pairs/submissions/
+# Python Solution
+# Time Complexity :- O(N +KLOGK)
+# Space Complexity :- O(N)
+
+class Solution:
+    def canReorderDoubled(self, arr: List[int]) -> bool:
+        dic = Counter(arr)
+        for i in sorted(arr, key=abs):
+            if dic[i] == 0: continue
+            if dic[2*i] == 0: return False
+            dic[i] -= 1
+            dic[2*i] -= 1
+        
+        return True
