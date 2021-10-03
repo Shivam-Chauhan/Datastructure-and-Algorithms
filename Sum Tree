@@ -1,0 +1,21 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/sum-tree/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&problemType=functional&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolvedproblemTypefunctionaldifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    def isSumTree(self,root):
+        self.num=0
+        def checkerSum(root):
+            if root==None:
+                return 0
+            if root.left==None and root.right==None:
+                return root.data
+            lefty=checkerSum(root.left)
+            righty=checkerSum(root.right)
+            if lefty+righty!=root.data:
+                self.num=-1
+            return lefty+righty+root.data
+        checkerSum(root)
+        return 1 if self.num==0 else 0
