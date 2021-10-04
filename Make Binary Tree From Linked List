@@ -1,0 +1,45 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/make-binary-tree/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1company[]Amazon
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+
+
+'''
+class ListNode:
+
+    # Constructor to create a new node
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+# Tree Node structure
+class Tree:
+
+    # Constructor to create a new node
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+'''
+
+#Function to make binary tree from linked list.
+def convert(head):
+    root=Tree(head.data)
+    head=head.next
+    queue=[]
+    queue.append(root)
+    while head:
+        rem=queue.pop(0)
+        rem.left=Tree(head.data)
+        head=head.next
+        queue.append(rem.left)
+        
+        if head:
+            rem.right=Tree(head.data)
+            queue.append(rem.right)
+            head=head.next
+    return root
+    
