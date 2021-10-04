@@ -1,0 +1,38 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/leftmost-and-rightmost-nodes-of-binary-tree/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N) + O(N)
+
+#User function Template for python3
+
+#User function Template for python3
+
+'''
+class Node:
+    def _init_(self,val):
+        self.data=val
+        self.left=None
+        self.right=None
+'''
+
+def printCorner(root):
+    dic=dict()
+    queue,output=[],[]
+    queue.append((root,0))
+    while len(queue):
+        rem,level=queue.pop(0)
+        if level not in dic.keys():
+           dic[level]=[rem.data]
+        else:
+            dic[level].append(rem.data)
+        if rem.left:
+            queue.append((rem.left,level+1))
+        if rem.right:
+            queue.append((rem.right,level+1))
+    
+    for i,j in dic.items():
+        if len(j)==1:
+            print(j[0],end=" ")
+        else:
+            print(j[0],end=" ")
+            print(j[-1],end=" ")
