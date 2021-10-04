@@ -1,0 +1,20 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/maximum-sum-of-non-adjacent-nodes/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1company[]Amazon
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    #Function to return the maximum sum of non-adjacent nodes.
+    def getMaxSum(self,root):
+        def dfs(root):
+            if root==None:
+                return (0,0) # Pick and UnPick
+            lefty=dfs(root.left)
+            righty=dfs(root.right)
+            
+            pick=lefty[1]+root.data+righty[1]
+            unpick=max(lefty[0],lefty[1])+max(righty[0],righty[1])
+            return (pick,unpick)
+        return max(dfs(root))
+            
