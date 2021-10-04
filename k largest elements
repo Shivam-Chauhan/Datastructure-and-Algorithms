@@ -1,0 +1,19 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/k-largest-elements4206/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(K*Log(K)) +O(N)
+# Space Complexity :- O(K)
+
+import heapq
+class Solution:
+
+	def kLargest(self,arr, n, k):
+	    array=[]
+	    heapq.heapify(array)
+		for j in arr:
+		    heapq.heappush(array,j)
+		    if len(array)>k:
+		        heapq.heappop(array)
+		output=[]
+		while len(array):
+		    output.append(heapq.heappop(array))
+		return output[::-1]
