@@ -1,0 +1,36 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/relative-sorting4323/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=2&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page2company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+
+class Solution:
+    # A1[] : the input array-1
+    # N : size of the array A1[]
+    # A2[] : the input array-2
+    # M : size of the array A2[]
+    
+    #Function to sort an array according to the other array.
+    def relativeSort (self,A1, N, A2, M):
+        dic=dict()
+        output=[]
+        for j in A1:
+            if j not in dic.keys():
+                dic[j]=1
+            else:
+                dic[j]+=1
+        for k in A2:
+            if k in dic.keys():
+                for m in range(dic[k]):
+                    output.append(k)
+                dic[k]=-1
+        
+        temp=[]
+        for i,j in dic.items():
+            if j!=-1:
+                
+                for m in range(0,j):
+                    temp.append(i)
+        temp.sort()
+        output=output+temp
+        return output
+    
