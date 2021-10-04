@@ -1,0 +1,29 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/extreme-nodes-in-alternate-order/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=2&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page2company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N) + O(N)
+
+class Solution:
+    # Your task is to complete this function
+    def ExtremeNodes(self, root):
+        dic=dict()
+        queue=[]
+        queue.append((root,0))
+        while len(queue):
+            rem,level=queue.pop(0)
+            if level in dic.keys():
+                dic[level].append(rem.data)
+            else:
+                dic[level]=[rem.data]
+            if rem.left!=None:
+                queue.append((rem.left,level+1))
+            if rem.right!=None:
+                queue.append((rem.right,level+1))
+        output=[]
+        for i,j in dic.items():
+            if i&1:
+                output.append(j[0])
+            else:
+                output.append(j[-1])
+        return output
+        
