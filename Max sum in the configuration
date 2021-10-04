@@ -1,0 +1,16 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/max-sum-in-the-configuration/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=2&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page2company[]Amazon
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+def max_sum(a,n):
+    sum1=sum(a)
+    s0=0
+    for i in range(n):
+        s0+=i*a[i]
+    maxi=s0
+    for i in range(n-1):
+        si=s0+sum1-n*arr[n-i-1]
+        maxi=max(maxi,si)
+        s0=si
+    return maxi
