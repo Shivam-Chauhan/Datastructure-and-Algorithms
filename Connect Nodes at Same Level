@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/connect-nodes-at-same-level/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    #Function to connect nodes at same level.
+    def connect(self, root):
+        queue=[root]
+        while len(queue):
+            size=len(queue)
+            while size:
+                rem=queue.pop(0)
+                size-=1
+                if size==0:
+                    rem.nextRight=None
+                else:
+                    rem.nextRight=queue[0]
+                
+                if rem.left!=None:
+                    queue.append(rem.left)
+                if rem.right!=None:
+                    queue.append(rem.right)
