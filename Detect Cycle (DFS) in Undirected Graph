@@ -8,7 +8,7 @@ def checkforCycle(node,parent,visited,graph):
                 return True
             elif j!=parent:
                 return True
-    return True
+    return False
 
 
 
