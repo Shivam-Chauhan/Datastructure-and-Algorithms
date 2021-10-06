@@ -1,0 +1,26 @@
+# Median of A DataStream
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+
+def medianDataStream():
+    array=[6,4,1,23,48,13,42,7]
+    minHeap=[]
+    maxHeap=[]
+    heapq.heapify(minHeap)
+    heapq.heapify(maxHeap)
+    for i in array:
+        if len(maxHeap)==0 or -1*maxHeap[0]>i:
+            heapq.heappush(maxHeap,-1*i)
+        else:
+            heapq.heappush(minHeap,i)
+        if len(maxHeap)>len(minHeap)+1:
+            heapq.heappush(minHeap,-1*heapq.heappop(maxHeap))
+        elif len(maxHeap)+1<len(minHeap):
+            heapq.heappush(maxHeap,-1*heapq.heappop(minHeap))
+    if len(maxHeap)==len(minHeap):
+        ele1=-1*heapq.heappop(maxHeap)
+        ele2=heapq.heappop(minHeap)
+        print((ele1+ele2)/2)
+    else:
+        print(max(-1*heapq.heappop(maxHeap),heapq.heappop(minHeap)))
