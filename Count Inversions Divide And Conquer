@@ -1,0 +1,41 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/inversion-of-array-1587115620/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=2&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page2sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+
+
+def inversionCount(self, arr, n):
+        
+      self.counter=0
+      def mergeArray(leftArray,rightArray,array):
+          lefty,righty,k=0,0,0
+          while lefty<len(leftArray) and righty<len(rightArray):
+              if leftArray[lefty]<=rightArray[righty]:
+                  array[k]=leftArray[lefty]
+                  lefty+=1
+              else:
+                  self.counter+=len(leftArray)-lefty
+                  array[k]=rightArray[righty]
+                  righty+=1
+              k+=1
+          while lefty<len(leftArray):
+              array[k]=leftArray[lefty]
+              lefty+=1
+              k+=1
+          while righty<len(rightArray):
+                  array[k]=rightArray[righty]
+                  righty+=1
+                  k+=1
+
+      def mergeSort(array):
+          if len(array)>1:
+              mid=len(array)//2
+              leftArray=array[:mid]
+              rightArray=array[mid:]
+              mergeSort(leftArray)
+              mergeSort(rightArray)
+              mergeArray(leftArray,rightArray,array)
+
+      mergeSort(arr)
+      return self.counter
