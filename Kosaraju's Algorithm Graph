@@ -1,0 +1,47 @@
+# Problem Kosaraju's Algorithm for finding number of Strongly Connected Component
+# Python Solution
+# Time Complexity :- O(N+E) + O(N+E) + O(N+E)
+# Space Complexity :- O(N) + O(N)
+# Auxillary Space of Recursion Stack
+
+
+
+def dfs(graph,visited,src,stack):
+  visited[src]=1
+  for node in graph[src]:
+      if visited[node]==0:
+          dfs(graph,visited,node,stack)
+  stack.append(src)
+
+def revdfs(node,transpose,visited):
+  visited[node]=1
+  for it in transpose[node]:
+      if visited[it]==0:
+          revdfs(it,transpose,visited)
+
+def kosarajuAlgo(graph,n):
+  visited=[0]*n
+  stack=[]
+  for i in range(0,n):
+      if visited[i]==0:
+          dfs(graph,visited,i,stack)
+
+
+  transpose={}
+  for i in range(0,n):
+      visited[i]=0
+      for j in graph[i]:
+          if j in transpose.keys():
+              transpose[j].append(i)
+          else:
+              transpose[j]=[i]
+  
+  ct=0
+  while len(stack):
+      node=stack.pop()
+      if visited[node]==0:
+          ct+=1
+          revdfs(node,transpose,visited)
+  return ct
+        
+kosarajuAlgo(graph,n)  
