@@ -1,0 +1,16 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=2&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page2sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+def findLongestConseqSubseq(self,arr, N):
+        st=set(arr)
+        maxi,ct=1,1
+        for i in st:
+            if i-1 not in st:
+                while i+1 in st:
+                    ct+=1
+                    i+=1
+                maxi=max(maxi,ct)
+                ct=1
+        return maxi
