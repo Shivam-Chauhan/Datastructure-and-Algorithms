@@ -1,0 +1,25 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N*N)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    def findPath(self, m, n):
+        self.output=[]
+        def finder(maze,x,y,path):
+            if x<0 or x>=len(maze) or y<0 or y>=len(maze[0]) or maze[x][y]==0:
+                return 
+            if x==len(maze)-1 and y==len(maze[0])-1:
+                self.output.append(path)
+                return 
+            maze[x][y]=0
+            finder(maze,x,y+1,path+"R")
+            finder(maze,x,y-1,path+"L")
+            finder(maze,x+1,y,path+"D")
+            finder(maze,x-1,y,path+"U")
+        
+            maze[x][y]=1
+        finder(m,0,0,"")
+        
+        return sorted(self.output)
