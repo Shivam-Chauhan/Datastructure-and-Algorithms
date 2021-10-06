@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/implement-atoi/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    # your task is to complete this function
+    # function should return an integer
+    def atoi(self,string):
+        num=0
+        sign=""
+        for i in string:
+            if i=="-":
+                sign="-"            
+                continue
+            temp=ord(i)-ord('0')
+            if (temp>=0) and (temp<=9):
+                num=num*10+temp
+            else:
+                return -1
+        return -1*num if sign=="-" else num
+                
