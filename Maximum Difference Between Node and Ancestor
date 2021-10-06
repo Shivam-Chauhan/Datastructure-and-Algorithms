@@ -1,0 +1,16 @@
+# Problem Link :- https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/submissions/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
+        def dfs(root,maxi,mini):
+            if root==None:
+                return 0
+            maxi=max(maxi,root.val)
+            mini=min(mini,root.val)
+            lefty=dfs(root.left,maxi,mini)
+            righty=dfs(root.right,maxi,mini)
+            return max(maxi-mini,lefty,righty)
+        return dfs(root,root.val,root.val)
