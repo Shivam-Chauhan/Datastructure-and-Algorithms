@@ -1,0 +1,26 @@
+# Problem Link :- https://leetcode.com/problems/subtree-of-another-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        def checker(root1,root2):
+            if root1==None and root2==None:
+                return True
+            if root1==None or root2==None:
+                return False
+            if (root1.val==root2.val) and (checker(root1.left,root2.left)) and (checker(root1.right, root2.right)):
+                return True
+            
+        def traversal(root1,root2):
+            if root1==None:
+                return 0
+            if root2==None:
+                return 1
+            if checker(root1,root2):
+                return 1
+            
+            return traversal(root1.left,root2) or traversal(root1.right,root2)
+        return traversal(root,subRoot)
