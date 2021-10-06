@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/triplet-sum-in-array-1587115621/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=2&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page2company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*N) + O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+     
+    #Function to find if there exists a triplet in the 
+    #array A[] which sums up to X.
+    def find3Numbers(self,A, n, X):
+        A.sort()
+        for i in range(0,n-2):
+            j,k=i+1,n-1
+            while j<k:
+                temp=A[i]+A[j]+A[k]
+                if temp==X:
+                    return 1
+                if temp>X:
+                    k-=1
+                elif temp<X:
+                    j+=1
+        return 0
+               
