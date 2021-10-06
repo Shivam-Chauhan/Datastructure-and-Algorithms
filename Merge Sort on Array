@@ -1,0 +1,41 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/merge-sort/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+
+
+class Solution:
+   def mergeSort(self,arr, l, r):
+    def merge(left,right,array):
+        ct,lf,ri=0,0,0
+        while lf<len(left) and ri<len(right):
+            if left[lf]<=right[ri]:
+                array[ct]=left[lf]
+                lf+=1
+            else:
+                array[ct]=right[ri]
+                ri+=1
+            ct+=1
+        while lf<len(left):
+            array[ct]=left[lf]
+            lf+=1
+            ct+=1
+        while ri<len(right):
+            array[ct]=right[ri]
+            ri+=1
+            ct+=1
+
+    def merger(arr):
+        if len(arr)>1:
+            mid=len(arr)//2
+            left=arr[:mid]
+            right=arr[mid:]
+            merger(left)
+            merger(right)
+            merge(left,right,arr)
+    merger(arr)
+    return arr
+    
+    
+    
