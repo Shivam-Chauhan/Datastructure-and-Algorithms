@@ -1,0 +1,25 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1#
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N*N)
+
+import heapq
+class Solution:
+
+    #Function to find the shortest distance of all the vertices
+    #from the source vertex S.
+    def dijkstra(self, V, graph, S):
+        
+        pq=[]
+        heapq.heapify(pq)
+        pq.append((0,S))
+        distance=[10**9]*V
+        distance[S]=0
+        while len(pq):
+            dist,node=heapq.heappop(pq)
+            for j in graph[node]:
+                if j[1]+dist<distance[j[0]]:
+                    distance[j[0]]=j[1]+dist
+                    heapq.heappush(pq,(j[1]+dist,j[0]))
+        
+        return distance
