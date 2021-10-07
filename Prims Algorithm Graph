@@ -1,0 +1,29 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/minimum-spanning-tree/1#
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N+E) + O(N)
+
+import heapq
+class Solution:
+    
+    #Function to find sum of weights of edges of the Minimum Spanning Tree.
+    def spanningTree(self, V, graph):
+        pq=[]
+        heapq.heapify(pq)
+        visited=[0]*V
+        heapq.heappush(pq,(0,0))
+        total=0
+        while len(pq):
+            dist,rem=heapq.heappop(pq)
+            if visited[rem]==1:
+                continue
+            total+=dist
+            visited[rem]=1
+            
+            for j in graph[rem]:
+                if visited[j[0]]==0:
+                    heapq.heappush(pq,(j[1],j[0]))
+            
+        return total
+        
+        
