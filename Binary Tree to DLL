@@ -1,0 +1,38 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/binary-tree-to-dll/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+'''
+class Node:
+    """ Class Node """
+    def __init__(self, value):
+        self.left = None
+        self.data = value
+        self.right = None
+'''
+
+#Function to convert a binary tree to doubly linked list.
+class Solution:
+    def bToDLL(self,root):
+        self.head=None
+        self.prev=None
+    
+        def converter(root):
+            if root==None:
+                return
+            converter(root.left)
+            
+            if self.prev==None:
+                self.head=root
+                self.prev=root
+            else:
+                self.prev.right=root
+                root.left=self.prev
+                self.prev=root
+            converter(root.right)
+        
+        converter(root)
+        return self.head
+
