@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/max-level-sum-in-binary-tree/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&sortBy=accuracy&query=company[]AmazonproblemStatusunsolveddifficulty[]0page1sortByaccuracycompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def maxLevelSum(self, root):
+        queue=[root]
+        maxi=-10**9
+        while len(queue):
+            size=len(queue)
+            sum1=0
+            while size:
+                rem=queue.pop(0)
+                sum1+=rem.data
+                if rem.left!=None:
+                    queue.append(rem.left)
+                if rem.right!=None:
+                    queue.append(rem.right)
+                size-=1
+            maxi=max(maxi,sum1)
+        return maxi
