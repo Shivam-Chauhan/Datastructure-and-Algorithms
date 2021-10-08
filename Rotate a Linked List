@@ -1,0 +1,28 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/rotate-a-linked-list/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    
+    #Function to rotate a linked list.
+    def rotate(self, head, k):
+        if head==None or head.next==None:
+            return head
+        temp=head
+        newHead=head
+        k-=1
+        while k:
+            temp=temp.next
+            k-=1
+        head=temp.next
+        
+        pointer=temp.next
+        temp.next=None
+        if pointer!=None:
+            while pointer.next:
+                pointer=pointer.next
+            pointer.next=newHead
+            return head
+        return newHead
+            
