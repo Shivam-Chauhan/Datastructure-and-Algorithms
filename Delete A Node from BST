@@ -1,0 +1,32 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/delete-a-node-from-bst/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+def deleteNode(root, X):
+    def findMinNode(root):
+        if root.left!=None:
+            root=findMinNode(root.left)
+        return root
+    def deleteNodeBST(root,target):
+        if root==None:
+            return None
+        elif root.data>target:
+            root.left=deleteNodeBST(root.left,target)
+        elif root.data<target:
+            root.right=deleteNodeBST(root.right,target)
+        else:
+            if root.left==None and root.right==None:
+                root=None
+            elif root.left==None:
+                
+                root=root.right
+            elif root.right==None:
+                root=root.left
+            else:
+                temp=findMinNode(root.right)
+                root.data=temp.data
+                root.right=deleteNodeBST(root.right,temp.data)
+        return root
+    return deleteNodeBST(root,X)
