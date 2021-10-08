@@ -1,0 +1,30 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/mirror-tree/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&sortBy=accuracy&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0sortByaccuracycompany[]Amazonpage1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+'''
+class Node:
+    def _init_(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+# your task is to complete this function
+
+class Solution:
+    #Function to convert a binary tree into its mirror tree.
+    def mirror(self,root):
+        def convertor(root):
+            if root==None:
+                return
+            temp=root.left
+            root.left=root.right
+            root.right=temp
+            if root.left!=None:
+                convertor(root.left)
+            if root.right!=None:
+                convertor(root.right)
+        convertor(root)
+        return root
