@@ -1,0 +1,24 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/odd-even-level-difference/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&sortBy=accuracy&query=company[]AmazonproblemStatusunsolveddifficulty[]0page1sortByaccuracycompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+'''
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+class Solution:
+    def getLevelDiff(self, root):
+        queue=[(root,1)]
+        sum1=0
+        while len(queue):
+            rem,level=queue.pop(0)
+            sum1+= rem.data if level&1 else -rem.data
+            if rem.left!=None:
+                queue.append((rem.left,level+1))
+            if rem.right!=None:
+                queue.append((rem.right,level+1))
+        return sum1
