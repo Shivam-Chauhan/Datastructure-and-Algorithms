@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/determine-if-two-trees-are-identical/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]0page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    #Function to check if two trees are identical.
+    def isIdentical(self,root1, root2):
+        self.flag=1
+        def checker(root1,root2):
+            if root1==None:
+                return
+            if root2==None:
+                return
+            if root1.data!=root2.data or (root1.left==None and root2.left!=None) or (root1.right==None and root2.right!=None) or (root1.left!=None and root2.left==None) or (root1.right!=None and root2.right==None):
+                self.flag=0
+            if root1.left!=None and root2.left!=None:
+                checker(root1.left,root2.left)
+            if root1.right!=None and root2.right!=None:
+                checker(root1.right,root2.right)
+            
+        checker(root1,root2)
+        return self.flag
