@@ -1,0 +1,19 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/even-and-odd/1/#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def reArrange(self, array, N):
+        even=0
+        odd=1
+        while True:
+            while even<len(array) and array[even]&1==0:
+                even+=2
+            while odd<len(array) and array[odd]&1:
+                odd+=2
+            if even<len(array) and odd<len(array):
+                array[even],array[odd]=array[odd],array[even]
+            else:
+                break
+        return array
