@@ -1,0 +1,57 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/merge-k-sorted-linked-lists/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon
+# Python Solution
+# Time Complexity :- O(N*K*Log(K))
+# Space Complexity :- O(K)
+
+#User function Template for python3
+'''
+	Your task is to merge the given k sorted
+	linked lists into one list and return
+	the the new formed linked list class.
+
+	Function Arguments:
+	    arr is a list containing the n linkedlist head pointers
+	    n is an integer value
+    
+    node class:
+    
+class Node:
+    def __init__(self,x):
+        self.data = x
+        self.nxt = None
+'''
+class Solution:
+    #Function to merge K sorted linked list.
+    def merger(self,root1,root2):
+        dummy=Node(-1)
+        res=dummy
+        temp=dummy
+        while root1!=None and root2!=None:
+            if root1.data<root2.data:
+                temp.next=root1
+                root1=root1.next
+            else:
+                temp.next=root2
+                root2=root2.next
+            temp=temp.next
+        
+        if root1==None:
+            temp.next=root2
+        else:
+            temp.next=root1
+        return res.next
+            
+            
+    def mergeKLists(self,arr,K):
+        # code here
+        # return head of merged list
+        def mergeSort(arr,start,end):
+            if start>end:
+                return None
+            if start==end:
+                return arr[start]
+            mid=(start+end)//2
+            l1=mergeSort(arr,start,mid)
+            l2=mergeSort(arr,mid+1,end)
+            return self.merger(l1,l2)
+        return mergeSort(arr,0,len(arr)-1)
