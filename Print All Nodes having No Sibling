@@ -1,0 +1,21 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/print-all-nodes-that-dont-have-sibling/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]0page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*Log(N)) --> Just to reture array in sorted order else O(N)
+# Space Complexity :- O(1)
+
+def noSibling(root):
+    def dfs(root,output):
+        if root==None:
+            return 
+        if root.left!=None:
+            dfs(root.left,output)
+        if root.left!=None and root.right==None:
+            output.append(root.left.data)
+        if root.right!=None and root.left==None:
+            output.append(root.right.data)
+        if root.right!=None:
+            dfs(root.right,output)
+    output=[]
+    dfs(root,output)
+    
+    return sorted(output) if len(output) else [-1]
