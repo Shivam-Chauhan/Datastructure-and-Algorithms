@@ -1,0 +1,18 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def subArraySum(self,arr, n, target): 
+        ws=0
+        sum1=0
+        for we in range(len(arr)):
+            sum1+=arr[we]
+            while ws<len(arr) and sum1>target:
+                sum1-=arr[ws]
+                ws+=1
+            
+            if sum1==target:
+                return [ws+1,we+1]
+        return [-1]
