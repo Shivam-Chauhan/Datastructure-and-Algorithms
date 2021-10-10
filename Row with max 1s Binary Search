@@ -1,0 +1,58 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/row-with-max-1s0023/1#
+
+-------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+
+	def rowWithMax1s(self,grid, n, m):
+	    def binarySearchGrid(grid):
+            i,j=0,len(grid)-1
+            while i<=j:
+                mid=(i+j)//2
+                if grid[mid]==1 and grid[mid-1]==0:
+                    return mid
+                if grid[mid]==0:
+                    i=mid+1
+                else:
+                    j=mid-1
+            return 0 if i==0 else len(grid)
+		maxi=-10**9
+		row=-1
+		ct=0
+        for i in grid:
+            temp=binarySearchGrid(i)
+            if maxi<len(grid[0])-temp and temp!=len(grid[0]):
+                row=ct
+                maxi=max(maxi,len(grid[0])-temp)
+            ct+=1    
+        # print(grid)
+        return row
+
+
+-------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(1)
+class Solution:
+
+	def rowWithMax1s(self,grid, n, m):
+	    def max_ones_in_matrix_opti(grid):
+            indx=len(grid[0])-1
+            maxi=-10**9
+            row=-1
+            for i in range(0,len(grid)):
+                if grid[i][indx]==1:
+                    for j in range(indx,-1,-1):
+                        if grid[i][j]==1:
+                            indx-=1
+                        else:
+                            break
+                if maxi<len(grid[0])-indx+1 and indx!=len(grid[0])-1:
+                    maxi=len(grid[0])-indx+1
+                    row=i
+            return row
+		
+        return(max_ones_in_matrix_opti(grid))
