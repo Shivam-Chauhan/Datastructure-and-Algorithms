@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/root-to-leaf-paths-sum/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0company[]Amazonpage1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :-O(1)
+
+def treePathSum(root):
+    
+    def dfs(root,psf,output):
+        if root==None:
+            return
+        psf+=str(root.data)
+        if root.left==None and root.right==None and psf!="":
+            output[0]+=int(psf)
+            return
+        if root.left!=None:
+            dfs(root.left,psf,output)
+        if root.right!=None:
+            
+            dfs(root.right,psf,output)
+    output=[0]    
+    dfs(root,"",output)
+    return output[0]
+            
