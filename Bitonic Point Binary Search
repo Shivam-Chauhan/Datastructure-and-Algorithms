@@ -1,0 +1,18 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/maximum-value-in-a-bitonic-array3001/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0company[]Amazonpage1
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+
+	def findMaximum(self,arr, n):
+		low,high=0,len(arr)-1
+		while low<=high:
+		    mid=low+(high-low)//2
+		    if mid>0 and mid<len(arr)-1 and arr[mid]>arr[mid-1] and arr[mid]>arr[mid+1]:
+		        return arr[mid]
+		    elif arr[mid]>arr[mid-1]:
+		        low=mid+1
+		    else:
+		        high=mid-1
+		return max(arr[0],arr[-1])
