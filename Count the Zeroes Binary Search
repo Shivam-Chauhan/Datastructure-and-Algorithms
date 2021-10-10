@@ -1,0 +1,17 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-the-zeros2550/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0company[]Amazonpage1#
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+    def countZeroes(self, arr, n):
+        low,high=0,len(arr)-1
+        while low<=high:
+            mid=low+(high-low)//2
+            if arr[mid]==0 and arr[mid-1]==1:
+                return len(arr)-mid
+            elif arr[mid]==1:
+                low=mid+1
+            else:
+                high=mid-1
+        return len(arr) if low==0 else 0
