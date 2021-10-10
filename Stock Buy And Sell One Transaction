@@ -1,0 +1,15 @@
+# Best time to buy and sell stock one transaction allowded
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+def stock_buy_sell_one_trans():
+    prices=[10,20,0,40,80,0,20,200]
+    lsf,pst,op=10**9,0,0
+    for i in prices:
+        lsf=min(i,lsf)
+        psf=i-lsf
+        op=max(op,psf)
+    print(op)
+
+stock_buy_sell_one_trans()
