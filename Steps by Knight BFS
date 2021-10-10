@@ -1,0 +1,24 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/steps-by-knight5927/1#
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N*N)
+
+class Solution:
+
+	#Function to find out minimum steps Knight needs to reach target position.
+	def minStepToReachTarget(self, KnightPos, TargetPos, N):
+		xaxis,yaxis=KnightPos[0]-1,KnightPos[1]-1
+        targetx,targety=TargetPos[0]-1,TargetPos[1]-1
+        row = [2, 2, -2, -2, 1, 1, -1, -1]
+        col = [-1, 1, 1, -1, 2, -2, 2, -2]
+        queue=deque((xaxis,yaxis,0))
+        dic=dict()
+        while len(queue):
+            remx,remy,counter=queue.pop(0)
+            if remx==targetx and remy==targety:
+                return counter
+            for x,y in zip(row,col):
+                tempx,tempy=x+remx,y+remy
+                if tempx>=0 and tempy>=0 and tempx<1000 and tempy<1000 and ((tempx,tempy) not in dic):
+                    dic[(tempx,tempy)]=1
+                    queue.append((tempx,tempy,counter+1))
