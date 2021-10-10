@@ -1,0 +1,20 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/minimum-depth-of-a-binary-tree/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0company[]Amazonpage1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+class Solution:
+    def minDepth(self, root):
+        def dfs(root):
+            if root==None:
+                return 0
+            lefty=dfs(root.left)
+            righty=dfs(root.right)
+            if root.left==None:
+                return 1+righty
+            if root.right==None:
+                return 1+lefty
+                
+            return min(lefty,righty)+1
+        return dfs(root)
