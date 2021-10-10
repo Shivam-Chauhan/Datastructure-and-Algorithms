@@ -1,0 +1,30 @@
+# Problem Link :- https://www.geeksforgeeks.org/shortest-distance-two-cells-matrix-grid/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N*N)
+
+def pathFinder(grid,x,y):
+    queue=[(x,y,0)]
+    grid[x][y]="0"
+    while len(queue):
+        xaxis,yaxis,counter=queue.pop(0)
+        if grid[xaxis][yaxis]=="d":
+            return counter
+        for x,y in [[0,1],[0,-1],[1,0],[-1,0]]:
+            tempx=x+xaxis
+            tempy=y+yaxis
+            if tempx>=0 and tempy>=0 and tempx<len(grid) and tempy<len(grid[0]) and grid[tempx][tempy]=="*":
+                grid[tempx][tempy]="0"
+                queue.append((tempx,tempy,counter+1))
+        
+            
+            
+def shortestdistanceGrid():
+    grid=[['0', '*', '0', 's'],
+          ['*', '0', '*', '*'],
+          ['0', '*', '*', '*'],
+          ['d', '*', '*', '*']]
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j]=="s":
+                return pathFinder(grid,i,j)
