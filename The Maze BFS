@@ -1,0 +1,25 @@
+# Problem Link :- https://medium.com/tech-life-fun/leet-code-490-the-maze-graphical-explained-python3-solution-b4369bbf4050
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N) +O(N*M)
+
+def theMaze():
+    grid=[
+        [0,0,1,0,0],
+        [0,0,0,0,0],
+        [0,0,0,1,0],
+        [1,1,0,1,1],
+        [0,0,0,0,0]]
+    startx,starty=0,4
+    destx,desty=4,0
+    queue=[(startx,starty)]
+    while len(queue):
+        remx,remy=queue.pop(0)
+        if remx==destx and remy==desty:
+            return 1
+        for i,j in [[0,1],[0,-1],[1,0],[-1,0]]:
+            tempx,tempy=i+remx,j+remy
+            if tempx>=0 and tempx<len(grid) and tempy>=0 and tempy<len(grid[0]) and grid[tempx][tempy]==0:
+                grid[tempx][tempy]=2
+                queue.append((tempx,tempy))
+    return -1
