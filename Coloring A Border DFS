@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/coloring-a-border/submissions/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+class Solution:
+    def colorBorder(self, grid: List[List[int]], row: int, col: int, color: int) -> List[List[int]]:
+        def dfsonBorder(grid,row,col,value):
+            grid[row][col]=-value
+            for i,j in [[0,-1],[0,1],[1,0],[-1,0]]:
+                tempx,tempy=i+row,j+col
+                if tempx>=0 and tempy>=0 and tempx<len(grid) and tempy<len(grid[0]) and grid[tempx][tempy]==abs(value):
+                    grid[tempx][tempy]=-value
+                    dfsonBorder(grid,tempx,tempy,value)
+            if row>0 and col>0 and row<len(grid)-1 and col<len(grid[0])-1 and abs(grid[row][col])==value and abs(grid[row-1][col])==value and abs(grid[row+1][col])==value and abs(grid[row][col-1])==value and abs(grid[row][col+1])==value:
+                grid[row][col]=value
+
+        
+        dfsonBorder(grid,row,col,grid[row][col])
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]<0:
+                    grid[i][j]=color
+
+        return grid
