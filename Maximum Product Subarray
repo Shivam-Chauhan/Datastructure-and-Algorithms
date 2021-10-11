@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/problems/maximum-product-subarray/submissions/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        prod,maxi=1,-10**9
+        for i in range(len(nums)):
+            prod*=nums[i]
+            maxi=max(maxi,prod)
+            if prod==0:
+                prod=1
+        prod=1
+        for i in range(len(nums)-1,-1,-1):
+            prod*=nums[i]
+            maxi=max(maxi,prod)
+            if prod==0:
+                prod=1
+        return maxi
