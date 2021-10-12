@@ -1,0 +1,46 @@
+# Problem Link :- https://leetcode.com/problems/shortest-bridge/submissions/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+class Solution:
+    def shortestBridge(self, grid: List[List[int]]) -> int:
+        self.queue=[]
+        def dfs(grid,x,y,visited):
+            if x<0 or y<0 or x>=len(grid) or y>=len(grid[0]) or grid[x][y]==0 or visited[x][y]==1:
+                return 
+            self.queue.append((x,y))
+            visited[x][y]=1
+            
+            dfs(grid,x+1,y,visited)
+            dfs(grid,x-1,y,visited)
+            dfs(grid,x,y+1,visited)
+            dfs(grid,x,y-1,visited)
+        
+        visited=[[0 for i in range(len(grid[0]))] for j in range(len(grid))]
+        flag=0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]==1 and flag==0:
+                    dfs(grid,i,j,visited)
+                    flag+=1
+                    
+       
+        level=-1            
+        while len(self.queue):
+            level+=1
+            size=len(self.queue)
+            while size:
+                remx,remy=self.queue.pop(0)
+                for i,j in [[-1,0],[1,0],[0,1],[0,-1]]:
+                    tempx,tempy=remx+i,remy+j
+                    if tempx<0 or tempy<0 or tempx>=len(grid) or tempy>=len(grid[0]) or visited[tempx][tempy]==1:
+                        continue
+                    
+                    if grid[tempx][tempy]==1:
+                        return level
+                    self.queue.append((tempx,tempy))
+                    visited[tempx][tempy]=1
+                size-=1
+                
+        
