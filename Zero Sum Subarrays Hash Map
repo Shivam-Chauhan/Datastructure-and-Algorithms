@@ -1,0 +1,21 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/zero-sum-subarrays1825/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    #Function to count subarrays with sum equal to 0.
+    def findSubArrays(self,array,n):
+        dic=dict()
+        sum1=0
+        output=0
+        for i,j in enumerate(array):
+            sum1+=j
+            if sum1==0:
+                output+=1
+            if sum1 in dic.keys():
+                output+=len(dic[sum1])
+                dic[sum1].append(i)
+            else:
+                dic[sum1]=[i]
+        return output
