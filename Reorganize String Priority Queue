@@ -1,0 +1,35 @@
+# Problem Link :- https://leetcode.com/problems/reorganize-string/submissions/
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N) + O(N)
+
+class Solution:
+    def reorganizeString(self, stri: str) -> str:
+        dic=dict()
+        for i in stri:
+            if i not in dic.keys():
+                dic[i]=1
+            else:
+                dic[i]+=1
+        pq=[]
+        heapq.heapify(pq)
+
+        for i,j in dic.items():
+            heapq.heappush(pq,[-1*j,i])
+        output=""
+        while len(pq):
+            count,char=heapq.heappop(pq)
+            output+=char
+            count+=1
+            if len(pq)>=1:
+                count2,char2=heapq.heappop(pq)
+                output+=char2
+                count2+=1
+                if count2<0:
+                    heapq.heappush(pq,[count2,char2])
+            if count<0:
+                heapq.heappush(pq,[count,char])
+        for i in range(len(output)-1):
+            if output[i]==output[i+1]:
+                return ""
+        return output
