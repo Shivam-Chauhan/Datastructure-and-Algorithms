@@ -1,0 +1,18 @@
+# Problem Link :- https://leetcode.com/problems/guess-number-higher-or-lower/submissions/
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+
+class Solution:
+    def guessNumber(self, n: int) -> int:
+        low,high=1,n
+        while low<=high:
+            mid=low+(high-low)//2
+            temp=guess(mid)
+            # print(temp,mid)
+            if temp==0:
+                return mid
+            elif temp==-1:
+                high=mid-1
+            else:
+                low=mid+1
