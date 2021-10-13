@@ -1,0 +1,22 @@
+# Problem Link :- https://leetcode.com/problems/01-matrix/submissions/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        queue=[]
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                if mat[i][j]:
+                    mat[i][j]=-1
+                else:
+                    queue.append((i,j))
+        while len(queue):
+            remx,remy=queue.pop(0)
+            for i,j in [[-1,0],[1,0],[0,-1],[0,1]]:
+                tempx,tempy=i+remx,j+remy
+                if tempx>=0 and tempx<len(mat) and tempy>=0 and tempy<len(mat[0]) and mat[tempx][tempy]<0:
+                    mat[tempx][tempy]=mat[remx][remy]+1
+                    queue.append((tempx,tempy))
+        return mat
