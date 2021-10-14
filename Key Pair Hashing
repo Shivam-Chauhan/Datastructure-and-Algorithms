@@ -1,0 +1,14 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/key-pair5616/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+
+class Solution:
+	def hasArrayTwoCandidates(self,arr, n, x):
+	    dic=dict()
+		for i in arr:
+		    if x-i in dic.keys():
+		        return True
+		    dic[i]=1
+		return False
