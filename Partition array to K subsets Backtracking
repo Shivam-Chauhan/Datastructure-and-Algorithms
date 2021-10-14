@@ -1,0 +1,30 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/partition-array-to-k-subsets/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=3&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page3sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*(2^N))
+# Space Complexity :- O(N) + O(N)
+# Auxillary Space of Recursion Stack
+
+-------------------   -------------------   -------------------   -------------------  -------------------   -------------------  -------------------   -------------------
+
+class Solution:
+    def isKPartitionPossible(self, array, k):
+        def partitionFunction(array,used,cSum,newSum,indx,k):
+            if k==1:
+                return True
+            if cSum==newSum:
+                return partitionFunction(array,used,0,newSum,0,k-1)
+            for i in range(indx,len(array)):
+                if used[i]==0 and cSum+array[i]<=newSum:
+                    used[i]=1
+                    if partitionFunction(array,used,cSum+array[i],newSum,i+1,k):
+                        return True
+                    used[i]=0
+            return False
+        
+        
+        sum1=sum(array)
+        if sum1%k:
+            return 0
+        newSum=sum1//k
+        used=[0]*len(array)
+        return 1 if partitionFunction(array,used,0,newSum,0,k) else 0
