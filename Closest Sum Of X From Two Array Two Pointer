@@ -1,0 +1,22 @@
+# Problem Link :- https://www.geeksforgeeks.org/given-two-sorted-arrays-number-x-find-pair-whose-sum-closest-x/
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(1)
+
+def closestSumToXTwoArray():
+    array1 = [1, 4, 5, 7]
+    array2 =[10, 20, 30, 40]
+    X=32
+    start,end=0,len(array2)-1
+    maxi=10**9
+    num1,num2=0,0
+    while start<len(array1) and end>=0:
+        if abs(X-(array1[start]+array2[end]))<maxi:
+            maxi=abs(X-(array1[start]+array2[end]))
+            num1=array1[start]
+            num2=array2[end]
+        if array1[start]+array2[end]<X:
+            start+=1
+        else:
+            end-=1
+    print(num1,num2)
