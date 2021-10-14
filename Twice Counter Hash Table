@@ -1,0 +1,18 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/twice-counter4236/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0company[]Amazonpage1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+class Solution:
+    def countWords(self,List, n):
+        dic=dict()
+        for i in List:
+            if i not in dic.keys():
+                dic[i]=1
+            else:
+                dic[i]+=1
+        ct=0
+        for i,j in dic.items():
+            if j==2: ct+=1
+        return ct
+                
