@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/special-stack/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+def push(arr, ele):
+    arr.append(ele)
+
+# Function should pop an element from stack
+def pop(arr):
+    return arr.pop()
+
+# function should return 1/0 or True/False
+def isFull(n, arr):
+    return len(arr)==n
+
+# function should return 1/0 or True/False
+def isEmpty(arr):
+    return True if len(arr)==0 else False
+
+# function should return minimum element from the stack
+def getMin(n, arr):
+    return min(arr)
