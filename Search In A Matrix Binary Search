@@ -1,0 +1,17 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/search-in-a-matrix17201720/1
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(1)
+
+#User function Template for python3
+class Solution:
+	def matSearch(self,mat, N, M, X):
+		i,j=0,len(mat[0])-1
+        while i<len(mat) and j>=0:
+            if mat[i][j]==X:
+                return 1
+            elif mat[i][j]<X:
+                i+=1
+            else:
+                j-=1
+        return 0
