@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/kth-largest-element-in-a-stream2220/1#
+# Python Solution
+# Time Complexity :- O(N*Log(K))
+# Space Complexity :- O(N)
+
+#User function Template for python3
+import heapq
+class Solution:
+    def kthLargest(self, k, array, n):
+        output,pq=[],[]
+        heapq.heapify(pq)
+        for i in array:
+            heapq.heappush(pq,i)
+            while len(pq)>k:
+                heapq.heappop(pq)
+            if len(pq)<k:
+                output.append(-1)
+            else:
+                temp=heapq.heappop(pq)
+                output.append(temp)
+                heapq.heappush(pq,temp)
+        return output
