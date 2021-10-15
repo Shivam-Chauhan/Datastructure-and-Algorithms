@@ -1,0 +1,17 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/longest-common-prefix-in-an-array5129/1#
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+
+#User function Template for python3
+class Solution:
+    def longestCommonPrefix(self, arr, n):
+        arr.sort()
+        output=""
+        for i,j in zip(arr[0],arr[-1]):
+            if i==j:
+                output+=i
+            else:
+                break
+        return output if len(output) else "-1"
+
