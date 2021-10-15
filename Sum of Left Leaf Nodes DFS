@@ -1,0 +1,24 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/sum-of-left-leaf-nodes/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+
+
+'''
+# Node Class:
+class Node:
+    def _init_(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+        '''
+        
+def leftLeavesSum(root_node):
+    def dfs(root,align):
+        if root==None:
+            return 0
+        if root.left==None and root.right==None and align==0:
+            return root.data
+        return dfs(root.left,0)+dfs(root.right,1)
+    return dfs(root,-1)
