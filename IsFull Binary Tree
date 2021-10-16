@@ -1,0 +1,30 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/full-binary-tree/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0company[]Amazonpage1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(H) Where H is the height of Tree
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+# Node Class:
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+        
+# Return True if the given Binary Tree is a Full Binary Tree. Else return False
+def isFullTree(root):
+    
+    def traversal(root):
+        if root==None:
+            return True
+        if root.left==None and root.right==None:
+            return True
+        if root.left==None or root.right==None:
+            return False
+        return traversal(root.left) and traversal(root.right)
+    return traversal(root)
