@@ -1,0 +1,25 @@
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def countingSort():
+    array=[9,6,3,5,3,4,3,9,6,4,6,5,8,9,9]
+    mini,maxi=min(array),max(array)
+    rangeArray=[0]*(maxi-mini+1)
+    ans=[0]*len(array)
+    # Storing the frequency of every element with the range
+    for i in array:
+        rangeArray[i-mini]+=1
+    
+    # Prefix calculation for Index of element
+    for i in range(1,len(rangeArray)):
+        rangeArray[i]+=rangeArray[i-1]
+    # Loop is reverse to maintain the functionality of stable sort
+    for i in range(len(array)-1,-1,-1):
+        indx=rangeArray[array[i]-mini]-1
+        ans[indx]=array[i]
+        rangeArray[array[i]-mini]-=1
+    # Returning the ans
+    return ans
