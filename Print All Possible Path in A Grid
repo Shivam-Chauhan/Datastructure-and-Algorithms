@@ -1,0 +1,30 @@
+# Print all possible paths from top left to bottom right of a mXn matrix
+# Problem Link :- https://www.geeksforgeeks.org/print-all-possible-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+def printAllPossiblePath(grid,x,y,psf):
+    if x<0 or y<0 or x>=len(grid) or y>=len(grid[0]) or grid[x][y]=="0":
+        return
+    if x==len(grid)-1 and y==len(grid[0])-1:
+        print(psf+" "+str(grid[x][y]))
+        return
+    temp=str(grid[x][y])
+    psf=psf+" "+temp
+    grid[x][y]="0"
+    printAllPossiblePath(grid,x+1,y,psf)
+    printAllPossiblePath(grid,x,y+1,psf)
+    psf=psf[:len(psf)-2]
+    grid[x][y]=temp
+
+
+
+def allPossiblePath():
+    grid=[[1,2],
+          [3,4]]
+    psf=""
+    printAllPossiblePath(grid,0,0,psf)
+    
+    
+allPossiblePath()    
