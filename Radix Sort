@@ -1,0 +1,19 @@
+# Python Solution
+# Time Complexity :- O(N*M)  # N length of array and M length of Max Number
+# Space Complexity :- O(N)
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+array=[9,6,3,5,3,4,3,9,6,4,6,5,8,9,9]
+bucket=[[] for i in range(10)]
+max_num=max(array)
+exp=1
+while max_num//exp>0:
+    for num in array:
+        bucket[(num//exp)%10].append(num)
+    array=[]
+    for i in bucket:
+        array.extend(i)
+    bucket=[[] for i in range(10)]
+    exp*=10
+print(array)
