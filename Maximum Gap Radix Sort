@@ -1,0 +1,24 @@
+# Problem Link :- https://leetcode.com/problems/maximum-gap/submissions/
+# Python Solution
+# Time Complexity :- O(N*M)  # N length of array and M length of Max Number
+# Space Complexity :- O(N)
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def maximumGap(self, array: List[int]) -> int:
+        bucket=[[] for i in range(10)]
+        max_num=max(array)
+        exp=1
+        while max_num//exp>0:
+            for num in array:
+                bucket[(num//exp)%10].append(num)
+            array=[]
+            for i in bucket:
+                array.extend(i)
+            bucket=[[] for i in range(10)]
+            exp*=10
+        maxiDiff=0
+        for i in range(0,len(array)-1):
+            maxiDiff=max(maxiDiff,array[i+1]-array[i])
+        return maxiDiff
