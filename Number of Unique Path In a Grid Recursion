@@ -1,0 +1,24 @@
+# Problem Link :- https://www.geeksforgeeks.org/unique-paths-in-a-grid-with-obstacles/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+
+def uniquePathGridUtil(grid,x,y,counter):    
+    if x<0 or x>=len(grid) or y<0 or y>=len(grid[0]) or grid[x][y]!=0:
+        return 
+    if x==len(grid)-1 and y==len(grid[0])-1:
+        counter[0]+=1
+        return
+    grid[x][y]=1
+    uniquePathGridUtil(grid,x+1,y,counter)
+    uniquePathGridUtil(grid,x,y+1,counter)
+    
+    
+def uniquePathInGrid():
+    grid=[[0, 0, 0],
+          [0, 1, 0],
+          [0, 0, 0]]
+    counter=[0]
+    uniquePathGridUtil(grid,0,0,counter)
+    return counter[0]
+
