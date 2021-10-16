@@ -1,0 +1,98 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/min-distance-between-two-given-nodes-of-a-binary-tree/1#
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N) + O(N)
+
+#User function Template for python3
+
+'''
+# Node Class:
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    def findDist(self,root,a,b):
+        self.indx=a
+        def traversal(root,dic):
+            if root==None:
+                return
+            if root.data==self.indx:
+                self.indx=root
+                
+            if root.left!=None:
+                dic[root.left]=root
+                traversal(root.left,dic)
+            if root.right!=None:
+                dic[root.right]=root
+                traversal(root.right,dic)
+        def minDistanceFinder(root,dic,b):
+            queue=[(self.indx,0)]
+            st=set()
+            while len(queue):
+                rem,level=queue.pop(0)
+                if rem.data==b:
+                    return level
+                if rem not in st:
+                    if rem.left!=None:
+                        queue.append((rem.left,level+1))
+                    if rem.right!=None:
+                        queue.append((rem.right,level+1))
+                    if rem in dic.keys():
+                        queue.append((dic[rem],level+1))
+                st.add(rem)
+                
+        dic=dict()
+        traversal(root,dic)
+        return minDistanceFinder(root,dic,b)
+        
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------         
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N)
+
+#User function Template for python3
+#User function Template for python3
+
+'''
+# Node Class:
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    def findDist(self,root,a,b):
+        def lowestCommonAncestor(root,a,b):
+            if root==None:
+                return None
+            if root.data==a or root.data==b:
+                return root
+            lefty=lowestCommonAncestor(root.left,a,b)
+            righty=lowestCommonAncestor(root.right,a,b)
+            if lefty!=None and righty!=None:
+                return root
+            return lefty if lefty!=None else righty
+        def distanceFinderFromLCA(root,node):
+            queue=[(root,0)]
+            while len(queue):
+                rem,level=queue.pop(0)
+                if rem.data==node:
+                    return level
+                if rem.left!=None:
+                    queue.append((rem.left,level+1))
+                if rem.right!=None:
+                    queue.append((rem.right,level+1))
+            
+                    
+            
+        lca=lowestCommonAncestor(root,a,b)
+        distA=distanceFinderFromLCA(lca,a)
+        distB=distanceFinderFromLCA(lca,b)
+        return distA+distB
