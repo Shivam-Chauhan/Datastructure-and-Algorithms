@@ -1,0 +1,55 @@
+# Problem Link :- https://www.geeksforgeeks.org/find-same-contacts-in-a-list-of-contacts/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N) + O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class contact:
+    def __init__(self,field1,field2,field3):
+        self.f1=field1
+        self.f2=field2
+        self.f3=field3
+        
+def findingConnectedComponent(graph,visited,output,src):
+    visited[src]=1
+    output.append(src)
+    for node in graph[src]:
+        if visited[node]==0:
+            findingConnectedComponent(graph,visited,output,node)
+            
+            
+        
+        
+def sameUserName():
+    
+    
+    arr = [contact("Gaurav", "gaurav@gmail.com", "gaurav@gfgQA.com"),
+               contact("Lucky", "lucky@gmail.com", "+1234567"),
+               contact("gaurav123", "+5412312", "gaurav123@skype.com"),
+               contact("gaurav1993", "+5412312", "gaurav@gfgQA.com"),
+               contact("raja", "+2231210", "raja@gfg.com"),
+               contact("bahubali", "+878312", "raja")]        
+    graph=dict()
+    # Initializing the Graph
+    for i in range(len(arr)):
+        graph[i]=[]
+    # Making Undirected Graph
+    for i in range(len(arr)-1):
+        ct=0
+        for j in range(i+1,len(arr)):
+            if arr[i].f1==arr[j].f1 or arr[i].f1==arr[j].f2 or arr[i].f1==arr[j].f3 or arr[i].f2==arr[j].f1 or arr[i].f2==arr[j].f2 or arr[i].f2==arr[j].f3 or arr[i].f3==arr[j].f1 or arr[i].f3==arr[j].f2 or arr[i].f3==arr[j].f3:
+                graph[i].append(j)
+                graph[j].append(i)
+    
+    
+    res=[]
+    visited=[0]*(len(arr))
+    for i in range(len(arr)):
+        if visited[i]==0:
+            output=[]
+            findingConnectedComponent(graph,visited,output,i)
+            res.append(output)
+    print(res)
+    
+sameUserName()    
