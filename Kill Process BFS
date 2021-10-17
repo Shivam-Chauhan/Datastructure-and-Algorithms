@@ -1,0 +1,37 @@
+# Problem Link :- https://leetfree.com/problems/kill-process
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N) + O(N)
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def findingKillIDsUtil(graph,visited,killid):
+    output,queue=[],[]
+    queue.append(killid)
+    # BFS Traversal from KillId
+    while len(queue):
+        rem=queue.pop(0)
+        visited[rem]=1
+        # Storing all the child process
+        if rem!=killid:
+            output.append(rem)
+        for node in graph[rem]:
+            if visited[node]==0:
+                queue.append(node)
+    return output
+def findingKillIDs():
+    pid=[1,2,3,4,5,6,7,8,9]
+    parentid=[2,0,2,3,3,3,3,4,5]
+    killid=0
+    graph=dict()
+    vertice=max(pid)
+    # Initializing the Graph
+    for i in range(vertice+1):
+        graph[i]=[]
+    # Constructing Directed Graph
+    for child,parent in zip(pid,parentid):
+        graph[parent].append(child)
+    # Making Visited Array
+    visited=[0]*(vertice+1)
+    return findingKillIDsUtil(graph,visited,killid)
+    
