@@ -1,0 +1,67 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/reorder-list/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+# Node Class    
+class node:
+    def __init__(self, val):
+        self.data = val
+        self.next = None
+'''
+
+'''
+# Linked List Class
+class Linked_List:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+'''
+
+def reorderList(self):
+    def middleOfLL(temp):
+        slow,fast=temp,temp
+        while fast.next and fast.next.next:
+            fast=fast.next.next
+            slow=slow.next
+        return slow
+    def reverseLL(newHead):
+        curr=newHead.next
+        prev=None
+        while newHead:
+            newHead.next=prev
+            prev=newHead
+            newHead=curr
+            if curr:
+                curr=curr.next
+        return prev
+    
+    
+    if (self.head==None or self.head.next==None):
+        return
+    
+    
+    temp=self.head
+    newHead=middleOfLL(temp)
+    temp=newHead
+    newHead=newHead.next
+    temp.next=None
+    newHead=reverseLL(newHead)
+    temp=self.head
+    curr=temp.next
+    while newHead and curr:
+        temp.next=newHead
+        newHead=newHead.next
+        temp=temp.next
+        temp.next=curr
+        curr=curr.next
+        temp=temp.next
+    if newHead!=None:
+        temp.next=newHead
+    elif curr!=None:
+        temp.next=newHead
+    return self.head
