@@ -1,0 +1,50 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]0page1sortBysubmissionscompany[]Amazon
+# Python Solution
+# Time Complexity :- O(2*N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+'''
+	Your task is to segregate the list of 
+	0s,1s and 2s.
+	
+	Function Arguments: head of the original list.
+	Return Type: head of the new list formed.
+
+	{
+		# Node Class
+		class Node:
+		    def __init__(self, data):   # data -> value stored in node
+		        self.data = data
+		        self.next = None
+	}
+
+'''
+class Solution:
+    #Function to sort a linked list of 0s, 1s and 2s.
+    def segregate(self, head):
+        one,zero,two=0,0,0
+        temp=head
+        while temp:
+            if temp.data==0:
+                zero+=1
+            elif temp.data==1:
+                one+=1
+            else:
+                two+=1
+            temp=temp.next
+        temp=head
+        while temp:
+            if zero>0:
+                temp.data=0
+                zero-=1
+            elif one>0:
+                temp.data=1
+                one-=1
+            elif two>0:
+                temp.data=2
+                two-=1
+            temp=temp.next
+        return head
+            
