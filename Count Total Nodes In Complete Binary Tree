@@ -1,0 +1,36 @@
+# Problem Link :- https://leetcode.com/problems/count-complete-tree-nodes/
+# Python Solution
+# Time Complexity :- O((Log(N))^2)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+        def counterFunction(root):
+            if root==None:
+                return 0
+            lefty=leftHeight(root)
+            righty=rightHeight(root)
+            if lefty==righty:
+                return (1<<lefty)-1
+            return 1+counterFunction(root.left)+counterFunction(root.right)
+        def leftHeight(root):
+            height=0
+            while root:
+                height+=1
+                root=root.left
+            return height
+        def rightHeight(root):
+            height=0
+            while root:
+                height+=1
+                root=root.right
+        return counterFunction(root)
+            
