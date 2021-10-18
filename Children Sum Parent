@@ -1,0 +1,25 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/children-sum-parent/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack 
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def isSumProperty(self, root):
+        self.flag=1
+        def dfs(root):
+            if root==None:
+                return
+            if root.left==None and root.right==None:
+                return
+            child=0
+            if root.left!=None:
+                child+=root.left.data
+            if root.right!=None:
+                child+=root.right.data
+            if root.data!=child:
+                self.flag=0
+            dfs(root.left)
+            dfs(root.right)
+        dfs(root)
+        return self.flag
