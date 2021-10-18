@@ -1,0 +1,36 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/tree-from-postorder-and-inorder/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+class Node:
+            def __init__(self, data):
+                self.data = data
+                self.left = self.right = None
+'''
+
+#Function to return a tree created from postorder and inoreder traversals.
+def buildTree(inorder, postorder, n):
+    def constructBTInPostUtil(inorder,instart,inend,postorder,poststart,postend,lookup):
+        if instart>inend or poststart>postend:
+            return None
+        root=Node(postorder[postend])
+        indx=lookup[root.data]
+        numsleft=indx-instart
+        root.left=constructBTInPostUtil(inorder,instart,indx-1,postorder,poststart,poststart+numsleft-1,lookup)
+        root.right=constructBTInPostUtil(inorder,indx+1,inend,postorder,poststart+numsleft,postend-1,lookup)
+        
+        return root
+
+    
+    
+    lookup=dict()
+    for i,j in enumerate(inorder):
+        lookup[j]=i
+    root=constructBTInPostUtil(inorder,0,len(inorder)-1,postorder,0,len(postorder)-1,lookup)
+    return root
