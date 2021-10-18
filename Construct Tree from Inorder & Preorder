@@ -1,0 +1,38 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/construct-tree-1/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+# Node class
+
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.right = None
+        self.left = None
+
+'''
+
+class Solution:
+    def buildtree(self, inorder, preorder, n):
+        def constructBTPreInUtil(preorder,prestart,preend,inorder,instart,inend,lookup):
+            if prestart>preend or instart>inend:
+                return None
+            root=Node(preorder[prestart])
+            indx=lookup[root.data]
+            numsleft=indx-instart
+            root.left=constructBTPreInUtil(preorder,prestart+1,prestart+numsleft,inorder,instart,indx-1,lookup)
+            root.right=constructBTPreInUtil(preorder,prestart+numsleft+1,preend,inorder,indx+1,inend,lookup)
+            
+            return root
+                
+        lookup=dict()
+        for i,j in enumerate(inorder):
+            lookup[j]=i
+        root=constructBTPreInUtil(preorder,0,len(preorder)-1,inorder,0,len(inorder)-1,lookup)
+        return root
