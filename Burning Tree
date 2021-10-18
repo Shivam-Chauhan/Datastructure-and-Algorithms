@@ -1,0 +1,46 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/burning-tree/1#
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N) + O(N) + O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def minTime(self, root,target):
+        self.node=0
+        def traversalForMakingUDG(root,graph,target):
+            if root==None:
+                return
+            if root.data==target:
+                self.node=root
+            if root.left!=None:
+                graph[root.left]=root
+                traversalForMakingUDG(root.left,graph,target)
+            if root.right!=None:
+                graph[root.right]=root
+                traversalForMakingUDG(root.right,graph,target)
+        def bfsTraversal(root,graph,visited,src):
+            queue=[src]
+            time=-1
+            while len(queue):
+                size=len(queue)
+                time+=1
+                while size:
+                    rem=queue.pop(0)
+                    visited.add(rem)
+                    if rem.left!=None and (rem.left not in visited):
+                        queue.append(rem.left)
+                    if rem.right!=None and (rem.right not in visited):
+                        queue.append(rem.right)
+                    if rem in graph.keys() and graph[rem] not in visited:
+                        queue.append(graph[rem])
+                    size-=1
+            return time
+        graph=dict()
+        visited=set()
+        
+        traversalForMakingUDG(root,graph,target)
+        return bfsTraversal(root,graph,visited,self.node)
+                
