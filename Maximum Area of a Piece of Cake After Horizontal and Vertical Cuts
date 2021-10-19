@@ -1,0 +1,17 @@
+# Problem Link :- https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/submissions/
+# Python Solution
+# Time Complexity :- O(H*(Log(H)) + O(V*(Log(V))  H,V be the lengths of horizontalCuts and VerticalCuts
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def maxArea(self, h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:
+        horizontalCuts.sort()
+        verticalCuts.sort()
+        maxivertical,maxihorizontal=max(w-verticalCuts[-1],verticalCuts[0]),max(h-horizontalCuts[-1],horizontalCuts[0])
+        for i in range(len(horizontalCuts)-1):
+            maxihorizontal=max(maxihorizontal,horizontalCuts[i+1]-horizontalCuts[i])
+        for i in range(len(verticalCuts)-1):
+            maxivertical=max(maxivertical,verticalCuts[i+1]-verticalCuts[i])
+        return (maxihorizontal*maxivertical)%(10**9+7)
+            
