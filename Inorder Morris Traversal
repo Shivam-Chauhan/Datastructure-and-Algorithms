@@ -1,0 +1,31 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/inorder-traversal/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def inOrderMorrisTraversalUtil(root,inorder):
+    curr=root
+    while curr!=None:
+        if curr.left==None:
+            inorder.append(curr.data)
+            curr=curr.right
+        else:
+            prev=curr.left
+            while prev.right!=None and prev.right!=curr:
+                prev=prev.right
+            if prev.right==None:
+                prev.right=curr
+                curr=curr.left
+            else:
+                prev.right=None
+                inorder.append(curr.data)
+                curr=curr.right
+    return inorder
+
+def inOrderMorrisTraversal():
+    inorder=[]
+    inOrderMorrisTraversalUtil(root,inorder)
+    return inorder
+
+inOrderMorrisTraversal()
