@@ -1,0 +1,28 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/subtraction-in-linked-list/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+def subLinkedList(l1, l2): 
+    # Code here
+    # return head of difference list
+    head1,head2=l1,l2
+    output,output1="",""
+    while head1:
+        output+=str(head1.data)
+        head1=head1.next
+    while head2:
+        output1+=str(head2.data)
+        head2=head2.next
+    res=str(abs(int(output)-int(output1)))
+    dummy=Node(-1)
+    temp=dummy
+    head=dummy
+    for i in res:
+        head.next=Node(int(i))
+        head=head.next
+    return temp.next
+        
