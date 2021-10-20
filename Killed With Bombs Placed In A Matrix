@@ -1,0 +1,27 @@
+# Problem Link :- https://www.geeksforgeeks.org/check-if-all-enemies-are-killed-with-bombs-placed-in-a-matrix/
+# Python Solution
+# Time Complexity :- O(N*M*log(N)) + O(N*M*log(N))
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def bombKillingEnemy():
+    grid= [['X','X','E','X'],
+           ['X','B','X','X'],
+           ['X','E','X','E'],
+           ['X','X','B','X']]
+    row,col=set(),set()
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j]=="B":
+                row.add(i)
+                col.add(j)
+    ct=0
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if i in row:
+                grid[i][j]='X'
+            if j in col:
+                grid[i][j]='X'
+            if grid[i][j]=='X':
+                ct+=1
+    return True if ct==len(grid)*len(grid[0]) else False
