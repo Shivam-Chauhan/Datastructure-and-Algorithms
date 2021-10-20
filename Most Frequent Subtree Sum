@@ -1,0 +1,32 @@
+# Problem Link :- https://leetcode.com/problems/most-frequent-subtree-sum/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findFrequentTreeSum(self, root: Optional[TreeNode]) -> List[int]:
+        def mostFrequentSubtreeSum(root,dic,freq):
+            if root==None:
+                return 0
+            lefty=mostFrequentSubtreeSum(root.left,dic,freq)
+            righty=mostFrequentSubtreeSum(root.right,dic,freq)
+            sum1=lefty+righty+root.val
+            dic[sum1]=dic.get(sum1,0)+1
+            freq[0]=max(freq[0],dic[sum1])
+            return sum1
+        dic=dict()
+        output,freq=[],[0]
+        mostFrequentSubtreeSum(root,dic,freq)
+        for i,j in dic.items():
+            if j==freq[0]:
+                output.append(i)
+        return output
+                
