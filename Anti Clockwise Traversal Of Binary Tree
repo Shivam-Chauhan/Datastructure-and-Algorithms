@@ -1,0 +1,62 @@
+# Problem :- Anti Clockwise Spiral Traversal of Binary Tree
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class newNode:
+ 
+    # Constructor to create a newNode
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+    
+def spiralTraversalHeight(root):
+    if root==None:
+        return 0
+    lefty=spiralTraversalHeight(root.left)
+    righty=spiralTraversalHeight(root.right)
+    return 1+max(lefty,righty)
+def leftToright(root,level):
+    if root==None:
+        return 
+    if level==1:
+        print(root.data,end=" ")
+    leftToright(root.left,level-1)
+    leftToright(root.right,level-1)
+
+def rightToleft(root,level):
+    if root==None:
+        return
+    if level==1:
+        print(root.data,end=" ")
+    rightToleft(root.right,level-1)
+    rightToleft(root.left,level-1)
+    
+def spiralTraversalBinaryTree(root):
+    height=spiralTraversalHeight(root)
+    flag,i,j=0,1,height
+    while i<=j:
+        if flag==0:
+            leftToright(root,i)
+            flag=1
+            i+=1
+        else:
+            rightToleft(root,j)
+            j-=1
+            flag=0    
+             
+if __name__ == '__main__':
+    root = newNode(1)
+    root.left = newNode(2)
+    root.right = newNode(3)
+    root.left.left = newNode(4)
+    root.right.left = newNode(5)
+    root.right.right = newNode(7)
+    root.left.left.left = newNode(10)
+    root.left.left.right = newNode(11)
+    root.right.right.left = newNode(8)
+    spiralTraversalBinaryTree(root)
+ 
