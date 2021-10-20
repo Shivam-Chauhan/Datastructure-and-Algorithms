@@ -1,0 +1,42 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/word-boggle4143/1#
+# Python Solution
+# Time Complexity :- O(N*M + N*M + NoOfWords)
+# Space Complexity :- O(N*M)
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+
+class Solution:
+    def wordBoggle(self,board,words):
+        def wordSearchUtil(value,board,x,y,indx):
+            if indx==len(value):
+                return 1
+            if x<0 or x>=len(board) or y<0 or y>=len(board[0]) or indx>len(value) or board[x][y]!=value[indx]:
+                return 0
+
+            char=board[x][y]
+            board[x][y]="$"
+            true_false=0
+            for i,j in [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]]:
+                true_false+=wordSearchUtil(value,board,x+i,y+j,indx+1)
+            board[x][y]=char
+            return true_false
+
+
+        mapping=dict()
+        output=[]
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] not in mapping.keys():
+                    mapping[board[i][j]]=[(i,j)]
+                else:
+                    mapping[board[i][j]].append((i,j))
+
+        for val in words:
+            if val[0] in mapping.keys():
+                for i,j in mapping[val[0]]:
+                    if wordSearchUtil(val,board,i,j,0):
+                        output.append(val)
+                        break
+        return output
+
