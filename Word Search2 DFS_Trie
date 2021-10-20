@@ -1,0 +1,101 @@
+# Problem Link :- https://leetcode.com/problems/word-search-ii/
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+# Python Solution
+# Time Complexity :- O(N*M + N*M + NoOfWords)
+# Space Complexity :- O(N*M)
+# Auxillary Space of Recursion Stack
+
+# Give TLE on LeetCode
+class Solution(object):
+    def findWords(self, board, words):
+        """
+        :type board: List[List[str]]
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        
+        def wordSearchUtil(value,board,x,y,indx):
+            if indx==len(value):
+                return True
+            if x<0 or x>=len(board) or y<0 or y>=len(board[0]) or indx>len(value) or board[x][y]!=value[indx]:
+                return False
+
+            char=board[x][y]
+            board[x][y]="$"
+            true_false=wordSearchUtil(value,board,x+1,y,indx+1) or wordSearchUtil(value,board,x-1,y,indx+1) or wordSearchUtil(value,board,x,y+1,indx+1) or wordSearchUtil(value,board,x,y-1,indx+1)
+            board[x][y]=char
+            return true_false
+
+
+        mapping=dict()
+        output=[]
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] not in mapping.keys():
+                    mapping[board[i][j]]=[(i,j)]
+                else:
+                    mapping[board[i][j]].append((i,j))
+
+        for val in words:
+            if val[0] in mapping.keys():
+                for i,j in mapping[val[0]]:
+                    if wordSearchUtil(val,board,i,j,0):
+                        output.append(val)
+                        break
+        return output
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Python Solution
+# Time Complexity :- O(NumberOfWord*length) + O(NumberOfWord*log(N)) Where N nodes in Trie
+# Space Complexity :- O(N*M)
+# Auxillary Space of Recursion Stack
+
+class trieNode:
+    def __init__(self):
+        self.children=dict()
+        self.isEnding=False
+        
+
+class Trie:
+    def __init__(self):
+        self.root=trieNode()
+        
+    def insert(self,value):
+        node=self.root
+        for char in value:
+            if char not in node.children.keys():
+                node.children[char]=trieNode()
+            node=node.children[char]
+        node.isEnding=True
+    
+    def trieDfs(self,board,root,x,y,res,word):
+        if root.isEnding==True:
+            res.append(word)
+            root.isEnding=False
+        if x<0 or x>=len(board) or y<0 or y>=len(board[0]) or (not root):
+            return
+        newVal=board[x][y]
+        if newVal in root.children:
+            board[x][y]="$"
+            root=root.children[newVal]
+            for i,j in [[-1,0],[1,0],[0,1],[0,-1]]:
+                self.trieDfs(board,root,x+i,y+j,res,word+newVal)
+            board[x][y]=newVal
+        
+class Solution(object):
+    def findWords(self, board, words):
+        """
+        :type board: List[List[str]]
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        obj=Trie()
+        obj.root=trieNode()
+        res=[]
+        for word in words:
+            obj.insert(word)
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                obj.trieDfs(board,obj.root,i,j,res,"")
+        return(res)
