@@ -1,0 +1,24 @@
+# Problem :- https://www.geeksforgeeks.org/previous-greater-element/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def previousGreaterElement():
+    array=[10, 20, 30, 40]
+    stack,output=[],[]
+    for j in array:
+        if len(stack)==0:
+            output.append(-1)
+        else:
+            while len(stack) and stack[-1]<=j:
+                stack.pop()
+            if len(stack)==0:
+                output.append(-1)
+            else:
+                output.append(stack[-1])
+        stack.append(j)
+    return output
+
+
+previousGreaterElement()
