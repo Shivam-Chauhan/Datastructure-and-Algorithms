@@ -1,0 +1,44 @@
+# Problem Link :- https://www.geeksforgeeks.org/minimum-moves-required-to-come-out-of-a-grid-safely/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M) + O(N) + O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+def personEscapeFormFire():
+    grid=[
+        [0,0,0,0],
+        [0,0,1,0],
+        [2,0,0,2],
+        [2,2,0,0]
+    ]
+    
+    person,fire=[],[]
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j]==2:
+                fire.append((i,j))
+            elif grid[i][j]==1:
+                person.append((i,j))
+    depth=0
+    while len(person):
+        personSize=len(person)
+        while personSize:
+            x,y=person.pop(0)
+            if x==len(grid)-1 or y==len(grid[0])-1 or x==0 or y==0:
+                return depth
+            depth+=1
+            for i,j in [[-1,0],[1,0],[0,1],[0,-1]]:
+                tempx,tempy=x+i,y+j
+                if tempx>=0 and tempx<len(grid) and tempy>=0 and tempy<len(grid[0]) and grid[tempx][tempy]==0:
+                    person.append((tempx,tempy))
+                    grid[tempx][tempy]=-1
+            personSize-=1
+        size=len(fire)
+        while size:
+            x,y=fire.pop(0)
+            for i,j in [[-1,0],[1,0],[0,1],[0,-1]]:
+                tempx,tempy=x+i,y+j
+                if tempx>=0 and tempx<len(grid) and tempy>=0 and tempy<len(grid[0]) and grid[tempx][tempy]!=2:
+                    fire.append((tempx,tempy))
+                    grid[tempx][tempy]=2
+            
+            size-=1
