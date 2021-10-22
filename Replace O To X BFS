@@ -1,0 +1,27 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/replace-os-with-xs0052/1
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def fill(self, n, m, grid):
+        def dfs(grid,x,y):
+            if x<0 or y<0 or x>=len(grid) or y>=len(grid[0]) or grid[x][y]!="O":
+                return 
+            grid[x][y]="$"
+            for i,j in [[-1,0],[0,1],[1,0],[0,-1]]:
+                dfs(grid,x+i,y+j)
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if (i==0 or j==0 or i==len(grid)-1 or j==len(grid[0])-1) and grid[i][j]=="O":
+                    dfs(grid,i,j)
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]=="$":
+                    grid[i][j]="O"
+                elif grid[i][j]=="O":
+                    grid[i][j]="X"
+        return grid
