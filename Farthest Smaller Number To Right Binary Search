@@ -1,0 +1,29 @@
+# Problem Link :- https://www.geeksforgeeks.org/find-the-farthest-smaller-number-in-the-right-side/
+# Python Solution
+# Time Complexity :- O(N*Log(N)) + O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def farthestsmallestElementToRight():
+    array=[3, 1, 5, 2, 4]
+    suffixMin=[10**9]*(len(array))
+    suffixMin[-1]=array[-1]
+    output=[]
+    for i in range(len(array)-2,-1,-1):
+        suffixMin[i]=min(suffixMin[i+1],array[i])
+    for i in range(len(array)-1):
+        start,end=i+1,len(array)-1
+        ans=-1
+        while start<=end:
+            mid=start+(end-start)//2
+            if suffixMin[mid]<array[i]:
+                start=mid+1
+                ans=suffixMin[mid]
+            else:
+                end=mid-1
+        output.append(ans)
+    output.append(-1)
+    return output
+
+
+farthestsmallestElementToRight()
