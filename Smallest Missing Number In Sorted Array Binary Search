@@ -1,0 +1,19 @@
+# Problem Link :- https://www.geeksforgeeks.org/find-the-first-missing-number/
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def missingNumberSortedArray():
+    array=[0, 1, 2, 3, 4]
+    low,high=0,len(array)-1
+    while low<=high:
+        mid=low+(high-low)//2
+        if array[low]!=low:
+            return low
+        elif array[mid]>mid:
+            high=mid-1
+        else:
+            low=mid+1
+    return len(array)
+    
