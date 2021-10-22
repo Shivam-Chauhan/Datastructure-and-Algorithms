@@ -1,0 +1,32 @@
+# Problem Link :- https://www.techiedelight.com/find-employees-who-reports-to-manager/
+# Python Solution
+# Time Complexity :- O(V*E)
+# Space Complexity :- O(V*E) + O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def managerToEmployeeUtil(graph,visited,src,output,parent):
+    visited[ord(src)-65]=1
+    if src!=parent:
+        output.append(src)
+    for node in graph[src]:
+        if visited[ord(node)-65]==0:
+            managerToEmployeeUtil(graph,visited,node,output,parent)
+            
+        
+    
+def managerToEmployee():
+    edges={'A': 'A', 'B': 'A', 'C': 'B','D': 'B', 'E': 'D', 'F': 'E'}
+    graph=dict()
+    res=dict()
+    for i in range(len(edges)):
+        graph[chr(65+i)]=[]
+    for u,v in edges.items():
+        if u!=v:
+            graph[v].append(u)
+    for i in range(len(edges)):
+        visited=[0]*len(edges)
+        output=[]
+        managerToEmployeeUtil(graph,visited,chr(i+65),output,chr(i+65))
+        res[chr(i+65)]=output
+    return res
