@@ -1,0 +1,34 @@
+# Problem Link :- https://www.geeksforgeeks.org/minimum-edges-reverse-make-path-source-destination/
+# Python Solution
+# Time Complexity :- O(V+E)
+# Space Complexity :- O(N) + O(N) + O(V+E)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+from collections import deque
+def zeroOneBFS():
+    
+    array=[(0,1),(1,2),(2,3),(5,1),(4,5),(6,3),(6,4)]
+    vertices=6
+    graph=dict()
+    for i in range(vertices+1):
+        graph[i]=[]
+    for u,v in array:
+        graph[u].append((v,0)) # Vertice and distance
+        graph[v].append((u,1)) # Vertice and distance
+    src,destination=0,4
+    visited=[0]*(vertices+1)
+    queue=deque()
+    queue.appendleft((src,0))
+    while len(queue):
+        rem,dis=queue.popleft()
+        visited[rem]=1
+        if rem==destination:
+            return dis
+        for node in graph[rem]:
+            if visited[node[0]]==1:
+                continue
+            elif node[1]==0:
+                queue.appendleft((node[0],dis))
+            else:
+                queue.append((node[0],dis+1))
+zeroOneBFS()
