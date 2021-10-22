@@ -1,0 +1,31 @@
+# Problem Link :- https://leetcode.com/problems/shortest-path-in-binary-matrix/
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M) + O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution(object):
+    def shortestPathBinaryMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        n=len(grid)
+        queue=[(0,0,1)]
+        if grid[0][0] or grid[n-1][n-1]:
+            return -1
+        grid[0][0]=1
+        res=10**9
+        while len(queue):
+            x,y,visitedCell=queue.pop(0)
+            if x==n-1 and y==n-1:
+                return visitedCell
+            for i,j in [[1,0], [-1,0], [0,1], [0,-1], [-1,-1], [1,1], [1,-1], [-1,1]]:
+                tempx,tempy=i+x,j+y
+                if 0<=tempx<len(grid) and 0<=tempy<len(grid[0]) and grid[tempx][tempy]==0:
+                    queue.append((tempx,tempy,visitedCell+1))
+                    grid[tempx][tempy]=1
+        
+        return -1
+                        
+        
