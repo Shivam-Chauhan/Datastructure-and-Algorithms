@@ -1,0 +1,29 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/minimum-swaps/1
+# Python Solution
+# Time Complexity :- O(N*Log(N)) + O(N)
+# Space Complexity :- O(N) + O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    
+  #Function to find the minimum number of swaps required to sort the array.
+	def minSwaps(self, array):
+		list1=[]
+        res=0
+        for i,j in enumerate(array):
+            list1.append((j,i))
+        list1.sort()
+        visited=[0]*len(array)
+        for i in range(len(array)):
+            if visited[i]==1 or list1[i][1]==i:
+                continue
+            length_cycle=0
+            indx=i
+            while visited[indx]==0:
+                length_cycle+=1
+                visited[indx]=1
+                indx=list1[indx][1]
+            
+            
+            res+=length_cycle-1
+        return res
