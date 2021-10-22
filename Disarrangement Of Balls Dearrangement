@@ -1,0 +1,15 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/dearrangement-of-balls0918/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def disarrange(self, N):
+        if N<=2:
+            return N-1
+        first,second=0,1
+        for j in range(3,N+1):
+            temp=(j-1)*(first+second)
+            first,second=second,temp
+        return second%(10**9+7)
