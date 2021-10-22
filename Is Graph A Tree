@@ -1,0 +1,38 @@
+# Problem Link :- https://www.geeksforgeeks.org/check-given-graph-tree/
+# Python Solution
+# Time Complexity :- O(V+E)
+# Space Complexity :- O(V)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def isGraphATreeCycleDetectUTil(graph,visited,src,parent):
+    visited[src]=1
+    for node in graph[src]:
+        if visited[node]==0:
+            isGraphATreeCycleDetectUTil(graph,visited,node,src)
+        elif parent!=node:
+            return True
+    return False
+    
+        
+def isGraphATree():
+    graph={
+        0:[1,2,3],
+        1:[0],
+        2:[0],
+        3:[0,4],
+        4:[3]
+    }
+    vertices=len(graph)
+    visited=[0]*vertices
+    ct=0
+    for i in range(len(graph)):
+        if visited[i]==0:
+            if isGraphATreeCycleDetectUTil(graph,visited,i,-1):
+                return False
+            ct+=1
+    if ct>1:
+        return False
+    return True
+   
+isGraphATree()
