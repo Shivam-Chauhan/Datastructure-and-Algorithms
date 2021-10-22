@@ -1,0 +1,39 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/convert-ternary-expression-to-binary-tree/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Ternary Expression --> Binary Tree
+class Node():
+    def __init__(self,value):
+        self.data=value
+        self.left=None
+        self.right=None
+
+def ternaryExpressionToBinaryTreeUtil(string,indx):
+    if indx>=len(string):
+        return None
+    root=Node(string[indx])
+    indx+=1
+    if indx<len(string) and string[indx]=="?":
+        root.left=ternaryExpressionToBinaryTreeUtil(string,indx+1)
+    if indx<len(string) and string[indx]==":":
+        root.right=ternaryExpressionToBinaryTreeUtil(string,indx+1)
+    return root
+def preorderTraversal(root):
+    if root==None:
+        return
+    print(root.data,end=" ")
+    preorderTraversal(root.left)
+    preorderTraversal(root.right)
+    
+        
+
+def ternaryExpressionToBinaryTree():
+    string="a?b:c"
+    root=ternaryExpressionToBinaryTreeUtil(string,0)
+    preorderTraversal(root)
+
+ternaryExpressionToBinaryTree()
