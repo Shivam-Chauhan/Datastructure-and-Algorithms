@@ -1,0 +1,65 @@
+# Problem :- Snake and Ladder (Techie Delight)
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(N*M) + O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def snakeLadderBFS(graph):
+    queue=[(0,0)]
+    visited=[0]*101
+    while len(queue):
+        rem,level=queue.pop(0)
+        if rem==99:
+            return level
+        visited[rem]=1
+        for node in graph[rem]:
+            if visited[node]==0:
+                queue.append((node,level+1))
+                
+    
+def edgeSnakeAndLadderMaker(ladder,snake):
+    graph=dict()
+    nodes=100
+    for i in range(nodes):
+        j=1
+        while j<=6 and j+i<=nodes:
+            source=i
+            snakeRoute=snake[i+j] if (i+j) in snake.keys() else 0
+            ladderRoute=ladder[i+j] if (i+j) in ladder.keys() else 0
+            
+            if snakeRoute or ladderRoute:
+                destination=snakeRoute+ladderRoute
+            else:
+                destination=source+j
+            if source in graph.keys():
+                graph[source].append(destination)
+            else:
+                graph[source]=[destination]
+            j+=1
+    
+    return snakeLadderBFS(graph)    
+            
+    
+def snakeAndLadder():
+    ladder,snake=dict(),dict()
+    
+    # insert ladders into the dictionary
+    ladder[1] = 38
+    ladder[4] = 14
+    ladder[9] = 31
+    ladder[21] = 42
+    ladder[28] = 84
+    ladder[51] = 67
+    ladder[72] = 91
+    ladder[80] = 99
+ 
+    # insert snakes into the dictionary
+    snake[17] = 7
+    snake[54] = 34
+    snake[62] = 19
+    snake[64] = 60
+    snake[87] = 36
+    snake[93] = 73
+    snake[95] = 75
+    snake[98] = 79
+    return edgeSnakeAndLadderMaker(ladder,snake)
