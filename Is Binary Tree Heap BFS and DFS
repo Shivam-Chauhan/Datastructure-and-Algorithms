@@ -1,0 +1,45 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/is-binary-tree-heap/1#
+# Python Solution
+# Time Complexity :- O(N) + O(N)
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack 
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User Template for python3
+
+'''
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+class Solution:
+    #Your Function Should return True/False
+    def isHeap(self, root):
+        def checkCompleteness(root):
+            queue=[root]
+            flag=0
+            while len(queue) and queue[0]!=None:
+                rem=queue.pop(0)
+                if rem==None:
+                    flag=1
+                else:
+                    if flag==1:
+                        return False
+                    queue.append(rem.left)
+                    queue.append(rem.right)
+            return not any(queue)
+            
+        def checkBinaryHeap(root):
+            if root.left==None and root.right==None:
+                return True
+            if root.right==None:
+                return root.data>=root.left.data
+            else:
+                if root.data>=root.left.data and root.data>=root.right.data:
+                    return checkBinaryHeap(root.left) and checkBinaryHeap(root.right)
+                else:
+                    return False
+        return checkCompleteness(root) and checkBinaryHeap(root)
