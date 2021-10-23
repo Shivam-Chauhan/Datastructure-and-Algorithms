@@ -1,0 +1,29 @@
+# Problem Link :- https://leetcode.com/problems/top-k-frequent-elements/
+# Python Solution
+# Time Complexity :- O(N*Log(K))
+# Space Complexity :- O(N)+ O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution(object):
+    def topKFrequent(self, array, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        dic=dict()
+        for j in array:
+            if j not in dic.keys():
+                dic[j]=1
+            else:
+                dic[j]+=1
+        pq=[]
+        heapq.heapify(pq)
+        for i,j in dic.items():
+            heapq.heappush(pq,(-1*j,i))
+        output=[]
+        while k:
+            occur,ele=heapq.heappop(pq)
+            output.append(ele)
+            k-=1
+        return output
