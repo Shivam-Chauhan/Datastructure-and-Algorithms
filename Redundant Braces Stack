@@ -1,0 +1,24 @@
+# Problem Link :- https://www.interviewbit.com/problems/redundant-braces/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+	# @param A : string
+	# @return an integer
+	def braces(self, A):
+        stack=[]
+        for j in A:
+            if j!=")":
+                stack.append(j)
+            else:
+                ct=0
+                while len(stack) and stack[-1]!="(":
+                    ct+=1
+                    stack.pop()
+                stack.pop()
+                if ct<=1:
+                    return 1
+        return 0
+                
