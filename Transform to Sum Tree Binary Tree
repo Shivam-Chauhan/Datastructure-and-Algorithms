@@ -1,0 +1,29 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/transform-to-sum-tree/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------
+
+#User function Template for python3
+
+'''
+# Node Class:
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    def toSumTree(self, root) :
+        def postOrder(root):
+            if root==None:
+                return 0
+            lefty=postOrder(root.left)
+            righty=postOrder(root.right)
+            value=lefty+righty+root.data
+            root.data=lefty+righty
+            return value
+        postOrder(root)
+        return root
