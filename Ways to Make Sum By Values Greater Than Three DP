@@ -1,0 +1,33 @@
+
+Problem :- 
+Given a number N, count the number of arrays which can be constructed such that the sum of elements is N. One constraint is that each element should be greater than 3.
+Example:
+
+Input: 6
+Output: 2
+Possible arrays: [3,3], [6]
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+def numberOfWaysToMakeSumUtil(n,sum1,ans,dp):
+    if sum1==n:
+        return 1
+    if sum1>n:
+        return 0
+    if dp[sum1]!=0:
+        return dp[sum1]
+    for i in range(3,n+1):
+        if sum1+i<=n:
+            dp[sum1+i]+=numberOfWaysToMakeSumUtil(n,sum1+i,ans,dp)
+    return dp[n]
+    
+            
+def numberOfWaysToMakeSum():
+    n=1
+    ans=[0]
+    dp=[0]*(n+1)
+    numberOfWaysToMakeSumUtil(n,0,ans,dp)
+    print(dp[-1])
