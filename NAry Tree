@@ -1,0 +1,112 @@
+# Problem :- Creation and solving some standard traversal problem on N-Ary Tree 
+# Python Solution
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class NodeNary:
+    def __init__(self,key):
+        self.key=key
+        self.child=[]
+def newNode(val):
+    Node=NodeNary(val)
+    return Node
+
+def levelOrder(root):
+    if root==None:
+        return 
+    queue=[root]
+    while len(queue):
+        size=len(queue)
+        while size:
+            rem=queue.pop(0)
+            print(rem.key,end=" ")
+            for node in rem.child:
+                queue.append(node)
+            size-=1
+        print()
+
+def zigZag(root):
+    if root==None:
+        return
+    result=[]
+    queue=[root]
+    level=0
+    while queue:
+        size=len(queue)
+        temp=[]
+        while size:
+            rem=queue.pop(0)
+            temp.append(rem.key)
+            for node in rem.child:
+                queue.append(node)
+            size-=1
+        if level&1:
+            result.append(temp[::-1])
+        else:
+            result.append(temp)
+        level+=1
+    return result
+
+def largestELement(root,maxi):
+    if root==None:
+        return 
+    maxi[0]=max(maxi[0],root.key)
+    for node in root.child:
+        largestELement(node,maxi)
+        
+def pathPrinting(root,psf,output):
+    if root==None:
+        return
+    psf.append(root.key)
+    if len(root.child)==0:
+        print(psf)
+        psf.pop()
+        return
+    for node in root.child:
+        pathPrinting(node,psf,output)
+    psf.pop()
+
+def printingSiblings(root,X):
+    if root==None:
+        return
+    queue=[root]
+    while len(queue):
+        size=len(queue)
+        while size:
+            rem=queue.pop(0)
+            for node in rem.child:
+                if node.key==X:
+                    for children in rem.child:
+                        print(children.key,end=" ")
+                    print()
+                else:
+                    queue.append(node)
+            size-=1
+
+        
+                    
+root = newNode(10);
+(root.child).append(newNode(2));
+(root.child).append(newNode(34));
+(root.child).append(newNode(56));
+(root.child).append(newNode(100));
+(root.child[0].child).append(newNode(77));
+(root.child[0].child).append(newNode(88));
+(root.child[2].child).append(newNode(1));
+(root.child[3].child).append(newNode(7));
+(root.child[3].child).append(newNode(8));
+(root.child[3].child).append(newNode(9));
+
+# Tree Structure
+#           10
+#       /  |  \  \
+#      2   34  56 100
+#     / \       | / | \
+#    77 88      1 7 8 9
+# levelOrder(root)
+# print(zigZag(root))
+# maxi=[-10**9]
+# largestELement(root,maxi)
+# print(maxi[0])
+# pathPrinting(root,[],[])
+# printingSiblings(root,77)
