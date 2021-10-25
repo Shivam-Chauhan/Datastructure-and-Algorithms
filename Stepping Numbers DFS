@@ -1,0 +1,53 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/stepping-numberswrong-output1813/1
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+# Python Solution
+# Time Complexity :- O(N*(Number of Bits))
+# Space Complexity :- O(N)
+
+#User function Template for python3
+class Solution:
+    def steppingNumbers (self, n, m):
+        res=0
+        for i in range(n,m+1):
+            stri=str(i)
+            if len(stri)==1:
+                res+=1
+                continue
+            else:
+                ct=0
+                for j in range(len(stri)-1):
+                    if abs(int(stri[j])-int(stri[j+1]))!=1:
+                        ct+=1
+                        break
+                if ct==0:
+                    res+=1
+        return res
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+# Python Solution
+# Time Complexity :- O(N*(log(N))
+# Space Complexity :- O(N)
+
+#User function Template for python3
+class Solution:
+    def steppingNumbers (self, n, m):
+        def dfs(value,n,m,res):
+            # print(value)
+            if value>m:
+                return 
+            if n<=value and value<=m:
+                res[0]+=1
+            lastDigit=value%10
+            if lastDigit!=0:
+                dfs(value*10+(lastDigit-1),n,m,res)
+            if lastDigit!=9:
+                dfs(value*10+(lastDigit+1),n,m,res)
+        res=[0]
+        if n==0:
+            res[0]+=1
+        for i in range(1,10):
+            dfs(i,n,m,res)
+        return res[0]
+        
+        
