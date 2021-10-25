@@ -1,0 +1,44 @@
+# Problem Link :- https://www.geeksforgeeks.org/gcds-of-a-given-index-ranges-in-an-array/
+# Python Solution
+# Time Complexity :- O(N*log(N))
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+import math
+class segmentTree:
+    def __init__(self,size):
+        self.list=[0]*(4*size)
+    def segmentTreeBuilding(self,array,indx,left,right):
+        if left==right:
+            self.list[indx]=array[left]
+            return
+        mid=(left+right)//2
+        self.segmentTreeBuilding(array,2*indx+1,left,mid)
+        self.segmentTreeBuilding(array,2*indx+2,mid+1,right)
+        self.list[indx]=math.gcd(self.list[2*indx+1],self.list[2*indx+2])
+        
+    def queryForGCD(self,indx,left,right,l,r):
+        # If There is no overlap
+        if left>=l and right<=r:
+            return self.list[indx]
+        # If there is no overlapping
+        if left>r or right<l:
+            return 0
+        mid=(left+right)//2
+        print(left,right)
+        lefty=self.queryForGCD(2*indx+1,left,mid,l,r)
+        righty=self.queryForGCD(2*indx+2,mid+1,right,l,r)
+        return math.gcd(lefty,righty)
+    
+        
+    
+n=int(input())
+array=list(map(int,input().split(" ")))
+obj=segmentTree(len(array))
+# Building Segment Tree
+obj.segmentTreeBuilding(array,0,0,len(array)-1)
+# Querying Segment Tree
+queries=int(input())
+while queries:
+    l,r=map(int,input().split(" "))
+    print(obj.queryForGCD(0,0,len(array)-1,l,r))
