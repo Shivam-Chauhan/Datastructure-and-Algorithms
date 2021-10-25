@@ -1,0 +1,60 @@
+# Problem Link :- https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+# Python Solution
+# Time Complexity :- O(N*log(Number of Bits))
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class TrieNodeXor:
+    def __init__(self,val):
+        self.data=val
+        self.left=None
+        self.right=None
+class Solution(object):
+    def __init__(self):
+        self.root=TrieNodeXor(-1)
+    def findMaximumXOR(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        for j in nums:
+            self.insert(j)
+        return self.finderMaxXor(nums)
+
+    def insert(self,value):
+        curr=self.root
+        for j in range(31,-1,-1):
+            bit=(value>>j)&1
+            if bit==0:
+                if curr.left==None:
+                    curr.left=TrieNodeXor(0)
+                curr=curr.left
+            else:
+                if curr.right==None:
+                    curr.right=TrieNodeXor(1)
+                curr=curr.right
+                
+    def finderMaxXor(self,array):
+        maxXor=0
+        for val in array:
+            temp=val
+            curr=self.root
+            currXor=0
+            for j in range(31,-1,-1):
+                bit=(temp>>j)&1
+                if bit==0:
+                    if curr.right!=None:
+                        currXor+=(1<<j)
+                        curr=curr.right
+                    else:
+                        curr=curr.left
+                else:
+                    if curr.left!=None:
+                        currXor+=(1<<j)
+                        curr=curr.left
+                    else:
+                        curr=curr.right
+            maxXor=max(maxXor,currXor)
+        return maxXor
+                    
+                    
