@@ -1,0 +1,18 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/move-all-zeroes-to-end-of-array0751/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+	def pushZerosToEnd(self,arr, n):
+	    indx=0
+    	for j in arr:
+    	    if j!=0:
+    	        arr[indx]=j
+    	        indx+=1
+    	for j in range(indx,n):
+    	    arr[j]=0
+    	return arr
