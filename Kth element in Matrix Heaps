@@ -1,0 +1,17 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/kth-element-in-matrix/1#
+# Python Solution
+# Time Complexity :- O(N*N) + O(N*Log(k))
+# Space Complexity :- O(K)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+import heapq
+def kthSmallest(mat, n, k): 
+    pq=[]
+    heapq.heapify(pq)
+    for i in range(n):
+        for j in range(n):
+            heapq.heappush(pq,-1*mat[i][j])
+            if len(pq)>k:
+                heapq.heappop(pq)
+    return -1*heapq.heappop(pq)
