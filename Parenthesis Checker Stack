@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/parenthesis-checker2744/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+class Solution:
+    
+    #Function to check if brackets are balanced or not.
+    def ispar(self,x):
+        stack=[]
+        for j in x:
+            if j in "{([":
+                stack.append(j)
+            else:
+                if len(stack)==0:
+                    return False
+                elif (j=="]" and stack[-1]!="[") or (j=="}" and stack[-1]!="{") or (j==")" and stack[-1]!="("):
+                    return False
+                else:
+                    stack.pop()
+        return True if len(stack)==0 else False
