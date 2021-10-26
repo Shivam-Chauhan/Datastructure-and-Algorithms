@@ -1,0 +1,45 @@
+# Problem Link :- https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        def middleOfLL(head):
+            prev,slow,fast=None,head,head
+            while fast!=None and fast.next!=None:
+                fast=fast.next.next
+                prev=slow
+                slow=slow.next
+            return [prev,slow]
+        
+        def makingBST(head):
+            if head==None:
+                return None
+            if head.next==None:
+                return TreeNode(head.val)
+            prev,newHead=middleOfLL(head)
+            if prev!=None:
+                prev.next=None
+            root=TreeNode(newHead.val)
+            root.left=makingBST(head)
+            root.right=makingBST(newHead.next)
+            return root
+        return makingBST(head)
+            
+        
+                
+        
