@@ -1,7 +1,7 @@
 # Problem Link :- https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1#
 # Python Solution
-# Time Complexity :- O(N*N)
-# Space Complexity :- O(N*N)
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
 
 import heapq
 class Solution:
