@@ -1,0 +1,27 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1
+# Python Solution
+# Queue Based Implementation
+# Time Complexity :- O(N)
+# Space Complexity :- O(N) + O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+	def FirstNonRepeating(self, A):
+		queue=[]
+		output=""
+		characterCounter=[0]*(256)
+		for j in A:
+		    queue.append(j)
+		    ct=0
+		    characterCounter[ord(j)-ord('a')]+=1
+		    while len(queue):
+		        if characterCounter[ord(queue[0])-ord('a')]>1:
+		            queue.pop(0)
+		        else:
+		            output+=queue[0]
+		            break
+		    if len(queue)==0:
+		        output+="#"
+		return output
