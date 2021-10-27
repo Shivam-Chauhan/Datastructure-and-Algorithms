@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/find-triplets-with-zero-sum/1
+# Python Solution
+# Time Complexity :- O(N*Log(N)) + O(N*N)
+# Space Complexity :- O(1)
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    #Function to find triplets with zero sum.    
+    def findTriplets(self, arr, n):
+        arr.sort()
+        for i in range(len(arr)):
+            first,last=i+1,n-1
+            while first<last:
+                if arr[first]+arr[last]+arr[i]==0:
+                    return True
+                elif arr[first]+arr[last]+arr[i]>0:
+                    last-=1
+                else:
+                    first+=1
+        return False
