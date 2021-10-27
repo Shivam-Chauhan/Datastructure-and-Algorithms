@@ -1,0 +1,24 @@
+# Problem Link :- https://www.geeksforgeeks.org/largest-value-level-binary-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+def largestValueAtEachLevel():
+    queue=[root]
+    output=[]
+    while len(queue):
+        size=len(queue)
+        levelMaxi=-10**9
+        while size:
+            rem=queue.pop(0)
+            levelMaxi=max(levelMaxi,rem.data)
+            if rem.left!=None:
+                queue.append(rem.left)
+            if rem.right!=None:
+                queue.append(rem.right)
+            size-=1
+        output.append(levelMaxi)
+    return output
+
+largestValueAtEachLevel()
