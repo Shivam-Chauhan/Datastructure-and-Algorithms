@@ -5,7 +5,7 @@
 
 -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
 def largestValueAtEachLevel():
-    queue=[root]
+    queue=[root]   # root is the root of the binary tree
     output=[]
     while len(queue):
         size=len(queue)
