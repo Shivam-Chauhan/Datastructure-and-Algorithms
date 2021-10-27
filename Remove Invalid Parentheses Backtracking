@@ -1,0 +1,45 @@
+# Problem Link :- https://leetcode.com/problems/remove-invalid-parentheses/
+# Python Solution
+# Time Complexity :- O(2^Number of Possible Combination)
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def removeInvalidParentheses(self, s: str) -> List[str]:
+        self.output=[]
+        self.res=set()
+        def minRemoval(string):
+            stack=[]
+            for i in string:
+                if i=="(":
+                    stack.append(i)
+                elif i==")":
+                    if len(stack)==0:
+                        stack.append(i)
+                    elif stack[-1]==")":
+                        stack.append(i)
+                    else:
+                        stack.pop()
+            return len(stack)
+    
+        def allCombination(string,removal):
+            if removal<0:
+                return
+            if removal==0:
+                lastrem=minRemoval(string)
+                if lastrem==0:
+                    
+                    self.output.append(string)
+                return
+            for j in range(len(string)):
+                if string[j]!="(" and string[j]!=")":
+                    continue
+                left=string[:j]
+                right=string[j+1:len(string)]
+                temp=left+right
+                if temp not in self.res:
+                    self.res.add(temp)
+                    allCombination(temp,removal-1)
+        allCombination(s,minRemoval(s))
+        return self.output
