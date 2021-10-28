@@ -1,0 +1,32 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-palindrome-sub-strings-of-a-string0652/1#
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+
+    def CountPS(self, S, N):
+        def palindromeValidator(low,high,string,ans):
+            while low>=0 and high<len(string) and string[low]==string[high]:
+                ans.append(string[low:high+1])
+                low-=1
+                high+=1
+                
+            
+        def allPossiblePalindromicPartition(string):
+            ans=[]
+            for i in range(len(string)):
+                # Odd Length Palindrome
+                palindromeValidator(i,i,string,ans)
+                # Even Length Palindrome
+                palindromeValidator(i,i+1,string,ans)
+            return ans
+        ans=allPossiblePalindromicPartition(S)
+        ct=0
+        for i in ans:
+            if len(i)>=2:
+                ct+=1
+        return ct
