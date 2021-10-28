@@ -1,0 +1,40 @@
+# Problem Link :- https://leetcode.com/problems/path-sum-iii/
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        self.ans=0
+        def checker(root,sum1,target):
+            if root==None:
+                return 
+            sum1+=root.val
+            if sum1==target:
+                self.ans+=1
+            if root.left!=None:
+                checker(root.left,sum1,target)
+            if root.right!=None:
+                checker(root.right,sum1,target)
+                
+        def dfs(root,target):
+            if root==None:
+                return 
+            checker(root,0,target)
+            if root.left!=None:
+                dfs(root.left,target)
+            if root.right!=None:
+                dfs(root.right,target)
+        dfs(root,targetSum)
+        return self.ans
+            
+            
+                
