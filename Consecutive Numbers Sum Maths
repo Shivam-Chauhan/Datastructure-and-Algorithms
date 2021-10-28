@@ -1,0 +1,17 @@
+# Problem Link :- https://leetcode.com/problems/consecutive-numbers-sum/
+# Python Solution
+# Time Complexity :-O(N^0.5)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def consecutiveNumbersSum(self, n: int) -> int:
+        k=1
+        ct=0
+        while 2*n>(k*(k-1)):
+            numo=n-(k*(k-1))//2
+            deno=k
+            if numo%deno==0:
+                ct+=1
+            k+=1
+        return ct
