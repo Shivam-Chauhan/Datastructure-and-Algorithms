@@ -1,0 +1,23 @@
+# Problem Link :- https://www.geeksforgeeks.org/find-intersection-of-intervals-given-by-two-lists/
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def intervalsIntersection():
+    array1=[[0,4],[5,10],[13,20],[24,25]]
+    array2=[[1,5],[8,12],[15,24],[25,26]]
+    indxi,indxj=0,0
+    output=[]
+    while indxi<len(array1) and indxj<len(array2):
+        left=max(array1[indxi][0],array2[indxj][0])
+        right=min(array1[indxi][1],array2[indxj][1])
+        if left<=right:
+            output.append([left,right])
+        if array1[indxi][1]<array2[indxj][1]:
+            indxi+=1
+        else:
+            indxj+=1
+    return output
+
+intervalsIntersection()            
