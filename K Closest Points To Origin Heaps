@@ -1,0 +1,20 @@
+# Problem Link :- https://leetcode.com/problems/k-closest-points-to-origin/
+# Python Solution
+# Time Complexity :- O(N*log(K))
+# Space Complexity :- O(K)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        pq=[]
+        output=[]
+        heapq.heapify(pq)
+        for i,j in points:
+            distance=i**2+j**2
+            heapq.heappush(pq,[-1*distance,i,j])
+            if len(pq)>k:
+                heapq.heappop(pq)
+        while len(pq):
+            distance,x,y=heapq.heappop(pq)
+            output.append([x,y])
+        return output
