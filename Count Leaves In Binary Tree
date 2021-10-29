@@ -1,0 +1,28 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-leaves-in-binary-tree/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+# your task is to complete this function
+# function should return the count of Leaf node's
+# Note: You required to print a new line after every test case
+def countLeaves(root):
+    
+    def numberOfLeafNodes(root):
+        if root==None:
+            return 0
+        if root.left==None and root.right==None:
+            return 1
+        return numberOfLeafNodes(root.left) + numberOfLeafNodes(root.right)
+    return numberOfLeafNodes(root)
