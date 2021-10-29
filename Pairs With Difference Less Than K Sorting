@@ -1,0 +1,18 @@
+# Problem Link :- https://www.geeksforgeeks.org/pairs-difference-less-k/
+# Python Solution
+# Time Complexity :- O(N*log(N)) + O(N*N)
+# Space Complexity :- O(1)
+# Solution Works Fine In Average Cases
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def countPairs(self,array, n, k): 
+        array.sort()
+        ct=0
+        for i in range(len(array)-1):
+            for j in range(i+1,len(array)):
+                if array[j]-array[i]<k:
+                    ct+=1
+        return ct
