@@ -1,0 +1,15 @@
+# Problem Link :- https://leetcode.com/problems/find-all-duplicates-in-an-array/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        output=[]
+        for i in range(len(nums)):
+            indx=abs(nums[i])-1
+            if nums[indx]<0:
+                output.append(abs(nums[i]))
+            nums[indx]*=-1
+        return output
