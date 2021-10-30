@@ -1,0 +1,21 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/magic-numbers3143/1#
+# Python Solution
+# Time Complexity :- O(N*Log(min(a,b)))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def getVal(self, N, A):
+        def gcdFunction(greater,smaller):
+            if smaller==0:
+                return greater
+            return gcdFunction(smaller,greater%smaller)
+        gcd=0
+        product=1
+        for i in range(len(A)):
+            gcd=gcdFunction(max(gcd,A[i]),min(gcd,A[i]))
+            product*=A[i]
+            product%=(10**9+7)
+        return (product**gcd)%(10**9+7)
