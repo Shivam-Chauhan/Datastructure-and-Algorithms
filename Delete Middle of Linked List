@@ -1,0 +1,28 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/delete-middle-of-linked-list/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+'''
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+'''
+def deleteMid(head):
+    def middleElement(head):
+        fast,slow,prev=head,head,None
+        while fast.next!=None and fast.next.next!=None:
+            fast=fast.next.next
+            prev=slow
+            slow=slow.next
+        if fast.next!=None:
+            return [slow,slow.next]
+        return [prev,slow]
+    if head==None or head.next==None:
+        return 
+    prev,mid=middleElement(head)
+    prev.next=mid.next
+    return head
+            
