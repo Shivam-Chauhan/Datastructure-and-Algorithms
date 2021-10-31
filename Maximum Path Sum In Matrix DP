@@ -1,0 +1,21 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/path-in-matrix3805/1#
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N*N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def maximumPath(self, N, matrix):
+        for i in range(N-1,-1,-1):
+            for j in range(N-1,-1,-1):
+                if i==N-1:
+                    continue
+                elif j==N-1:
+                    matrix[i][j]+=max(matrix[i+1][j-1],matrix[i+1][j])
+                elif j==0:
+                    matrix[i][j]+=max(matrix[i+1][j+1],matrix[i+1][j])
+                else:
+                    matrix[i][j]+=max(matrix[i+1][j+1],matrix[i+1][j],matrix[i+1][j-1])
+        return max(matrix[0])
