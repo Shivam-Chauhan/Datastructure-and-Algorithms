@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/maximize-number-of-1s0905/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+
+# m is maximum of number zeroes allowed 
+# to flip, n is size of array 
+def findZeroes(array, n, m) :
+    ans,count,ws=-10**9,0,0
+    for we in range(len(array)):
+        if array[we]==0:
+            count+=1
+        while count>m:
+            if array[ws]==0:
+                count-=1
+            ws+=1
+        ans=max(ans,we-ws+1)
+    return ans
