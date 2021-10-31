@@ -1,0 +1,25 @@
+# Problem Link :- https://leetcode.com/problems/restore-ip-addresses/
+# Python Solution
+
+# Space Complexity :- O(N)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        self.output=[]
+        def restoreIP(s,indx,counter,res):
+            if counter>4:
+                return
+            if counter==4 and indx==len(s):
+                self.output.append(res)
+                return
+            for j in range(1,4):
+                if indx+j>len(s):
+                    break
+                temp=s[indx:indx+j]
+                if (temp[0]=="0" and len(temp)>1) or (j==3 and int(temp)>=256):
+                    continue
+                restoreIP(s,indx+j,counter+1,res+temp+("" if counter==3 else "."))
+        restoreIP(s,0,0,"")
+        return self.output
