@@ -1,0 +1,36 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/polynomial-addition/1#
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(N+M)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+'''
+ class node:
+    def __init__(self, coeff, pwr):
+        self.coef = coeff
+        self.next = None
+        self.power = pwr
+'''
+
+class Solution:
+    # return a linked list denoting the sum with decreasing value of power
+    def addPolynomial(self, poly1, poly2):
+        head1,head2=poly1,poly2
+        dummyNode=node(0,-1)
+        curr=dummyNode
+        while head1!=None and head2!=None:
+            if head1.power==head2.power:
+                curr.next=node(head1.coef+head2.coef,head1.power)
+                curr=curr.next
+                head1=head1.next
+                head2=head2.next
+            elif head1.power>head2.power:
+                curr.next=node(head1.coef,head1.power)
+                curr=curr.next
+                head1=head1.next
+            else:
+                curr.next=node(head2.coef,head2.power)
+                curr=curr.next
+                head2=head2.next
+        curr.next=head1 if head1!=None else head2
+        return dummyNode.next
