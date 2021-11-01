@@ -1,0 +1,57 @@
+# Problem Link :- https://leetcode.com/problems/reverse-nodes-in-k-group/
+# Python Solution
+# Time Complexity :- O(2*N) or O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        self.tempHead=None
+        self.tempTail=None
+        
+        # Finding the Length of Linked List
+        def lengthOfLL(head):
+            curr=head
+            length=0
+            while curr!=None:
+                curr=curr.next
+                length+=1
+            return length
+        
+        # Adding element at First
+        def addInFront(node):
+            if self.tempHead==None:
+                self.tempHead=node
+                self.tempTail=node
+            else:
+                node.next=self.tempHead
+                self.tempHead=node
+        
+        if head==None or k<1:
+            return head
+        length=lengthOfLL(head)
+        curr=head
+        newHead=None
+        newTail=None
+        # Making the loop works for integer length of K
+        while length>=k:
+            for j in range(k):
+                forward=curr.next
+                curr.next=None
+                addInFront(curr)
+                curr=forward
+            if newHead==None:
+                newHead=self.tempHead
+                newTail=self.tempTail
+            else:
+                newTail.next=self.tempHead
+                newTail=self.tempTail
+            length-=k
+            self.tempHead,self.tempTail=None,None
+        newTail.next=curr
+        return newHead
