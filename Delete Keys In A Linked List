@@ -1,0 +1,32 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/delete-keys-in-a-linked-list/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# your task is to complete this function
+# function should return new head pointer
+'''
+class node:
+    def __init__(self):
+        self.data = None
+        self.next = None
+'''
+
+def deleteAllOccurances(head, x):
+    curr=head
+    while curr!=None and curr.data==x:
+        head=curr
+        curr=curr.next
+    if head==None:
+        return head
+    
+    prev,head=None,curr
+    while curr!=None:
+        if curr.data==x:
+            prev.next=curr.next
+            curr=curr.next
+        else:
+            prev=curr
+            curr=curr.next
+    return head
