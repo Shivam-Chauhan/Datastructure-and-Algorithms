@@ -1,0 +1,61 @@
+# Problem Link :- https://leetcode.com/problems/reorder-list/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        # Finding Middle Element of Linked List
+        def middleOfLL(head):
+            slow,fast=head,head
+            while fast.next!=None and fast.next.next!=None:
+                fast=fast.next.next
+                slow=slow.next
+            temp=slow.next
+            slow.next=None
+            return temp
+        
+        # Reversing the second half of Linked List
+        def reverseLL(head):
+            prev,curr=None,head
+            while curr!=None:
+                temp=curr.next
+                curr.next=prev
+                prev=curr
+                curr=temp
+            return prev
+        
+        # Joining the two linked list alternatively
+        def addAlternatively(head1,head2):
+            h1,h2=head1,head2
+            dummyNode=ListNode(-1)
+            curr=dummyNode
+            pos=0
+            while h1!=None and h2!=None:
+                if pos&1==0:
+                    curr.next=h1
+                    h1=h1.next
+                else:
+                    curr.next=h2
+                    h2=h2.next
+                
+                curr=curr.next
+                pos+=1
+            
+            curr.next=h1 if h1!=None else h2
+            
+            return dummyNode.next
+        if head==None or head.next==None:
+            return head
+        newHead=middleOfLL(head)
+        reverser=reverseLL(newHead)
+        return addAlternatively(head,reverser)
