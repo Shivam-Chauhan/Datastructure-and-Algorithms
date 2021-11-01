@@ -1,0 +1,43 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/delete-nodes-having-greater-value-on-right/1#
+# Python Solution
+# Time Complexity :- O(3*N) or O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self,x):
+        self.data=x
+        self.next=None
+
+'''
+class Solution:
+    def compute(self,head):
+        def reverseLL(head):
+            prev,curr=None,head
+            while curr!=None:
+                temp=curr.next
+                curr.next=prev
+                prev=curr
+                curr=temp
+            return prev
+        def traversal(head):
+            prev,curr=None,head
+            maxi=-10**9
+            while curr!=None:
+                maxi=max(maxi,curr.data)
+                if maxi>curr.data:
+                    prev.next=curr.next
+                    curr=curr.next
+                else:
+                    prev=curr
+                    curr=curr.next
+                    
+            return head
+        if head==None or head.next==None:
+            return head
+        newHead=reverseLL(head)
+        modifiedLL=traversal(newHead)
+        return reverseLL(modifiedLL)
