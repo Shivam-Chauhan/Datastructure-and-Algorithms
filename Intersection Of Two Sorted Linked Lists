@@ -1,0 +1,35 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/intersection-of-two-sorted-linked-lists/1
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(min(N,M))
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+''' structure of node:
+
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+'''
+
+def findIntersection(head1,head2):
+    if head1==None or head2==None:
+        return None
+    dummyNode=Node(-1)
+    pointerDummy=dummyNode
+    h1,h2=head1,head2
+    while h1!=None and h2!=None:
+        if h1.data==h2.data:
+            # print(h1.data,h2.data)
+            pointerDummy.next=Node(h1.data)
+            pointerDummy=pointerDummy.next
+            h1=h1.next
+            h2=h2.next
+        elif h1.data<h2.data:
+            h1=h1.next
+        else:
+            h2=h2.next
+    return dummyNode.next
