@@ -1,0 +1,36 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/rearrange-a-linked-list/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+# Linked List Node 
+class Node: 
+	def __init__(self, d): 
+		self.data = d 
+		self.next = None
+		'''
+class Solution:    
+    def rearrangeEvenOdd(self, head):
+        evenDummy=Node(-1)
+        oddDummy=Node(-1)
+        evenIndx,oddIndx=evenDummy,oddDummy
+        curr=head
+        isOddEven=0
+        while curr!=None:
+            if isOddEven&1==0:
+                # print(oddIndx.data,curr.data)
+                oddIndx.next=curr
+                oddIndx=oddIndx.next
+            else:
+                # print(evenIndx.data,curr.data)
+                evenIndx.next=curr
+                evenIndx=evenIndx.next
+            isOddEven+=1
+            curr=curr.next
+        evenIndx.next=None
+        oddIndx.next=evenDummy.next
+        return oddDummy.next
