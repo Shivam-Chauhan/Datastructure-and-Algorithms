@@ -1,0 +1,45 @@
+# Problem Link :- https://leetcode.com/problems/merge-k-sorted-lists/
+# Python Solution
+# Time Complexity :- O(N*K*Log(K))
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        # Merging Two Sorted Linked List
+        def mergingLL(l1,l2):
+            if l1==None or l2==None:
+                return l1 if l1!=None else l2
+            
+            head1,head2=l1,l2
+            dummyNode=ListNode(-1)
+            curr=dummyNode
+            
+            while head1!=None and head2!=None:
+                if head1.val<head2.val:
+                    curr.next=head1
+                    head1=head1.next
+                else:
+                    curr.next=head2
+                    head2=head2.next
+                curr=curr.next
+            curr.next=head1 if head1!=None else head2
+            return dummyNode.next
+        # Merge Sort on Linked List
+        def mergeSortKLinkedList(lists,start,end):
+            if start>end:
+                return None
+            if start==end:
+                return lists[start]
+            mid=(start+end)//2
+            leftList=mergeSortKLinkedList(lists,start,mid)
+            rightList=mergeSortKLinkedList(lists,mid+1,end)
+            return mergingLL(leftList,rightList)
+        
+        return mergeSortKLinkedList(lists,0,len(lists)-1)
