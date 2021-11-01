@@ -1,0 +1,28 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/remove-half-nodes/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+# Return the root of the modified tree after removing all the half nodes.
+def RemoveHalfNodes(root): 
+    def traversal(root):
+        if root==None:
+            return None
+        root.left=traversal(root.left)
+        root.right=traversal(root.right)
+        if root.left==None and root.right==None:
+            return root
+    
+        if root.left==None:
+            rootStorage=root.right
+            root=None
+            return rootStorage
+        if root.right==None:
+            rootStorage=root.left
+            root=None
+            return rootStorage
+        return root
+    return traversal(root)
