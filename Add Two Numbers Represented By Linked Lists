@@ -1,0 +1,57 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/add-two-numbers-represented-by-linked-lists/1#
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(N+M)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+''' Node for linked list:
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+'''
+class Solution:
+    #Function to add two numbers represented by linked list.
+    def addTwoLists(self, first, second):
+        # code here
+        # return head of sum list
+        def linkedListReverse(head):
+            prev,curr=None,head
+            while curr!=None:
+                front=curr.next
+                curr.next=prev
+                prev=curr
+                curr=front
+            return prev
+        if first==None and second==None:
+            return None
+        if first==None:
+            return second
+        if second==None:
+            return first
+        
+        firstHead=linkedListReverse(first)
+        secondHead=linkedListReverse(second)
+        carry=0
+        dummy=Node(-1)
+        temp=dummy
+        while firstHead!=None or secondHead!=None:
+            firstData=0 if firstHead==None else firstHead.data
+            secondData=0 if secondHead==None else secondHead.data
+            sum1=firstData+secondData+carry
+            carry=sum1//10
+            sum1%=10
+            temp.next=Node(sum1)
+            temp=temp.next
+            if firstHead!=None:
+                firstHead=firstHead.next
+            if secondHead!=None:
+                secondHead=secondHead.next
+        if carry>=1:
+            temp.next=Node(carry)
+        
+        return linkedListReverse(dummy.next)
