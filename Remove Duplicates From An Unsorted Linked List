@@ -1,0 +1,33 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/remove-duplicates-from-an-unsorted-linked-list/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+'''
+		# Node Class
+		class Node:
+		    def __init__(self, data):   # data -> value stored in node
+		        self.data = data
+		        self.next = None
+	
+'''
+class Solution:
+    #Function to remove duplicates from unsorted linked list.
+    def removeDuplicates(self, head):
+        # code here
+        # return head after editing list
+        if head==None or head.next==None:
+            return head
+        storage=set()
+        prev,curr=None,head
+        while curr!=None:
+            if curr.data in storage:
+                prev.next=curr.next
+                curr=curr.next
+            else:
+                storage.add(curr.data)
+                prev=curr
+                curr=curr.next
+        return head
