@@ -1,0 +1,33 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/pairwise-swap-elements-of-a-linked-list-by-swapping-data/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+"""  list Node is as defined below:
+
+class Node:
+    def __init__(self, data):
+		self.data = data
+		self.next = None
+
+"""
+
+# complete this function
+# return head of list after swapping
+class Solution:    
+    def pairWiseSwap(self, head):
+        if head==None or head.next==None:
+            return head
+        prev,curr=None,head
+        while curr!=None and curr.next!=None:
+            temp=curr.next
+            curr.next=temp.next
+            temp.next=curr
+            if prev==None:
+                head=temp
+            else:
+                prev.next=temp
+            prev=curr
+            curr=curr.next
+        return head
