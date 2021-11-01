@@ -1,0 +1,35 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/sorted-insert-for-circular-linked-list/1/?track=amazon-linkedlists&batchId=192
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+class Node: 
+    # Constructor to initialize the node object 
+    def __init__(self, data): 
+        self.data = data 
+        self.next = None
+  '''
+class Solution:
+    def sortedInsert(self, head, data):
+        if data<head.data:
+            newNode=Node(data)
+            newNode.next=head
+            curr=head
+            while curr.next.data!=head.data:
+                curr=curr.next
+            curr.next=newNode
+            head=newNode
+            return head
+        else:
+            prev,curr=None,head
+            while curr.data<=data:
+                prev=curr
+                curr=curr.next
+            newNode=Node(data)
+            prev.next=newNode
+            newNode.next=curr
+            return head
