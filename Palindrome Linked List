@@ -1,0 +1,44 @@
+# Problem Link :- https://leetcode.com/problems/palindrome-linked-list/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        # Finding the Middle Of Linked List
+        def middleOfLL(head):
+            slow,fast=head,head
+            while fast.next!=None and fast.next.next!=None:
+                fast=fast.next.next
+                slow=slow.next
+            temp=slow.next
+            slow.next=None
+            return temp
+        # Reversing the Linked List
+        def reverseLL(head):
+            prev,curr=None,head
+            while curr!=None:
+                temp=curr.next
+                curr.next=prev
+                prev=curr
+                curr=temp
+            return prev
+        
+        # Return True if both of Linked List is Palindrome
+        def checkForPalindrome(head1,head2):
+            h1,h2=head1,head2
+            while h1!=None and h2!=None:
+                if h1.val!=h2.val:
+                    return False
+                h1=h1.next
+                h2=h2.next
+            return True
+        newHead=middleOfLL(head)
+        newHead=reverseLL(newHead)
+        return checkForPalindrome(head,newHead)
