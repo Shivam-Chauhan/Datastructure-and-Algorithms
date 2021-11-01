@@ -1,0 +1,36 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/find-length-of-loop/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+Structure of node
+
+# Node Class
+class Node:
+    def __init__(self, data):   # data -> value stored in node
+        self.data = data
+        self.next = None
+
+'''
+
+#Function to find the length of a loop in the linked list.
+def countNodesinLoop(head):
+    counter=0
+    fast,slow,flag=head,head,0
+    while fast!=None and fast.next!=None and slow!=None and slow.next!=None:
+        if fast==slow and flag!=0:
+            slow=slow.next
+            while slow!=fast:
+                counter+=1
+                slow=slow.next
+            return counter+1
+        
+        flag+=1                
+        slow=slow.next
+        fast=fast.next.next
+    return counter
+        
