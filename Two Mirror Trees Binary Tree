@@ -1,0 +1,27 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/two-mirror-trees/1/?track=amazon-trees&batchId=192#
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(N+M)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+# Node Class:
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    def areMirror(self,root1,root2):
+        def traversal(root1,root2):
+            if root1==None and root2==None:
+                return True
+            if root1==None or root2==None or root1.data!=root2.data:
+                return False
+            return traversal(root1.left,root2.right) and traversal(root1.right,root2.left)
+        return traversal(root1,root2)
+        
