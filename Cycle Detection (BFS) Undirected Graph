@@ -24,7 +24,7 @@ def isCycle(vtcs,graph):
     return False
 graph={
     1:[2],
-    2:[1,4,7],
+    2:[1,4,6,7],
     3:[5],
     4:[2,6],
     5:[3],
