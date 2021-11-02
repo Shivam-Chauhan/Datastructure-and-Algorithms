@@ -1,0 +1,16 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/sort-by-absolute-difference-1587115621/1#
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    
+    #Function to sort the array according to difference with given number.
+    def sortAbs(self,a, n, k):
+        self.num=k
+        def func(x):
+            return abs(self.num-x)
+        return(sorted(a,key=lambda x:func(x)))
