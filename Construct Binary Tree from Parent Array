@@ -1,0 +1,35 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/construct-binary-tree-from-parent-array/1/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+
+'''
+# A node structure
+class Node:
+    # A utility function to create a new node
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+'''
+class Solution:
+    #Function to construct binary tree from parent array.
+    def createTree(self,parent,N):
+        lookup=dict()
+        for i in range(len(parent)):
+            lookup[i]=Node(i)
+        root=None
+        for val, node in enumerate(parent):
+            if node==-1:
+                root=lookup[val]
+            else:
+                ptr=lookup[node]
+                if ptr.left:
+                    ptr.right=lookup[val]
+                else:
+                    ptr.left=lookup[val]
+        return root
