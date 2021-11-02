@@ -1,0 +1,25 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/reverse-level-order-traversal/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+def reverseLevelOrder(root):
+    queue,ans=deque([root]),deque()
+    while len(queue):
+        rem=queue.popleft()
+        ans.appendleft(rem.data)
+        if rem.right!=None:
+            queue.append(rem.right)
+        if rem.left!=None:
+            queue.append(rem.left)
+    return ans
