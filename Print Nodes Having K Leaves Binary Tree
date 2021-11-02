@@ -1,0 +1,25 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/print-nodes-having-k-leaves/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    # Your task is to complete this function
+    # function should print the node whose subtrees has exactly k leaves 
+    # if no such leaves is present print -1    
+    def btWithKleaves(self, root, k):
+        self.output=[]
+        def nodeFinder(root,k):
+            if root==None:
+                return 0
+            if root.left==None and root.right==None:
+                return 1
+            lefty=nodeFinder(root.left,k)
+            righty=nodeFinder(root.right,k)
+            if lefty+righty==k:
+                self.output.append(root.data)
+            return lefty+righty
+        nodeFinder(root,k)
+        return [-1] if len(self.output)==0 else self.output
