@@ -1,0 +1,39 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/binary-tree-to-cdll/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(H) # Where H is the height of Tree
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+'''
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+
+'''
+
+class Solution:
+    
+    #Function to convert binary tree into circular doubly linked list.
+    def bTreeToClist(self, root):
+        self.prev=None
+        self.head=None
+        def convertor(root):
+            if root==None:
+                return 
+            convertor(root.left)
+            if self.prev==None:
+                self.prev=root
+                self.head=root
+            else:
+                self.prev.right=root
+                root.left=self.prev
+                self.prev=root
+            convertor(root.right)
+        convertor(root)
+        temp=self.head
+        temp.left=self.prev
+        self.prev.right=self.head
+        return self.head
