@@ -1,0 +1,17 @@
+# Problem Link :- https://leetcode.com/problems/queens-that-can-attack-the-king/
+# Python Solution
+# Time Complexity :- O(8N)
+# Space Complexity :- O(Queens)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[List[int]]:
+        output=[]
+        queens={(i,j) for i,j in queens}
+        for i in [-1,0,1]:
+            for j in [-1,0,1]:
+                for k in range(1,8):
+                    if (king[0]+i*k,king[1]+j*k) in queens:
+                        output.append([king[0]+i*k,king[1]+j*k])
+                        break
+        return output
