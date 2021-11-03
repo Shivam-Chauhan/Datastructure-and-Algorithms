@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1/#
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    #User function Template for python3
+    
+    #Complete this function
+    def findFloor(self,A,N,X):
+        low,high=0,len(A)-1
+        indx=-1
+        while low<=high:
+            mid=low+(high-low)//2
+            if A[mid]==X:
+                return mid
+            elif A[mid]<X:
+                indx=mid
+                low=mid+1
+            else:
+                high=mid-1
+        return indx    
