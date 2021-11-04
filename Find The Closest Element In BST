@@ -1,0 +1,29 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/find-the-closest-element-in-bst/1#
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+class Solution:
+    
+    #Function to find the least absolute difference between any node
+    #value of the BST and the given integer.
+    def minDiff(self,root, K):
+        self.mini=10**9
+        self.val=0
+        def finder(root,k):
+            if root==None:
+                return 
+            if root.data==k:
+                self.mini=0
+            if root.data>k:
+                finder(root.left,k)
+            if abs(root.data-k)<self.mini:
+                # print(root.data,self.val)
+                self.mini=abs(root.data-k)
+                self.val=root.data
+            if root.data<k:
+                finder(root.right,k)
+        finder(root,K)
+        return self.mini
