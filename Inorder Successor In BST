@@ -1,0 +1,33 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/inorder-successor-in-bst/1/#
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self, val, k):
+        self.right = None
+        self.data = val
+        self.left = None
+        self.key = k
+'''
+class Solution:
+    # returns the inorder successor of the Node x in BST (rooted at 'root')
+    def inorderSuccessor(self, root, x):
+        self.flag=1
+        self.val=None
+        def dfs(root,x):
+            if root==None:
+                return
+            if root.data>x.data:
+                self.val=root
+            if root.data<=x.data:
+                dfs(root.right,x)
+            if root.data>x.data:
+                dfs(root.left,x)
+        dfs(root,x)
+        return self.val
