@@ -1,0 +1,29 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/kth-largest-element-in-bst/1/#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+
+# class Node:
+#     def __init__(self, val):
+#         self.data = val
+#         self.left = None
+#         self.right = None
+
+# return the Kth largest element in the given BST rooted at 'root'
+class Solution:
+    def kthLargest(self,root, k):
+        self.node=0
+        self.counter=0
+        def kthBST(root,k):
+            if root==None:
+                return
+            kthBST(root.right,k)
+            self.counter+=1
+            if self.counter==k:
+                self.node=root.data
+            kthBST(root.left,k)
+        kthBST(root,k)
+        return self.node
