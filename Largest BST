@@ -1,0 +1,28 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/largest-bst/1/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class InfoNode:
+    def __init__(self,mini,maxi,size,isbst):
+        self.mini=mini
+        self.maxi=maxi
+        self.size=size
+        self.isbst=isbst
+class Solution:
+    # Return the size of the largest sub-tree which is also a BST
+    def largestBst(self, root):
+        def largestBstUtil(root):
+            if root==None:
+                return InfoNode(10**9,-10**9,0,True)
+            lefty=largestBstUtil(root.left)
+            righty=largestBstUtil(root.right)
+            if lefty.isbst and righty.isbst and lefty.maxi<root.data<righty.mini:
+                return InfoNode(min(root.data,lefty.mini,righty.mini),max(root.data,lefty.maxi,righty.maxi),lefty.size+1+righty.size,True)
+            else:
+                return InfoNode(10**9,-10**9,max(lefty.size,righty.size),False)
+        return largestBstUtil(root).size
