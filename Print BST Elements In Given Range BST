@@ -1,0 +1,26 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/print-bst-elements-in-given-range/1/#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+
+class Solution:
+    def printNearNodes(self, root, low, high):
+        self.output=[]
+        def dfs(root,low,high):
+            if root==None:
+                return
+            if root.left!=None:
+                dfs(root.left,low,high)
+            if root.data>=low and root.data<=high:
+                self.output.append(root.data)
+            if root.right!=None:
+                dfs(root.right,low,high)
+        dfs(root,low,high)
+        return self.output
+        
+        
+        
+        
