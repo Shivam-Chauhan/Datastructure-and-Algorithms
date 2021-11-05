@@ -1,0 +1,22 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/length-of-the-longest-substring3036/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+class Solution:
+    def longestUniqueSubsttr(self, stri):
+        st=set()
+        ws,we,maxi=0,0,0
+        while we<len(stri):
+            if stri[we] not in st:
+                st.add(stri[we])
+            else:
+                maxi=max(maxi,len(st))
+                while stri[we] in st:
+                    st.remove(stri[ws])
+                    ws+=1
+                st.add(stri[we])
+            we+=1
+        maxi=max(maxi,len(st))
+        return maxi
