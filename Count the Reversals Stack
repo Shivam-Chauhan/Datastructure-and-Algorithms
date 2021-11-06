@@ -1,0 +1,26 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-the-reversals0401/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def countRev (s):
+    if len(s)&1:
+        return -1
+    stack,ct=[],0
+    for i in s:
+        if i=="{":
+            stack.append("{")
+        else:
+            if len(stack) and stack[-1]=="{":
+                stack.pop()
+            else:
+                stack.append("}")
+    while len(stack):
+        top1=stack.pop()
+        top2=stack.pop()
+        if top1==top2:
+            ct+=1
+        else:
+            ct+=2
+    return ct
