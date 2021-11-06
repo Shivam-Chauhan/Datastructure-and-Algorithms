@@ -1,0 +1,23 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/three-great-candidates0515/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+class Solution:
+    def maxProduct(self, arr, n):
+        firstMax=secondMax=thirdMax=-10**9
+        firstMin=secondMin=10**9
+        for i in arr:
+            if thirdMax==-10**9 or i>thirdMax:
+                thirdMax,secondMax,firstMax=i,thirdMax,secondMax
+            elif secondMax==-10**9 or i>secondMax:
+                secondMax,firstMax=i,secondMax
+            elif firstMax==-10**9 or i>firstMax:
+                firstMax=i
+            
+            if firstMin==10**9 or firstMin>i:
+                firstMin,secondMin=i,firstMin
+            elif secondMin==10**9 or secondMin>i:
+                secondMin=i
+        return max(thirdMax*secondMax*firstMax,firstMin*secondMin*thirdMax)
