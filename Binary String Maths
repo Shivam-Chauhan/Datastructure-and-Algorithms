@@ -1,0 +1,14 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/binary-string-1587115620/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&page=1&query=company[]AmazonproblemStatusunsolvedpage1company[]Amazon
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    
+    #Function to count the number of substrings that start and end with 1.
+    def binarySubstring(self,n,s):
+        ct=s.count('1')
+        return ct*(ct-1)>>1
