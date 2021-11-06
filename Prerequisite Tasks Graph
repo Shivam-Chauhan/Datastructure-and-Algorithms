@@ -1,0 +1,37 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/prerequisite-tasks/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&page=1&query=company[]AmazonproblemStatusunsolvedpage1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(V+E)
+# Space Complexity :- O(V+E)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def isPossible(self,N,prerequisites):
+        def graphMaking(prerequisites,graph):
+            for i,j in prerequisites:
+                graph[j].append(i)
+        def cycleDetectionDG(graph,visited,dfsVisited,src):
+            visited[src]=True
+            dfsVisited[src]=True
+            for node in graph[src]:
+                if visited[node]==False:
+                    if cycleDetectionDG(graph,visited,dfsVisited,node):
+                        return True
+                elif dfsVisited[node]==True:
+                    return True
+            dfsVisited[src]=False
+            return False
+            
+        graph=dict()
+        for i in range(N):
+            graph[i]=[]
+        graphMaking(prerequisites,graph)
+        visited=[0]*N
+        dfsVisited=[0]*N
+        for i in range(N):
+            if visited[i]==False:
+                if cycleDetectionDG(graph,visited,dfsVisited,i):
+                    return False
+        return True
