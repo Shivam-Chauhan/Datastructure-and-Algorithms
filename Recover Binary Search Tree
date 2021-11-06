@@ -1,0 +1,36 @@
+# Problem Link :- https://leetcode.com/problems/recover-binary-search-tree/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        self.prev=self.first=self.last=None
+        def recovering(root):
+            if root==None:
+                return 
+            recovering(root.left)
+            if self.prev!=None and root.val<self.prev.val:
+                if self.first==None:
+                    self.first=self.prev
+                    self.middle=root
+                else:
+                    self.last=root
+            self.prev=root
+            recovering(root.right)
+        
+        recovering(root)
+        if self.first and self.last:
+            self.first.val,self.last.val=self.last.val,self.first.val
+        elif self.first and self.middle:
+            self.first.val,self.middle.val=self.middle.val,self.first.val
