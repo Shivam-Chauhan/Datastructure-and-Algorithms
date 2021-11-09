@@ -1,0 +1,19 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/extract-maximum2943/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def extractMaximum(self,S): 
+        res,maxi="",-1
+        for i in S:
+            if i in "0123456789":
+                res+=i
+            else:
+                maxi=max(maxi,int(res) if len(res)!=0 else -1)
+                res=""
+        maxi=max(maxi,int(res) if len(res)!=0 else -1)
+        return maxi
