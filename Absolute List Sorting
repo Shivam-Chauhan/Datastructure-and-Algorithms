@@ -1,0 +1,35 @@
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+def sortList(head):
+    '''
+    head: head of linkedList
+    
+    Your method shouldn't print anything
+    it should transform the passed linked list
+    '''
+    newHead,newTail=None,None
+    curr=head
+    while curr!=None:
+        front=curr.next
+        curr.next=None
+        if curr.data<=0:
+            if newHead==None:
+                newHead=curr
+                newTail=curr
+            else:
+                curr.next=newHead
+                newHead=curr
+        else:
+            if newHead==None:
+                newHead,newTail=curr,curr
+            else:
+                newTail.next=curr
+                newTail=newTail.next
+            
+        curr=front
+    return newHead
