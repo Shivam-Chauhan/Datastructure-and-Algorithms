@@ -1,0 +1,18 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/faithful-numbers0014/1#
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+class Solution:
+    def nthFaithfulNum(self, n):
+        power=0
+        sum1=0
+        while n:
+            powerVal=7**power
+            if n&1:
+                sum1+=powerVal
+            n>>=1
+            power+=1
+        return sum1
