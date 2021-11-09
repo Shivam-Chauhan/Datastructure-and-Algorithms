@@ -1,0 +1,19 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-triplets-with-sum-smaller-than-x5549/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=4&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page4sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N*Log(N)) + O(N*N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+class Solution:
+    def countTriplets(self, arr, n, sum1):
+        arr.sort()
+        ct=0
+        for i in range(0,len(arr)-2):
+            left,right=i+1,len(arr)-1
+            while left<right:
+                tempSum=arr[i]+arr[left]+arr[right]
+                if tempSum<sum1:
+                    ct+=right-left
+                    left+=1
+                elif tempSum>=sum1:
+                    right-=1
+        return ct
