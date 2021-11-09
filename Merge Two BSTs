@@ -1,0 +1,97 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/merge-two-bst-s/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N+M) + O(N+M)
+# Space Complexity :- O(N+M)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+'''
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+
+class Solution:
+    
+    #Function to return a list of integers denoting the node 
+    #values of both the BST in a sorted order.
+    def merge(self, root1, root2):
+        def inorderTraversal(root,inorderArray):
+            if root==None:
+                return 
+            inorderTraversal(root.left,inorderArray)
+            inorderArray.append(root.data)
+            inorderTraversal(root.right,inorderArray)
+        inorder1,inorder2=[],[]
+        inorderTraversal(root1,inorder1)
+        inorderTraversal(root2,inorder2)
+        i,j,output=0,0,[]
+        while i<len(inorder1) and j<len(inorder2):
+            if inorder1[i]<=inorder2[j]:
+                output.append(inorder1[i])
+                i+=1
+            else:
+                output.append(inorder2[j])
+                j+=1
+        while i<len(inorder1):
+            output.append(inorder1[i])
+            i+=1
+        while j<len(inorder2):
+            output.append(inorder2[j])
+            j+=1
+        return output
+
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------           
+# Python Solution
+# Time Complexity :- O(N+M) + O(N+M)
+# Space Complexity :- O(1)
+# Modification of BST's 
+
+'''
+class Node:
+    def __init__(self, val):
+        self.right = None
+        self.data = val
+        self.left = None
+'''
+
+class Solution:
+    
+    #Function to return a list of integers denoting the node 
+    #values of both the BST in a sorted order.
+    def merge(self, root1, root2):
+        self.prev,self.head=None,None
+        def bstToSortedDLL(root):
+            if root==None:
+                return 
+            bstToSortedDLL(root.left)
+            if self.prev==None:
+                self.prev,self.head=root,root
+            else:
+                self.prev.right=root
+                root.left=self.prev
+                self.prev=root
+            bstToSortedDLL(root.right)
+        
+        output=[]
+        bstToSortedDLL(root1)
+        head1=self.head
+        self.prev,self.head=None,None
+        bstToSortedDLL(root2)
+        head2=self.head
+        while head1!=None and head2!=None:
+            if head1.data<=head2.data:
+                output.append(head1.data)
+                head1=head1.right
+            else:
+                output.append(head2.data)
+                head2=head2.right
+        while head1!=None:
+            output.append(head1.data)
+            head1=head1.right
+        while head2!=None:
+            output.append(head2.data)
+            head2=head2.right
+        return output        
