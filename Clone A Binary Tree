@@ -1,0 +1,26 @@
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def cloneTree(self, root):
+        def cloneRandom(root,dic):
+            if dic[root]==None:
+                return 
+            dic[root].random=dic[root.random]
+            cloneRandom(root.left,dic)
+            cloneRandom(root.right,dic)
+        
+        def cloneLeftRight(root,dic):
+            if root==None:
+                return None
+            dic[root]=Node(root.data)
+            dic[root].left=cloneLeftRight(root.left,dic)
+            dic[root].right=cloneLeftRight(root.right,dic)
+            return dic[root]
+        
+        dic=dict()
+        cloneLeftRight(root,dic)
+        cloneRandom(root,dic)
+        return dic[root]
