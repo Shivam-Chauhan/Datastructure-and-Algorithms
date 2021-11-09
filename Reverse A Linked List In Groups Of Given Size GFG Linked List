@@ -1,0 +1,66 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/reverse-a-linked-list-in-groups-of-given-size/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+"""Return reference of new head of the reverse linked list
+  The input list will have at least one element
+  Node is defined as
+
+class Node:
+    def __init__(self, data):
+		self.data = data
+		self.next = None
+  This is method only submission.
+  You only need to complete the method.
+"""
+class Solution:
+    def reverse(self,head, k):
+        self.temphead,self.temptail=None,None
+        def lengthOfLL(head):
+            curr,ct=head,0
+            while curr!=None:
+                ct+=1
+                curr=curr.next
+            return ct
+        
+        def addFront(node):
+            if self.temphead==None:
+                self.temphead,self.temptail=node,node
+            else:
+                node.next=self.temphead
+                self.temphead=node
+            
+            
+        
+        if head==None or k<1:
+            return head
+        length=lengthOfLL(head)
+        newHead,newTail=None,None
+        curr=head
+        while length:
+            if length>=k:
+                for m in range(k):
+                    front=curr.next
+                    curr.next=None
+                    addFront(curr)
+                    curr=front
+                if newHead==None:
+                    newHead=self.temphead
+                    newTail=self.temptail
+                else:
+                    newTail.next=self.temphead
+                    newTail=self.temptail
+                length-=k
+                self.temphead,self.temptail=None,None
+            else:
+                while curr!=None:
+                    front=curr.next
+                    curr.next=None
+                    addFront(curr)
+                    curr=front
+                length=0
+                newTail.next=self.temphead
+                newTail=self.temptail
+        return newHead
