@@ -1,0 +1,30 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/maximum-node-level/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&difficulty[]=1&difficulty[]=2&page=1&query=company[]AmazonproblemStatusunsolveddifficulty[]0difficulty[]1difficulty[]2page1company[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+'''
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+# Return the level (0-indexed) with maximum number of nodes.
+def maxNodeLevel(root):
+    queue=[(root,0)]
+    maxi,lvl=0,0
+    while len(queue):
+        size=len(queue)
+        if size>maxi:
+            maxi=size
+            lvl=queue[0][1]
+        while size:
+            rem,level=queue.pop(0)
+            if rem.left!=None:
+                queue.append((rem.left,level+1))
+            if rem.right!=None:
+                queue.append((rem.right,level+1))
+            size-=1
+    return lvl
