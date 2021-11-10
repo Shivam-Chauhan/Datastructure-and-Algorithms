@@ -1,0 +1,17 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/handshakes1303/1#
+# Python Solution
+# Time Complexity :- O(N*N)
+# Space Complexity :- O(N)
+# Hint :- Variation of Catalan Number
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def count(self, n):
+        dp=[0]*(n+1)
+        dp[0],dp[1]=1,1
+        for i in range(2,len(dp)):
+            for j in range(i):
+                dp[i]+=dp[j]*dp[i-j-1]
+        return dp[n//2]
