@@ -1,0 +1,19 @@
+# Problem Link :- https://leetcode.com/problems/perfect-squares/
+# Python Solution
+# Time Complexity :- O(N*Log(N))
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def numSquares(self, n: int) -> int:
+        dp=[0]*(n+1)
+        dp[0],dp[1]=0,1
+        for i in range(2,len(dp)):
+            j=1
+            mini=10**9
+            while j*j<=i:
+                mini=min(dp[i-j*j],mini)
+                j+=1
+            dp[i]=1+mini
+        return dp[n]
+            
