@@ -1,0 +1,13 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-substrings0427/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&page=2&query=company[]AmazonproblemStatusunsolveddifficulty[]0page2company[]Amazon
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+class Solution:
+	def countSubstr(self, S):
+	    ct=0
+		for i in S:
+		    ct+=int(i)
+		return ct*(ct-1)//2
