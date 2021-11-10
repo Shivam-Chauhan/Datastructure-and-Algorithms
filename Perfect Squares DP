@@ -1,6 +1,6 @@
 # Problem Link :- https://leetcode.com/problems/perfect-squares/
 # Python Solution
-# Time Complexity :- O(N*Log(N))
+# Time Complexity :- O(N*Sqrt(N))
 # Space Complexity :- O(N)
 -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
 
