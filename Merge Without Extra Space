@@ -1,0 +1,51 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays5135/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&difficulty[]=1&difficulty[]=2&page=2&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]0difficulty[]1difficulty[]2page2sortBysubmissionscompany[]Amazon#
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+# Python Solution
+# Time Complexity :- O(N*M)
+# Space Complexity :- O(1)
+
+def merge(self, array1, array2, n, m): 
+        for i in range(len(array1)):
+            if array1[i]>array2[0]:
+                array1[i],array2[0]=array2[0],array1[i]
+                first=array2[0]
+                k=1
+                while k<len(array2) and array2[k]<first:
+                    array2[k-1],array2[k]=array2[k],array2[k-1]
+                    k+=1
+                array2[k-1]=first
+                
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+# Python Solution
+# Time Complexity :- O((N+M)*Log(N+M))
+# Space Complexity :- O(1)
+
+
+#User function Template for python3
+import math
+class Solution:
+    def merge(self, array1, array2, n, m): 
+        n,m=len(array1),len(array2)
+        gap=math.ceil((n+m)/2)
+        ct=2
+        while gap>=1 and ct:
+            i=0
+            while i+gap<n:
+                if array1[i]>array1[i+gap]:
+                    array1[i],array1[i+gap]=array1[i+gap],array1[i]
+                i+=1
+            j=gap-n if gap>n else 0
+            while j<m and i<n:
+                if array1[i]>array2[j]:
+                    array1[i],array2[j]=array2[j],array1[i]
+                i+=1
+                j+=1
+            if j<m:
+                j=0
+                while j+gap<m:
+                    if array2[j]>array2[j+gap]:
+                        array2[j+gap],array2[j]=array2[j],array2[j+gap]
+                    j+=1
+            gap=math.ceil(gap/2)
+            if gap==1:
+                ct-=1
