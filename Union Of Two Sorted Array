@@ -1,0 +1,49 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&difficulty[]=1&difficulty[]=2&page=2&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]0difficulty[]1difficulty[]2page2sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N+M)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    
+    #Function to return a list containing the union of the two arrays.
+    def mergeArrays(self,a,b,n,m):
+        '''
+        :param a: given sorted array a
+        :param n: size of sorted array a
+        :param b: given sorted array b
+        :param m: size of sorted array b
+        :return:  The union of both arrays as a list
+        '''
+        first,second=0,0
+        storage=[]
+        while first<n and second<m:
+            if first>0 and a[first-1]==a[first]:
+                first+=1
+                continue
+            if second>0 and b[second-1]==b[second]:
+                second+=1
+                continue
+            
+            if a[first]==b[second]:
+                storage.append(a[first])
+                first+=1
+                second+=1
+            elif a[first]<b[second]:
+                storage.append(a[first])
+                first+=1
+            else:
+                storage.append(b[second])
+                second+=1
+        while first<n:
+            if first==0 or a[first]!=a[first-1]:
+                storage.append(a[first])
+            first+=1
+        while second<m:
+            if second==0 or b[second]!=b[second-1]:
+                storage.append(b[second])
+            second+=1
+            
+        return storage
