@@ -1,0 +1,20 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/count-distinct-elements-in-every-window/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&difficulty[]=1&difficulty[]=2&page=1&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]0difficulty[]1difficulty[]2page1sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    def countDistinct(self, A, N, K):
+        dic=dict()
+        output=[]
+        ws=0
+        for we in range(len(A)):
+            dic[A[we]]=dic.get(A[we],0)+1
+            if we-ws+1==k:
+                output.append(len(dic))
+                dic[A[ws]]-=1
+                if dic[A[ws]]==0:
+                    del dic[A[ws]]
+                ws+=1
+        return output
