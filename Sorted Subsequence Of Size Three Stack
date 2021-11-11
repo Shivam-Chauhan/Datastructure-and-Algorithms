@@ -1,0 +1,19 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/sorted-subsequence-of-size-3/1/?company[]=Amazon&company[]=Amazon&problemStatus=unsolved&difficulty[]=0&difficulty[]=1&difficulty[]=2&page=2&sortBy=submissions&query=company[]AmazonproblemStatusunsolveddifficulty[]0difficulty[]1difficulty[]2page2sortBysubmissionscompany[]Amazon#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+class Solution:
+    def find3number(self,A, n):
+        output,stack=[],[]
+        for i in range(n-1,-1,-1):
+            while len(stack) and stack[-1]<=A[i]:
+                stack.pop()
+            stack.append(A[i])
+            if len(stack)==3:
+                while len(stack):
+                    output.append(stack.pop())
+                return output
+        return output
