@@ -1,0 +1,32 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/hamiltonian-path2522/1/#
+# Python Solution
+# Time Complexity :- O(N!)
+# Space Complexity :- O(N) + O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+class Solution:
+    def check(self, vtcs,edge, Edges): 
+        self.flag=0
+        def dfsForHP(graph,visited,psf,src):
+            visited[src]=1
+            # print(psf)
+            if len(psf)==vtcs:
+                self.flag=1
+                return
+            for node in graph[src]:
+                if visited[node]==0:
+                    dfsForHP(graph,visited,psf+[node],node)
+            visited[src]=0
+        graph=dict()
+        for i in range(vtcs+1):
+            graph[i]=[]
+        for i,j in Edges:
+            graph[i].append(j)
+            graph[j].append(i)
+        
+        visited=[0]*(vtcs+1)
+        for ele in range(1,vtcs+1):
+            dfsForHP(graph,visited,[ele],ele)
+        
+        return self.flag
