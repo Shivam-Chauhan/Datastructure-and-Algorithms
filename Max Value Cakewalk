@@ -1,0 +1,13 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/max-value1205/1#
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+class Solution:
+    def maxVal(self, a, n):
+        maxi,mini=-10**9,10**9
+        for i,j in enumerate(a):
+            maxi=max(maxi,j-i)
+            mini=min(mini,j-i)
+        return maxi-mini
