@@ -1,0 +1,15 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/trailing-zeroes-in-factorial5134/1
+# Python Solution
+# Time Complexity :- O(log5(N))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+class Solution:
+    def trailingZeroes(self, n):
+        x=1
+        ct=0
+    	while n//(5**x)>0:
+    	    ct+=n//(5**x)
+    	    x+=1
+    	return ct
