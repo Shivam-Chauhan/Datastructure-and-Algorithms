@@ -1,4 +1,6 @@
 # Problem Link :- https://practice.geeksforgeeks.org/problems/valid-substring0624/1#
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
 # Python Solution
 # Time Complexity :- O(N)
 # Space Complexity :- O(N)
@@ -29,4 +31,25 @@ class Solution:
             if open1>close:
                 open1=close=0
         return res
-                
+
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+
+#User function Template for python3
+
+class Solution:
+    def findMaxLen(ob, S):
+        stack=[-1]
+        maxi=0
+        for j,i in enumerate(S):
+            if i=="(":
+                stack.append(j)
+            else:
+                stack.pop()
+                if len(stack):
+                    maxi=max(maxi,j-stack[-1])
+                else:
+                    stack.append(j)
+        return maxi
