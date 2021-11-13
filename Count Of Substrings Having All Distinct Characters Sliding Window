@@ -1,0 +1,19 @@
+# Problem Link :- https://www.geeksforgeeks.org/count-of-substrings-having-all-distinct-characters/
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+def countOfDistinctCharacters():
+    string="gffg"
+    counterArray=[0]*26
+    ws,we,answer=0,0,0
+    while ws<len(string):
+        if we<len(string) and counterArray[ord(string[we])-97]==0:
+            counterArray[ord(string[we])-97]+=1
+            answer+=(we-ws+1)
+            we+=1
+        else:
+            counterArray[ord(string[ws])-97]-=1
+            ws+=1
+    return answer
