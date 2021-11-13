@@ -1,0 +1,34 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/height-of-spiral-tree/1
+# Python Solution
+# Time Complexity :- O(N)
+# Space Complexity :- O(1)
+# Auxillary Space of Recursion Stack
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+'''
+# Node Class:
+class Node:
+    def __init__(self,val):
+        self.data = val
+        self.left = None
+        self.right = None
+'''
+
+# Return the height of the given special binary tree
+def findTreeHeight(root):
+    def isLeaf(root):
+        if root.left and root.left.right==root and root.right and root.right.left==root:
+            return True
+        return False
+        
+    def heightFinder(root):
+        if root==None:
+            return 0
+        if isLeaf(root):
+            return 1
+        leftHeight=heightFinder(root.left)
+        rightHeight=heightFinder(root.right)
+        return 1+max(leftHeight,rightHeight)
+    return heightFinder(root)
