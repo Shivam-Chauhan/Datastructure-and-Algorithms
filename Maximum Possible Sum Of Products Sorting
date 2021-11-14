@@ -1,0 +1,16 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/maximum-possible-sum-of-products3637/1#
+# Python Solution
+# Time Complexity :- O(N*Log(N)) + O(N*Log(N))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+
+class Solution:
+
+    def MaxSum(self, A, B, N):
+        A.sort()
+        B.sort()
+        product=0
+        for i,j in zip(A,B):
+            product+=i*j
+        return product
