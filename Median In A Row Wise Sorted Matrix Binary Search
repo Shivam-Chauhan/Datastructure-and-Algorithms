@@ -1,0 +1,31 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1#
+# Python Solution
+# Time Complexity :- O(32*N*Log(M))
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+
+class Solution:
+    def median(self, matrix, r, c):
+        def countNumberSmallerMid(array,mid):
+            left,right=0,len(array)-1
+            while left<=right:
+                midIndx=(right+left)//2
+                if array[midIndx]<=mid:
+                    left=midIndx+1
+                else:
+                    right=midIndx-1
+            return left
+    	
+    	low,high=1,10**9
+    	while low<=high:
+    	    mid=(low+high)//2
+    	    countNumber=0
+    	    for i in range(len(matrix)):
+    	        countNumber+=countNumberSmallerMid(matrix[i],mid)
+    	    if countNumber<=(r*c)//2:
+    	        low=mid+1
+    	    else:
+    	        high=mid-1
+    	return low
