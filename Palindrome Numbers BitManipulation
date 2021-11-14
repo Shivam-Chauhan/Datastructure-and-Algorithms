@@ -1,0 +1,13 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/palindrome-numbers0942/1
+# Python Solution
+# Time Complexity :- O(Log(N))
+# Space Complexity :- O(Log(N))
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+#User function Template for python3
+class Solution:
+    def isPallindrome(self, N):
+        stri=""
+        while N:
+            stri+="1" if N&1==1 else "0"
+            N>>=1
+        return 1 if stri[::-1]==stri else 0
