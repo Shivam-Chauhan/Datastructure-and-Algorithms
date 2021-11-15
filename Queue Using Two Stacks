@@ -1,0 +1,24 @@
+# Problem Link :- https://practice.geeksforgeeks.org/problems/queue-using-two-stacks/1#
+# Python Solution
+# Time Complexity :- O(1) (Amortised Time Complexity)
+# Space Complexity :- O(2*N)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+#User function Template for python3
+#Function to push an element in queue by using 2 stacks.
+def Push(x,stack1,stack2):
+    stack1.append(x)
+
+#Function to pop an element from queue by using 2 stacks.
+def Pop(stack1,stack2):
+    
+    '''
+    stack1: list
+    stack2: list
+    '''
+    if len(stack2)!=0:
+        return stack2.pop()
+    else:
+        while len(stack1):
+            stack2.append(stack1.pop())
+        return -1 if len(stack2)==0 else stack2.pop()
