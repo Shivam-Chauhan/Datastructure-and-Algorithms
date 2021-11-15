@@ -1,0 +1,38 @@
+# Problem Link :- https://www.interviewbit.com/problems/spiral-order-matrix-ii/
+# Python Solution
+# Time Complexity :- O(N*M) + O(N*M)
+# Space Complexity :- O(1)
+-----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
+
+class Solution:
+    # @param A : integer
+    # @return a list of list of integers
+    def generateMatrix(self, A):
+        array=[[0 for i in range(A)] for i in range(A)]
+        ct=1
+        number=1
+        right,left,up,down=len(array[0])-1,0,0,len(array)-1
+        
+        while left<=right and up<=down:
+            if ct%4==1:
+                for i in range(left,right+1):
+                    array[up][i]=number
+                    number+=1
+                up+=1
+            elif ct%4==2:
+                for i in range(up,down+1):
+                    array[i][right]=number
+                    number+=1
+                right-=1
+            elif ct%4==3:
+                for i in range(right,left-1,-1):
+                    array[down][i]=number
+                    number+=1
+                down-=1
+            else:
+                for i in range(down,up-1,-1):
+                    array[i][left]=number
+                    number+=1
+                left+=1
+            ct+=1
+        return array
