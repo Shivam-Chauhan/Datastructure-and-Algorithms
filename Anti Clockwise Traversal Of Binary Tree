@@ -1,6 +1,6 @@
 # Problem :- Anti Clockwise Spiral Traversal of Binary Tree
 # Python Solution
-# Time Complexity :- O(N)
+# Time Complexity :- O(N*N)
 # Space Complexity :- O(1)
 # Auxillary Space of Recursion Stack
 -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   -----------------  -----------------   
