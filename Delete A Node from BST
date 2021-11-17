@@ -4,29 +4,39 @@
 # Space Complexity :- O(1)
 # Auxillary Space of Recursion Stack
 
+#User function Template for python3
+
+#Function to delete a node from BST.
 def deleteNode(root, X):
-    def findMinNode(root):
-        if root.left!=None:
-            root=findMinNode(root.left)
+    def lastRightNode(root):
+        while root.right!=None:
+            root=root.right
         return root
-    def deleteNodeBST(root,target):
+    def helper(root):
+        if root.right==None:
+            return root.left
+        if root.left==None:
+            return root.right
+        lastRight=lastRightNode(root.left)
+        lastRight.right=root.right
+        return root.left
+        
+    def traversal(root,x):
         if root==None:
-            return None
-        elif root.data>target:
-            root.left=deleteNodeBST(root.left,target)
-        elif root.data<target:
-            root.right=deleteNodeBST(root.right,target)
-        else:
-            if root.left==None and root.right==None:
-                root=None
-            elif root.left==None:
-                
-                root=root.right
-            elif root.right==None:
-                root=root.left
+            return
+        if root.data>x:
+            if root.left!=None and root.left.data==x:
+                root.left=helper(root.left)
             else:
-                temp=findMinNode(root.right)
-                root.data=temp.data
-                root.right=deleteNodeBST(root.right,temp.data)
-        return root
-    return deleteNodeBST(root,X)
+                traversal(root.left,x)
+        elif root.data<x:
+            if root.right!=None and root.right.data==x:
+                root.right=helper(root.right)
+            else:
+                traversal(root.right,x)
+    if root.data==X:
+        return helper(root)
+        
+    traversal(root,X)
+    
+    return root
